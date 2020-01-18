@@ -62,12 +62,12 @@ public class Grille{
 		//La première et le dernière ligne est remplit de x
 		for(int i=0; i<nbCol; i++){
 			grille[0][i]='x';
-			grille[nbCol-1][i]='x';
+			grille[nbLign-1][i]='x';
 		}
 		//On ajoute ensuite un x à chaque premier et dernier ligne de la grille
 		for(int i=1;i<nbLign-1;i++){
 			grille[i][0]='x';
-			grille[i][nbLign-1]='x';
+			grille[i][nbCol-1]='x';
 		}
 		return this.grille;
 	}

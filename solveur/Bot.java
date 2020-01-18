@@ -15,6 +15,13 @@ public class Bot{
 	}
 
 	//getters
+	public Integer getX(){
+		return this.x;
+	}
+
+	public Integer getY(){
+		return this.y;
+	}
 
 	//setters
 

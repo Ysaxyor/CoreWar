@@ -5,12 +5,18 @@ public class State{
 	//Attributs
 	private char[][] grille;
 	private Move move;
+
 	private String dir; //On peut récupérer direction avec move.getDirection mais cette variable pourra accueillir de nouvelle direction si on rencontre un mirroir
+	private Integer botX; //Positions du bot
+	private Integer botY;
 
 	public State(char[][] grille,Move move){ //Constructeur
 		this.grille = grille;
 		this.move = move;
+
 		dir = this.move.getDirection();
+		botX = move.getBot().getX();
+
 		grille = deplacement();
 	}
 
