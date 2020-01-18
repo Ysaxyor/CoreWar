@@ -100,7 +100,7 @@ public class Grille{
 		grille[l1][1]='x';
 		grille[1][c1]='x';
 		
-		//2e quart bas gauche
+		//2e quart bas gauche (-2 pour s'adapter à la bordure du jeu)
 		grille[l2][1]='x';
 		grille[nbLign -2][c1]='x';
 
