@@ -4,9 +4,13 @@ public class Main {
 	public static void main(String[] args){
 
 			Grille g1=new Grille(16,16); //choix de taille de la grille
-			Portal fin = new Portal(14,1,"blue",g1); // choix de la position et couleur du portail
-			Bot botBlue = new Bot(1,1,"blue",g1); //Création du bot et ajout automatique à une grille existante (position, couleur, grille)
+			//test des murs pour éviter les conflits tout en commentaire pour le moment
+			
+			//Portal fin = new Portal(14,1,"blue",g1); // choix de la position et couleur du portail
+			//Bot botBlue = new Bot(1,1,"blue",g1); //Création du bot et ajout automatique à une grille existante (position, couleur, grille)
 			g1.afficher();
+			
+			/*
 
 			Move goDroiteBlue = new Move(botBlue,"droite"); //On détermine le mouvement d'un bot, peut-être réutiliser pour un même robot avec une même direction
 			//On pourra plus tard lister tout les move possibles
@@ -22,6 +26,8 @@ public class Main {
 
 			State state3 = new State(state2.getGrille(),goGaucheBlue);
 			state3.getGrille().afficher();
+			*/
+			
 	}
 
 	}
