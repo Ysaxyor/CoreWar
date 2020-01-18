@@ -84,30 +84,22 @@ public class Grille{
 	
 	// Méthodé créant 2 murs extérieurs dans chaque quart de la grille d'une manière aléatoire
 	public char[][] setMurExt(){
-		
-		// les murs étant un x ferme les 4 côtés donc à fix ...
-		// char[] cotedumur = {'/','-','_','|'};
-		
 		// déclaration d'une ligne ou colonne random en fonction du quart de grille
 		int l1 = Randomizer(1,nbLign/2);
 		int c1 = Randomizer(1,nbCol/2);
 		int l2 = Randomizer(nbLign/2,nbLign-1);
 		int c3 = Randomizer(nbCol/2,nbCol-1);
-		
 		// si on a 2 fois le même index alors on aura 2 murs au même endroit, pour éviter ce conflit condition provisoire
 		if (l1 != c1 && l2 != c1 && l1 != c3 && l2 != c3){
 		//1er quart en haut à gauche
 		grille[l1][1]='x';
 		grille[1][c1]='x';
-		
 		//2e quart bas gauche (-2 pour s'adapter à la bordure du jeu)
 		grille[l2][1]='x';
 		grille[nbLign -2][c1]='x';
-
 		//3e quart haut droite
 		grille[l1][nbCol-2]='x';
 		grille[1][c3]='x';
-		
 		//4e quart bas droite
 		grille[l2][nbCol-2]='x';
 		grille[nbLign -2][c3]='x';
