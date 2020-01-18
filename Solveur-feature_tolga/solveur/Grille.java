@@ -77,20 +77,26 @@ public class Grille{
 		return this.grille;
 	}
 	
+	// Generateur aléatoire d'une valeur dans un intervalle donné.
 	public int Randomizer(int min,int max){
 		return (int)(Math.random()*(max-min))+min;
 		}
 	
-	public char[][] setQuartsdeMur(){
+	// Méthodé créant 2 murs extérieurs dans chaque quart de la grille d'une manière aléatoire
+	public char[][] setMurExt(){
 		
-		// init des position random
+		// les murs étant un x ferme les 4 côtés donc à fix ...
+		// char[] cotedumur = {'/','-','_','|'};
+		
+		// déclaration d'une ligne ou colonne random en fonction du quart de grille
 		int l1 = Randomizer(1,nbLign/2);
 		int c1 = Randomizer(1,nbCol/2);
 		int l2 = Randomizer(nbLign/2,nbLign-1);
 		int c3 = Randomizer(nbCol/2,nbCol-1);
 		
-		//1er quart en haut à gauche
+		// si on a 2 fois le même index alors on aura 2 murs au même endroit, pour éviter ce conflit condition provisoire
 		if (l1 != c1 && l2 != c1 && l1 != c3 && l2 != c3){
+		//1er quart en haut à gauche
 		grille[l1][1]='x';
 		grille[1][c1]='x';
 		
@@ -107,20 +113,21 @@ public class Grille{
 		grille[nbLign -2][c3]='x';
 		}
 		else {
-			setQuartsdeMur();
+			// récursivité si on a le même index sur une des positions
+			setMurExt();
 			}
 		return this.grille;
 		}
 		
 	
-	// Méthode pour ajouter des murs dans la grille
+	// Méthode pour ajouter les murs centraux (initiaux) dans la grille et les murs extèrieurs aléatoires
 	public char[][] setMur(){
 		// Murs au milieu
 		grille[nbLign/2][nbCol/2]='x';
 		grille[nbLign/2][(nbCol/2)-1]='x';
 		grille[(nbLign/2)-1][(nbCol/2)-1]='x';
 		grille[(nbLign/2)-1][(nbCol/2)]='x';
-		this.setQuartsdeMur();
+		setMurExt();
 		return this.grille;
 		
 		}
