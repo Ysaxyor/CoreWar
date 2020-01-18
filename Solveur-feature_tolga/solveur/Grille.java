@@ -82,7 +82,7 @@ public class Grille{
 		return (int)(Math.random()*(max-min))+min;
 		}
 	
-	// Méthodé créant 2 murs extérieurs dans chaque quart de la grille d'une manière aléatoire
+	// Méthode créant 2 murs extérieurs dans chaque quart de la grille d'une manière aléatoire
 	public char[][] setMurExt(){
 		// déclaration d'une ligne ou colonne random en fonction du quart de grille
 		int l1 = Randomizer(1,nbLign/2);
