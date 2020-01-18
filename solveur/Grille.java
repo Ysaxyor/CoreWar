@@ -35,12 +35,16 @@ public class Grille{
 
 	//Setters
 
-	public char[][] setGrille(Character c,Integer x, Integer y){ //Permet d'ajouter un caractère 
+	public char[][] setGrille(Character c,Integer x, Integer y){ //Permet d'ajouter un caractère
 		this.grille[x][y]=c;
 		return this.grille;
 	}
 
 	//Methodes
+
+	public void toState(char[][] nouvelleGrille){ //On écrase la grille actuelle par la nouvelle dans le cas où l'IA veut enfin avancer
+		this.grille = nouvelleGrille;
+	}
 
 	public void afficher(){
 		System.out.println();

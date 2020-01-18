@@ -25,5 +25,13 @@ public class Bot{
 
 	//setters
 
+	public void setX(Integer x){
+		this.x = x;
+	}
+
+	public void setY(Integer y){
+		this.y = y;
+	}
+
 	//méthodes
 }
