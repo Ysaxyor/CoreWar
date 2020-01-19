@@ -2,8 +2,6 @@ package solveur;
 
 import java.util.*;
 
-
-
 public class Grille{
 
 	//Attribut
@@ -25,6 +23,7 @@ public class Grille{
 			}
 		}
 		setBordures();
+		setCentre();
 	}
 
 	//Getters
@@ -59,8 +58,6 @@ public class Grille{
 		System.out.println();
 	}
 
-	//Méthodes pour tester move plus tard
-
 	public char[][] setBordures(){ //Crée les frontières de la carte
 		//La première et le dernière ligne est remplit de x
 		for(int i=0; i<nbCol; i++){
@@ -73,6 +70,19 @@ public class Grille{
 			grille[i][nbCol-1]='x';
 		}
 		return this.grille;
+	}
+
+	public char[][] setCentre(){ //Création du centre 2x2 de la grille
+		if(nbLign%2!=0 || nbCol%2!=0){ //Si 
+			System.out.println("Impossible de créer un centre dans cette grille");
+			return this.grille;
+		} else{
+			grille[nbLign/2-1][nbCol/2-1]='x';
+			grille[nbLign/2][nbCol/2-1]='x';
+			grille[nbLign/2-1][nbCol/2]='x';
+			grille[nbLign/2][nbCol/2]='x';
+			return this.grille;
+		}
 	}
 
 }

@@ -46,7 +46,15 @@ public class State{
 						return this.grille;
 					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
 						//à définir
+						botY -= 1;
 						return deplacement();
+					case 'h':
+						botY -= 1;
+						return deplacement();
+					case 'O':
+						botY -= 1;
+						congrats();
+						return this.grille;
 					default: //Dans le cas où il n'y a que du vide
 						botY -= 1;
 						return deplacement();
@@ -63,6 +71,7 @@ public class State{
 						return this.grille;
 					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
 						//à définir
+						botY += 1;
 						return deplacement();
 					default: //Dans le cas où il n'y a que du vide
 						botY += 1;
@@ -80,6 +89,7 @@ public class State{
 						return this.grille;
 					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
 						//à définir
+						botX -= 1;
 						return deplacement();
 					default: //Dans le cas où il n'y a que du vide
 						botX -= 1;
@@ -97,6 +107,7 @@ public class State{
 						return this.grille;
 					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
 						//à définir
+						botX += 1;
 						return deplacement();
 					default: //Dans le cas où il n'y a que du vide
 						botX += 1;
@@ -106,6 +117,10 @@ public class State{
 				System.out.println("Erreur de direction.");
 				return this.grille;
 		}
+	}
+
+	public void congrats(){
+		System.out.println("Objectif atteint !");
 	}
 
 
