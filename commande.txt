@@ -2,3 +2,6 @@ compilation :
   javac -d "build" solveur/*.java
 execution :
   java -cp "build" solveur.Main
+
+ou:
+./exe.sh
