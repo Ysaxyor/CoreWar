@@ -45,9 +45,21 @@ public class State{
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
 						this.grille.getGrille()[botX][botY] = 'B'; //On place le robot au dernier endroit calculé
 						return this.grille;
-					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
-						//à définir
-						return deplacement();
+					case 't': //Si on trouve un trampoline vers le bas (\)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "haut";
+						botY -=1;
+						deplacement();
+						return this.grille;
+						
+					case 'h': //Si on trouve un trampoline vers le haut (/)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "bas";
+						botY -=1;
+						deplacement();
+						return this.grille;
 					case 'F': // Si on trouve un portail
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.';
 						System.out.println("Partie terminé");
@@ -66,13 +78,27 @@ public class State{
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
 						this.grille.getGrille()[botX][botY] = 'B'; //On place le robot au dernier endroit calculé
 						return this.grille;
-					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
-						//à définir
-						return deplacement();
+					case 't': //Si on trouve un trampoline vers le bas (\)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "bas";
+						botY +=1;
+						deplacement();
+						return this.grille;
+						
+					case 'h': //Si on trouve un trampoline vers le haut (/)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "haut";
+						botY +=1;
+						deplacement();
+						return this.grille;
+					
 					case 'F': // Si on trouve un portail
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.';
 						System.out.println("Partie terminé");
 						return this.grille;
+						
 					default: //Dans le cas où il n'y a que du vide
 						botY += 1;
 						return deplacement();
@@ -87,9 +113,22 @@ public class State{
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
 						this.grille.getGrille()[botX][botY] = 'B'; //On place le robot au dernier endroit calculé
 						return this.grille;
-					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
-						//à définir
-						return deplacement();
+					case 't': //Si on trouve un trampoline vers le bas (\)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "gauche";
+						botX -=1;
+						deplacement();
+						return this.grille;
+						
+					case 'h': //Si on trouve un trampoline vers le haut (/)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "droite";
+						botX -=1;
+						deplacement();
+						return this.grille;
+						
 					case 'F': // Si on trouve un portail
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.';
 						System.out.println("Partie terminé");
@@ -108,9 +147,21 @@ public class State{
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
 						this.grille.getGrille()[botX][botY] = 'B'; //On place le robot au dernier endroit calculé
 						return this.grille;
-					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
-						//à définir
-						return deplacement();
+					case 't': //Si on trouve un trampoline vers le bas (\)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "droite";
+						botX +=1;
+						deplacement();
+						return this.grille;
+						
+					case 'h': //Si on trouve un trampoline vers le haut (/)
+					
+						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.'; //On supprime l'emplacement initial du robot
+						dir = "gauche";
+						botX +=1;
+						deplacement();
+						return this.grille;
 					case 'F': // Si on trouve un portail
 						this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] = '.';
 						System.out.println("Partie terminé");

@@ -25,7 +25,7 @@ public class Grille{
 			}
 		}
 		setBordures();
-		setMur();
+		//setMur();
 	}
 
 	//Getters
