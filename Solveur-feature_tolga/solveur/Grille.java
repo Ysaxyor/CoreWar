@@ -5,17 +5,19 @@ import java.util.*;
 
 
 public class Grille{
-
+	
 	//Attribut
 	private int nbLign; // nombre de ligne
 	private int nbCol;	// nombre de colonne
 	private char [][] grille; // une grille a 2Dimension rempli de caractere, chaque case est un caractere
+	private int nbTp;
 
 	// Constructeur
-	public Grille(int l,int c){
+	public Grille(int l,int c,int ntp){
 
 		nbLign=l;
 		nbCol=c;
+		nbTp =ntp;
 		grille= new char [nbLign][nbCol];
 
 
@@ -25,7 +27,8 @@ public class Grille{
 			}
 		}
 		setBordures();
-		//setMur();
+		setMur();
+		setTrampoline();
 	}
 
 	//Getters
@@ -122,6 +125,20 @@ public class Grille{
 		setMurExt();
 		return this.grille;
 		
+		}
+	// méthode PROVISOIRE ... je ferai avec un ensemble d'objet provenant d'une classe Trampoline
+	public char[][] setTrampoline(){
+		System.out.println(nbTp);
+		for (int i = 0; i < nbTp; i++){
+		Integer r_x = Randomizer(1,nbLign);
+			Integer r_y = Randomizer(1,nbCol);
+			System.out.println(r_x);
+			Random r = new Random();
+			char c = r.nextBoolean() ? 'h' : 't';
+			grille[r_x][r_y] = c;
+			}
+		
+		return this.grille;
 		}
 	
 	

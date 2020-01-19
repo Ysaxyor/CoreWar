@@ -4,12 +4,12 @@ public class Main {
 	public static void main(String[] args){
 
 			//Test d'une partie souvent gagnante avec les codes en commentaires
-			Grille g1=new Grille(16,16); //choix de taille de la grille
+			Grille g1=new Grille(16,16,4); //choix de taille de la grille
 			
 			//Test des trampolines
 			Portal fin = new Portal(14,1,"blue",g1); // choix de la position et couleur du portail
 			Bot botBlue = new Bot(4,10,"blue",g1); //Création du bot et ajout automatique à une grille existante (position, couleur, grille)
-			Trampoline t = new Trampoline(4,7,"blue",g1); // définition d'un trampoline à mettre avec un char h ou t dans Trampoline.java PROVISOIREMENT
+			g1.afficher();
 			g1.afficher();
 			
 			Move goDroiteBlue = new Move(botBlue,"gauche");

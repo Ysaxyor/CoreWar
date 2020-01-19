@@ -5,7 +5,6 @@ public class State{
 	//Attributs
 	private Grille grille;
 	private Move move;
-	private Portal portal;
 
 	private String dir; //On peut récupérer direction avec move.getDirection mais cette variable pourra accueillir de nouvelle direction si on rencontre un mirroir
 	private Integer botX; //Positions du bot

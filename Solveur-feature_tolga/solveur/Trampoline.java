@@ -6,12 +6,15 @@ public class Trampoline{
 	private Integer x;
 	private Integer y;
 	private String color;
+	private char dir;
+	private int n;
 
-	public Trampoline(Integer x, Integer y, String color,Grille grille){ //Constructeur
+	public Trampoline(Integer x, Integer y, String color,char dir,int n,Grille grille){ //Constructeur
 		this.x = x;
 		this.y = y;
 		this.color = color;
-		grille.setGrille('h',x,y); //Ajoute le bot à la grille
+		this.dir  = dir;
+		grille.setGrille(dir,x,y); //Ajoute le bot à la grille
 	}
 
 	//getters
