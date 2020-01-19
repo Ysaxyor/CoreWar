@@ -126,12 +126,12 @@ public class Grille{
 		return this.grille;
 		
 		}
-	// méthode PROVISOIRE ... je ferai avec un ensemble d'objet provenant d'une classe Trampoline
+	// méthode PROVISOIRES ... je ferai avec un ensemble d'objet provenant d'une classe Trampoline
 	public char[][] setTrampoline(){
 		System.out.println(nbTp);
 		for (int i = 0; i < nbTp; i++){
-		Integer r_x = Randomizer(1,nbLign);
-			Integer r_y = Randomizer(1,nbCol);
+		Integer r_x = Randomizer(1,nbLign-2);
+			Integer r_y = Randomizer(1,nbCol-2);
 			System.out.println(r_x);
 			Random r = new Random();
 			char c = r.nextBoolean() ? 'h' : 't';
