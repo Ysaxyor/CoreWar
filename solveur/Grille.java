@@ -8,11 +8,12 @@ public class Grille{
 	private int nbLign; // nombre de ligne
 	private int nbCol;	// nombre de colonne
 	private char [][] grille; // une grille a 2Dimension rempli de caractere, chaque case est un caractere
-
+	private List<Mirror> mirrors = new ArrayList<Mirror>(); //La liste des miroirs
+ 
 	// Constructeur
 	public Grille(int l,int c){
 
-		nbLign=l;
+		nbLign=l;// Simplifiable
 		nbCol=c;
 		grille= new char [nbLign][nbCol];
 
@@ -30,6 +31,19 @@ public class Grille{
 
 	public char[][] getGrille(){
 		return this.grille;
+	}
+
+	public List<Mirror> getMirrors(){
+		return this.mirrors;
+	}
+
+	public Mirror getMirrorByXY(int x,int y){ //Renvoie le Miroir correspondant aux coordonnées données
+		for(int i = 0;i<this.mirrors.size();i++){
+			if((this.mirrors.get(i).getX() == x) && (this.mirrors.get(i).getY() == y)){
+				return this.mirrors.get(i);
+			}
+		}
+		return this.mirrors.get(0); //Renvoie par défaut le premier mirroir pour éviter l'erreur missing return. Mais cet état ne sera jamais atteint
 	}
 
 	//Setters

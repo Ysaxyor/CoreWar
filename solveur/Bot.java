@@ -23,6 +23,10 @@ public class Bot{
 		return this.y;
 	}
 
+	public String getColor(){
+		return this.color;
+	}
+
 	//setters
 
 	public void setX(Integer x){

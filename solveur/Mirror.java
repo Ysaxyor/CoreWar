@@ -15,4 +15,18 @@ public class Mirror{
 		this.sens = sens;
 		grille.setGrille(x,y,sens);
 	}
+
+	//getters
+
+	public int getX(){
+		return this.x;
+	}
+
+	public int getY(){
+		return this.y;
+	}
+
+	public String getColor(){
+		return this.color;
+	}
 }

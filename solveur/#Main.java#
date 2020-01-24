@@ -2,16 +2,11 @@ package solveur;
 
 public class Main {
 	public static void main(String[] args){
-
+        
 			//GENERATION
 			Grille g1=new Grille(16,24); //choix de taille de la grille
-
-			Mirror mirrorBlue = new Mirror(1,8,"blue",'t',g1);
-			g1.getMirrors().add(mirrorBlue);
-			Mirror mirrorRed = new Mirror(8,1,"red",'h',g1);
-			g1.getMirrors().add(mirrorRed);
-
-
+			Mirror mirrorBlue = new Mirror(1,8,"blue",'h',g1);
+			Mirror mirrorRed = new Mirror(8,1,"red",'t',g1);
 			Bot botBlue = new Bot(1,1,"blue",g1); //Création du bot et ajout automatique à une grille existante (position, couleur, grille)
 			Goal goal = new Goal(8,10,"blue",g1);
 			g1.afficher();
