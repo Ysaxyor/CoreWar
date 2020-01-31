@@ -1,23 +1,15 @@
 package grid;
 
-public class Main implements Runnable{
-
-	GUI gui = new GUI();
-
-
-
+public class Main {
 	public static void main(String[] args) {
-		new Thread(new Main()).start();
-
+		GUI gui = new GUI();
+		gui.repaint();
+		
 	}
 
 
-	@Override
-	public void run(){
-		while(true){
-			gui.repaint();
+	
 
-		}
 
 	}
 
