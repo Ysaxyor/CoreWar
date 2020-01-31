@@ -27,6 +27,12 @@ public class State{
 	public Grille getGrille(){
 		return this.grille;
 	}
+	public Integer getBotX(){
+		return this.botX;
+	}
+	public Integer getBotY(){
+		return this.botY;
+	}
 
 	//setters
 

@@ -13,4 +13,15 @@ public class Goal{
 		this.color = color;
 		grille.setGrille(x,y,'O');
 	}
+	public Integer getX(){
+		return this.x;
+	}
+	public Integer getY(){
+		return this.y;
+	}
+	public String getColor(){
+		return this.color;
+	}
+
+
 }

@@ -35,6 +35,9 @@ public class Main {
 
 			State state4 = new State(state3.getGrille(),goHautBlue);
 			state4.getGrille().afficher();
+
+			IA test = new IA(state4);
+			System.out.println(test.getDistance(goal));
 	}
 
 	}
