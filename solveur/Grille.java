@@ -9,7 +9,7 @@ public class Grille{
 	private int nbCol;	// nombre de colonne
 	private char [][] grille; // une grille a 2Dimension rempli de caractere, chaque case est un caractere
 	private List<Mirror> mirrors = new ArrayList<Mirror>(); //La liste des miroirs
- 
+
 	// Constructeur
 	public Grille(int l,int c){
 
@@ -28,7 +28,12 @@ public class Grille{
 	}
 
 	//Getters
-
+	public int getNL(){
+		return this.nbLign;
+	}
+	public int getNC(){
+		return this.nbCol;
+	}
 	public char[][] getGrille(){
 		return this.grille;
 	}
@@ -50,6 +55,9 @@ public class Grille{
 
 	public void setGrille(Integer x, Integer y,Character c){ //Permet d'ajouter un caractère
 		this.grille[x][y]=c;
+	}
+	public void setMirrors(List<Mirror> mirrors){
+		this.mirrors=mirrors;
 	}
 
 	//Methodes
@@ -87,7 +95,7 @@ public class Grille{
 	}
 
 	public char[][] setCentre(){ //Création du centre 2x2 de la grille
-		if(nbLign%2!=0 || nbCol%2!=0){ //Si 
+		if(nbLign%2!=0 || nbCol%2!=0){ //Si
 			System.out.println("Impossible de créer un centre dans cette grille");
 			return this.grille;
 		} else{

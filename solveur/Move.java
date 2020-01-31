@@ -21,6 +21,8 @@ public class Move{
 	}
 
 	//setters
-
+	public void setDirection(String direction){
+		this.direction=direction;
+	}
 	//méthodes
 }

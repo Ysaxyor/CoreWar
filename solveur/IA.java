@@ -16,13 +16,13 @@ public class IA{
     this.etat=etat;
   }
 
-  public double getDistance(Goal goal, Boolean type){
+  public double getDistance(Goal goal, Bot player, Boolean type){
     if (type){
-      return Math.sqrt(Math.pow((goal.getX()-this.etat.getBotX()),2) + Math.pow((goal.getY()-this.etat.getBotY()),2));
+      return Math.sqrt(Math.pow((goal.getX()-player.getX()),2) + Math.pow((goal.getY()-player.getY()),2));
     }
-    return Math.abs((goal.getX()-this.etat.getBotX()))+Math.abs((goal.getY()-this.etat.getBotY()));
+    return Math.abs((goal.getX()-player.getX()))+Math.abs((goal.getY()-player.getY()));
   }
-  public double getDistance(Goal goal){
-    return this.getDistance(goal,false);
+  public double getDistance(Goal goal,Bot player){
+    return this.getDistance(goal,player,false);
   }
 }

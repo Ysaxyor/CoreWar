@@ -17,7 +17,7 @@ public class GUI extends JFrame{
 		this.setSize(1286,829); // Taille de la fenetre (Longueur, Hauteur)
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Lorsque on clique sur fermer, notre application est EXTERMINER
 		this.setVisible(true); //permet que la fenetre soit visible
-		this.setResizable(false);
+		this.setResizable(true);
 
 		Board board = new Board();
 		this.setContentPane(board);
@@ -27,12 +27,11 @@ public class GUI extends JFrame{
 		// L'interieur de la fenetre
 		public void paintComponent(Graphics g){
 			g.setColor(Color.DARK_GRAY); // couleur du background
-			g.fillRect(0,0,1280,800); // Methode qui crée un rectangle, (Coordoné x, Coordoné y, largeur, hauteur)
+			g.fillRect(0,0,1286,829); // Methode qui crée un rectangle, (Coordoné x, Coordoné y, largeur, hauteur)
 			g.setColor(Color.gray); // Couleur des case
 			for (int i =0; i<16; i++){ // 16 case de largeur
 				for (int j =0;j<9;j++){ // 9 case de hauteur
 					g.fillRect(spacing+i*80 , spacing+j*80+80 , 80-2*spacing , 80-2*spacing ); // 80-2*spacing permet que il n'y est pas de collision entre les cases
-
 				}
 
 			}

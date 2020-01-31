@@ -11,10 +11,9 @@ public class Main {
 			Mirror mirrorRed = new Mirror(8,1,"red",'h',g1);
 			g1.getMirrors().add(mirrorRed);
 
-
 			Bot botBlue = new Bot(1,1,"blue",g1); //Création du bot et ajout automatique à une grille existante (position, couleur, grille)
 			Goal goal = new Goal(8,10,"blue",g1);
-			g1.afficher();
+		//	g1.afficher();
 
 			//CREATION DES MOVES POSSIBLES
 			Move goDroiteBlue = new Move(botBlue,"droite"); //On détermine le mouvement d'un bot, peut-être réutiliser pour un même robot avec une même direction
@@ -24,20 +23,19 @@ public class Main {
 			Move goGaucheBlue = new Move(botBlue,"gauche");
 
 			//GENERATION DES ETATS ET TEST
-			State state1 = new State(g1,goDroiteBlue); //Calcul de la prochaine carte avec un move donné
-			state1.getGrille().afficher();
 
-			State state2 = new State(state1.getGrille(),goBasBlue);
-			state2.getGrille().afficher();
+			State etat1 = new State(g1);
 
-			State state3 = new State(state2.getGrille(),goGaucheBlue);
-			state3.getGrille().afficher();
+			etat1.affiche();
 
-			State state4 = new State(state3.getGrille(),goHautBlue);
-			state4.getGrille().afficher();
+			State etat2 = etat1.play(goDroiteBlue,botBlue);
 
-			IA test = new IA(state4);
-			System.out.println(test.getDistance(goal));
+			etat2.affiche();
+
+			etat1.affiche();
+
+			IA test = new IA(etat1);
+			System.out.println(test.getDistance(goal,botBlue));
 	}
 
 	}
