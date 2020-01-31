@@ -17,7 +17,7 @@ public class GUI extends JFrame{
 		this.setSize(1286,829); // Taille de la fenetre (Longueur, Hauteur)
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Lorsque on clique sur fermer, notre application est EXTERMINER
 		this.setVisible(true); //permet que la fenetre soit visible
-		this.setResizable(false);
+		this.setResizable(true);
 
 		Board board = new Board();
 		this.setContentPane(board);
