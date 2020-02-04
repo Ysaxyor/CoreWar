@@ -10,7 +10,7 @@ import java.awt.*;
 public class GUI extends JFrame{
 
 	int spacing = 5; // Constante qui decide l'ecart entre chaque case
-	GridLayout grid = new GridLayout(24,24);
+	GridLayout grid = new GridLayout(24,24,3,4); // Grille 24x24 , espacé de 5 horizontalement et 4 verticalement
 
 	JFrame frame = new JFrame();
 	// La fenetre
@@ -34,9 +34,9 @@ public class GUI extends JFrame{
 
 		//
 		Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
-		Component rigidareaS = Box.createRigidArea(new Dimension(200,200));// "Mur invisible" Situé au Sud
-		Component rigidareaE = Box.createRigidArea(new Dimension(200,200));// "Mur invisible" Situé au EST
-		Component rigidareaW = Box.createRigidArea(new Dimension(200,200));// "Mur invisible" Situé au OUEST
+		Component rigidareaS = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au Sud
+		Component rigidareaE = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au EST
+		Component rigidareaW = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au OUEST
 
 
 		frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
