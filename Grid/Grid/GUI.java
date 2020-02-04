@@ -10,52 +10,45 @@ import java.awt.*;
 public class GUI extends JFrame{
 
 	int spacing = 5; // Constante qui decide l'ecart entre chaque case
+	GridLayout grid = new GridLayout(24,24);
 
+	JFrame frame = new JFrame();
 	// La fenetre
 	public GUI(){
-		this.setTitle("Solveur"); // Titre de la Fenetre
-		this.setSize(2000,1000); // Taille de la fenetre (Longueur, Hauteur)
-		//this.setMinimumSize(new Dimension(1286,829));
+		frame.setTitle("Solveur"); // Titre de la Fenetre
+		frame.setSize(1400,900); // Taille de la fenetre (Longueur, Hauteur)
+		frame.setMinimumSize(new Dimension(1286,829));
 
-		JLabel left=new JLabel("Left");
-		JLabel right= new JLabel("Right");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Lorsque on clique sur fermer, notre application est EXTERMINER
+		frame.setVisible(true); //permet que la fenetre soit visible
+		frame.setResizable(true); // Permet de resize la fenetre
+		frame.setLayout(new BorderLayout());
 
-		Dimension pSize= new Dimension(1300,900);
-		Dimension mSize = new Dimension(1300,900);
+		
 
-		left.setPreferredSize(pSize);
-		left.setMinimumSize(mSize);
-		right.setPreferredSize(pSize);
-		right.setMinimumSize(mSize);
-		JSplitPane pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, right);
+		
+		 
+		JPanel panel = new JPanel();
+		frame.add(panel,BorderLayout.CENTER); // Panel de la grille centré
+     		panel.setLayout(grid);
 
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Lorsque on clique sur fermer, notre application est EXTERMINER
-		this.setVisible(true); //permet que la fenetre soit visible
-		this.setResizable(true);
+		//
+		Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
+		Component rigidareaS = Box.createRigidArea(new Dimension(200,200));// "Mur invisible" Situé au Sud
+		Component rigidareaE = Box.createRigidArea(new Dimension(200,200));// "Mur invisible" Situé au EST
+		Component rigidareaW = Box.createRigidArea(new Dimension(200,200));// "Mur invisible" Situé au OUEST
 
-		Board board = new Board();
-		this.setContentPane(board);
-	}
 
-	public class Board extends JPanel {
-		// L'interieur de la fenetre
-		public void paintComponent(Graphics g){
-			g.setColor(Color.DARK_GRAY); // couleur du background
-			g.fillRect(0,0,2000,1000); // Methode qui crée un rectangle en background, (Coordoné x, Coordoné y, largeur, hauteur)
-			g.setColor(Color.gray); // Couleur des case
-			for (int i =2; i<18; i++){ // 16 case de largeur
-				for (int j =0;j<9;j++){ // 9 case de hauteur
-					g.fillRect(spacing+i*80 , spacing+j*80+80 , 80-2*spacing , 80-2*spacing ); // 80-2*spacing permet que il n'y est pas de collision entre les cases
+		frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
+		frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
+		frame.add(rigidareaE, BorderLayout.EAST); // Ajout des "Mur Invisible" EST
+		frame.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUEST
 
-				}
+		
+
+		for (int i =0; i<576; i++){ // Boucle permettant de creer les cases
+				panel.add(new JButton()); // Ajout des case sur la grille
 
 			}
-
-		}
-
-
-
 	}
-
 }
