@@ -8,8 +8,6 @@ import java.awt.*;
 
 
 public class GUI extends JFrame{
-
-	int spacing = 5; // Constante qui decide l'ecart entre chaque case
 	GridLayout grid = new GridLayout(24,24,3,4); // Grille 24x24 , espacé de 5 horizontalement et 4 verticalement
 
 	JFrame frame = new JFrame();
