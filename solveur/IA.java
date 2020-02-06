@@ -1,5 +1,6 @@
 package solveur;
 import java.lang.Math;
+import solveur.pionts.*;
 
 public class IA{
   private State etat;

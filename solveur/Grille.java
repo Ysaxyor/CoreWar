@@ -1,30 +1,23 @@
 package solveur;
-
 import java.util.*;
+import java.util.HashSet;
+import solveur.pionts.*;
 
 public class Grille{
 
 	//Attribut
 	private int nbLign; // nombre de ligne
 	private int nbCol;	// nombre de colonne
-	private char [][] grille; // une grille a 2Dimension rempli de caractere, chaque case est un caractere
-	private List<Mirror> mirrors = new ArrayList<Mirror>(); //La liste des miroirs
+	private Piont[][] grille; // une grille a 2Dimension rempli de Piont
+	private HashSet<Piont> ensemble_piont; // ensemble qui contient tout les pionts important
+
 
 	// Constructeur
 	public Grille(int l,int c){
-
-		nbLign=l;// Simplifiable
-		nbCol=c;
-		grille= new char [nbLign][nbCol];
-
-
-		for(int i=0; i<nbLign; i++){	//2 boucle car tableau a 2 dimension
-			for(int j=0; j<nbCol ;j++){
-				grille[i][j]= '.';
-			}
-		}
-		setBordures();
-		setCentre();
+		this.nbLign=l;
+		this.nbCol=c;
+		this.grille=this.construct();
+		this.ensemble_piont=new HashSet<Piont>();
 	}
 
 	//Getters
@@ -34,77 +27,102 @@ public class Grille{
 	public int getNC(){
 		return this.nbCol;
 	}
-	public char[][] getGrille(){
+	public Piont[][] getGrille(){
 		return this.grille;
 	}
-
-	public List<Mirror> getMirrors(){
-		return this.mirrors;
-	}
-
-	public Mirror getMirrorByXY(int x,int y){ //Renvoie le Miroir correspondant aux coordonnées données
-		for(int i = 0;i<this.mirrors.size();i++){
-			if((this.mirrors.get(i).getX() == x) && (this.mirrors.get(i).getY() == y)){
-				return this.mirrors.get(i);
-			}
-		}
-		return this.mirrors.get(0); //Renvoie par défaut le premier mirroir pour éviter l'erreur missing return. Mais cet état ne sera jamais atteint
+	public HashSet<Piont> getEnsemblePiont(){
+		return this.ensemble_piont;
 	}
 
 	//Setters
-
-	public void setGrille(Integer x, Integer y,Character c){ //Permet d'ajouter un caractère
-		this.grille[x][y]=c;
+	public void setNL(int l){
+		this.nbLign=l;
 	}
-	public void setMirrors(List<Mirror> mirrors){
-		this.mirrors=mirrors;
+	public void setNC(int c){
+		this.nbCol=c;
+	}
+	public void setGrille(Integer x, Integer y,Piont p){ //Permet d'ajouter un caractère
+		this.grille[x][y]=p;
+	}
+	public void setEnsemblePiont(HashSet<Piont> ensemble_piont){
+		this.ensemble_piont=ensemble_piont;
 	}
 
-	//Methodes
 
-	public void toState(char[][] nouvelleGrille){ //On écrase la grille actuelle par la nouvelle dans le cas où l'IA veut enfin avancer
-		this.grille = nouvelleGrille;
-	}
 
-	public void afficher(){
-		System.out.println();
-		for(int i=0; i<nbLign; i++){	//2 boucle car tableau a 2 dimension
-			for(int j=0; j<nbCol;j++){
-
-				System.out.print("|" + grille[i][j]);
+//Methodes
+	// construct permet la construction de la grille;
+	public Piont[][] construct(){
+		grille	= new Piont [this.nbLign][this.nbCol];
+		for(int i=0; i<this.nbLign; i++){	//2 boucle car tableau a 2 dimension
+			for(int j=0; j<this.nbCol ;j++){
+				//on remplit le tableau d'objets de type Piont;
+				Piont new_piont = new Piont(i,j);
+				this.grille[i][j]= new_piont;
 			}
-
-			System.out.println("|");
-
 		}
-		System.out.println();
+		grille=this.setBordures();
+		grille=this.setCentre();
+		return grille;
 	}
 
-	public char[][] setBordures(){ //Crée les frontières de la carte
-		//La première et le dernière ligne est remplit de x
+	//Crée les frontières de la carte; à l'aide du piont Mur
+	public Piont[][] setBordures(){
+		//La première et le dernière colonne est remplit de Mur
 		for(int i=0; i<nbCol; i++){
-			grille[0][i]='x';
-			grille[nbLign-1][i]='x';
+			Mur new_mur1 = new Mur(0,i);
+			grille[0][i]=new_mur1;
+			Mur new_mur2 = new Mur(nbLign-1,i);
+			grille[nbLign-1][i]=new_mur2;
 		}
-		//On ajoute ensuite un x à chaque premier et dernier ligne de la grille
+		//On ajoute ensuite un mur à chaque premiere et derniere ligne de la grille
 		for(int i=1;i<nbLign-1;i++){
-			grille[i][0]='x';
-			grille[i][nbCol-1]='x';
+			Mur new_mur3 = new Mur(i,0);
+			grille[i][0]=new_mur3;
+			Mur new_mur4 = new Mur(i,nbCol-1);
+			grille[i][nbCol-1]=new_mur4;
 		}
 		return this.grille;
 	}
-
-	public char[][] setCentre(){ //Création du centre 2x2 de la grille
-		if(nbLign%2!=0 || nbCol%2!=0){ //Si
-			System.out.println("Impossible de créer un centre dans cette grille");
+	//Création du centre 2x2 de la grille
+	public Piont[][] setCentre(){
+		if(nbLign%2!=0 || nbCol%2!=0){
+			//System.out.println("Impossible de créer un centre dans cette grille");
 			return this.grille;
 		} else{
-			grille[nbLign/2-1][nbCol/2-1]='x';
-			grille[nbLign/2][nbCol/2-1]='x';
-			grille[nbLign/2-1][nbCol/2]='x';
-			grille[nbLign/2][nbCol/2]='x';
+			Mur new_mur1=new Mur(nbLign/2-1,nbCol/2-1);
+			Mur new_mur2=new Mur(nbLign/2-1,nbCol/2-1);
+			Mur new_mur3=new Mur(nbLign/2-1,nbCol/2);
+			Mur new_mur4=new Mur(nbLign/2,nbCol/2);
+			grille[nbLign/2-1][nbCol/2-1]=new_mur1;
+			grille[nbLign/2][nbCol/2-1]=new_mur2;
+			grille[nbLign/2-1][nbCol/2]=new_mur3;
+			grille[nbLign/2][nbCol/2]=new_mur4;
 			return this.grille;
 		}
 	}
+
+
+	public void afficher(){
+		for (Piont p: this.ensemble_piont){
+			this.setGrille(p.getX(),p.getY(),p);
+		}
+
+		System.out.println();
+		for(int i=0; i<nbLign; i++){	//2 boucle car tableau a 2 dimension
+			for(int j=0; j<nbCol;j++){
+				//On affiche l'attribut symbole de chaque pionts du tableau;
+				System.out.print("|" + grille[i][j].getSymbole());
+			}
+			System.out.println("|");
+		}
+		System.out.println();
+	}
+
+	public void addPiont(Piont p){
+		this.ensemble_piont.add(p);
+		this.setGrille(p.getX(),p.getY(),p);
+	}
+
 
 }

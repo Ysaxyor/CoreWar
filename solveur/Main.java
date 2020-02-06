@@ -1,15 +1,27 @@
 package solveur;
-
+import java.util.HashSet;
+import solveur.pionts.*;
 public class Main {
 	public static void main(String[] args){
 
 			//GENERATION
-			Grille g1=new Grille(16,24); //choix de taille de la grille
-
+			Grille g1=new Grille(10,15); //choix de taille de la grille
+			Bot b1 = new Bot(1,1,"Blue");
+			Mirror mirrorBlue = new Mirror(1,8,"Blue",'h');
+			Mirror mirrorRed = new Mirror(7,1,"Red",'h');
+			Mirror mirrorRed2 = new Mirror(7,10,"Red",'t');
+			Goal goal = new Goal(8,10,"blue");
+			g1.addPiont(b1);
+			g1.addPiont(mirrorBlue);
+			g1.addPiont(mirrorRed);
+			g1.addPiont(goal);
+			g1.addPiont(mirrorRed2);
+			State etat = new State(g1);
+			etat.affiche();
+			Move test = new Move(b1,"bas");
+			etat.play(test).affiche();
+/*
 			Mirror mirrorBlue = new Mirror(1,8,"blue",'t',g1);
-			g1.getMirrors().add(mirrorBlue);
-			Mirror mirrorRed = new Mirror(8,1,"red",'h',g1);
-			g1.getMirrors().add(mirrorRed);
 
 			Bot botBlue = new Bot(1,1,"blue",g1); //Création du bot et ajout automatique à une grille existante (position, couleur, grille)
 			Goal goal = new Goal(8,10,"blue",g1);
@@ -21,21 +33,8 @@ public class Main {
 			Move goBasBlue = new Move(botBlue,"bas");
 			Move goHautBlue = new Move(botBlue,"haut");
 			Move goGaucheBlue = new Move(botBlue,"gauche");
-
+*/
 			//GENERATION DES ETATS ET TEST
 
-			State etat1 = new State(g1);
-
-			etat1.affiche();
-
-			State etat2 = etat1.play(goDroiteBlue,botBlue);
-
-			etat2.affiche();
-
-			etat1.affiche();
-
-			IA test = new IA(etat1);
-			System.out.println(test.getDistance(goal,botBlue));
 	}
-
-	}
+}

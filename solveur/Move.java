@@ -1,4 +1,5 @@
 package solveur;
+import solveur.pionts.*;
 
 public class Move{
 

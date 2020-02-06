@@ -1,5 +1,5 @@
 package solveur;
-
+import solveur.pionts.*;
 public class State{
 
 	//Attributs
@@ -14,208 +14,114 @@ public class State{
 	public Grille getGrille(){
 		return this.grille;
 	}
+	//setters
+
 	public void setGrille(Grille grille){
 		this.grille=grille;
 	}
-
-	//setters
-
 	//méthodes
 	public void affiche(){
 		this.grille.afficher();
 	}
 
+	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
+		//de l'état présent, et applique un deplacement suivant le move entré en parametre;
+		Grille new_grille = new Grille(this.grille.getNL(),this.grille.getNC());
+		State new_state=new State(new_grille);
+		for(Piont p: this.grille.getEnsemblePiont()){
+			Piont new_piont=p;
+			new_grille.addPiont(new_piont);
+		}
+		new_state.deplacement(move);
+		return new_state;
+	}
 
-	public Grille deplacement(Move move, Bot player){
-		String dir=move.getDirection();
-		Integer botX = move.getBot().getX();
-		Integer botY = move.getBot().getY();
-		move.getBot().setX(botX);
-		move.getBot().setY(botY);
-		Move newMove = new Move(player,dir);
-		if(this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] != 't'){
-			if(this.grille.getGrille()[move.getBot().getX()][move.getBot().getY()] != 'h'){
-				this.grille.setGrille(move.getBot().getX(),move.getBot().getY(),'.'); //On supprime l'emplacement initial du robot
+	public void deplacement(Move move){	// gère le deplacement d'un piont;
+		//on recupere le bot
+		Bot bot = move.getBot();
+
+		Piont vide = new Piont(bot.getX(),bot.getY());
+		this.grille.setGrille(bot.getX(),bot.getY(),vide); //on supprime l'emplacement initial du robot;
+		// on recup la direction du mouvement
+		String dir = move.getDirection();
+		// on recup la grille, qui permettera de gerer les coordonnees;
+		Piont[][] coord = this.grille.getGrille();
+
+		// on initialise des nouveaux mouvements possible en cas de collision avec un mirror;
+		Move vers_bas = new Move(bot,"bas");
+		Move vers_droite = new Move(bot,"droite");
+		Move vers_gauche = new Move(bot,"gauche");
+		Move vers_haut = new Move(bot,"haut");
+
+		if (dir == "bas"){
+			while(! coord[bot.getX()+1][bot.getY()].collision(bot)){// tant que la collision avec le piont
+				// voisin est false, on deplace le robot à l'emplacement voisin;
+				bot.setX(bot.getX()+1);
+			}
+			// on regarde si le voisin est une instance de Mirror;
+			if (coord[bot.getX()+1][bot.getY()] instanceof Mirror){
+				bot.setX(bot.getX()+1);
+				// on regarde le sens du Mirror;
+				if (coord[bot.getX()][bot.getY()].getSymbole()=='t'){
+					//dans le cas ou l'on arrive du bas sur --> \ le robot vas vers la gauche;
+					//on applique donc un nouveau deplacement vers la gauche;
+					this.deplacement(vers_gauche);
+				}else{
+					//  on arrive du bas sur --> /
+					this.deplacement(vers_droite);
+				}
+			}
+		}
+		if (dir == "droite"){
+			while(! coord[bot.getX()][bot.getY()+1].collision(bot)){
+				bot.setY(bot.getY()+1);
+			}
+			if (coord[bot.getX()][bot.getY()+1] instanceof Mirror){
+				bot.setY(bot.getY()+1);
+				if (coord[bot.getX()][bot.getY()].getSymbole()=='t'){
+					// on arrive vers la droite sur \ <---
+					this.deplacement(vers_haut);
+				}else{
+					//  / <----
+					this.deplacement(vers_bas);
+				}
+			}
+		}
+		if (dir == "haut"){
+			while(! coord[bot.getX()-1][bot.getY()].collision(bot)){
+				bot.setX(bot.getX()-1);
+			}
+			if (coord[bot.getX()-1][bot.getY()] instanceof Mirror){
+				bot.setX(bot.getX()-1);
+				if (coord[bot.getX()][bot.getY()].getSymbole()=='t'){
+					// on arrive du haut sur --> \
+					this.deplacement(vers_droite);
+				}else{
+					// on arrive du haut sur --> /
+					this.deplacement(vers_gauche);
+				}
+			}
+		}
+		if (dir == "gauche"){
+			while(! coord[bot.getX()][bot.getY()-1].collision(bot)){
+				bot.setY(bot.getY()-1);
+			}
+			if (coord[bot.getX()][bot.getY()-1] instanceof Mirror){
+				bot.setY(bot.getY()-1);
+				if(coord[bot.getX()][bot.getY()].getSymbole()=='t'){
+					//  --> \
+					this.deplacement(vers_bas);
+				}else{
+					// --> /
+					this.deplacement(vers_haut);
+				}
 			}
 		}
 
-		switch(dir){
-			case "gauche":
-				switch(this.grille.getGrille()[botX][botY-1]){
-					case 'x': //Si on trouve un mur
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 'B': //Si on trouve un robot
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 't': // (\)
-						if(this.grille.getMirrorByXY(botX,botY-1).getColor() != move.getBot().getColor()){ //Dans le cas où le robot n'est pas de la même couleur que le miroir
-							dir = "haut";
-						}
-						botY -= 1;
-						this.grille.setGrille(botX,botY,'t');
-						newMove.setDirection(dir);
-						player.setY(botY);
-						return deplacement(newMove,player);
-					case 'h': // (/)
-
-						if(this.grille.getMirrorByXY(botX,botY-1).getColor() != move.getBot().getColor()){ //Dans le cas où le robot n'est pas de la même couleur que le miroir
-							dir = "bas";
-						}
-						botY -= 1;
-						player.setY(botY);
-						newMove.setDirection(dir);
-						return deplacement(newMove,player);
-					case 'O':
-						botY -= 1;
-						player.setY(botY);
-						congrats();
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					default: //Dans le cas où il n'y a que du vide
-						botY -= 1;
-						player.setY(botY);
-						return deplacement(newMove,player);
-				}
-			case "droite":
-				switch(this.grille.getGrille()[botX][botY+1]){
-					case 'x': //Si on trouve un mur
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 'B': //Si on trouve un robot
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
-						//à définir
-						if(this.grille.getMirrorByXY(botX,botY+1).getColor() != move.getBot().getColor()){ //Dans le cas où le robot n'est pas de la même couleur que le miroir
-							dir = "bas";
-						}
-						botY += 1;
-						player.setY(botY);
-						newMove.setDirection(dir);
-						return deplacement(newMove,player);
-					case 'h': // (/)
-
-						if(this.grille.getMirrorByXY(botX,botY+1).getColor() != move.getBot().getColor()){ //Dans le cas où le robot n'est pas de la même couleur que le miroir
-							dir = "haut";
-						}
-						botY += 1;
-						newMove.setDirection(dir);
-						player.setY(botY);
-						return deplacement(newMove,player);
-					case 'O':
-						botY += 1;
-						player.setY(botY);
-						congrats();
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					default: //Dans le cas où il n'y a que du vide
-						botY += 1;
-						player.setY(botY);
-						return deplacement(newMove,player);
-				}
-			case "haut":
-				switch(this.grille.getGrille()[botX-1][botY]){
-					case 'x': //Si on trouve un mur
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 'B': //Si on trouve un robot
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 't': // (\)
-
-						if(this.grille.getMirrorByXY(botX-1,botY).getColor() != move.getBot().getColor()){
-							dir = "gauche";
-						}
-						botX -= 1;
-						newMove.setDirection(dir);
-						player.setX(botX);
-						return deplacement(newMove,player);
-					case 'h': // (/)
-
-						if(this.grille.getMirrorByXY(botX-1,botY).getColor() != move.getBot().getColor()){
-							dir = "droite";
-						}
-						botX -= 1;
-						newMove.setDirection(dir);
-						player.setX(botX);
-						return deplacement(newMove,player);
-					case 'O':
-						botX -= 1;
-						player.setX(botX);
-						congrats();
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					default: //Dans le cas où il n'y a que du vide
-						botX -= 1;
-						player.setX(botX);
-						return deplacement(newMove,player);
-				}
-			case "bas":
-				switch(this.grille.getGrille()[botX+1][botY]){
-					case 'x': //Si on trouve un mur
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 'B': //Si on trouve un robot
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					case 't': //Si on trouve un trampoline il faudra déterminer si on le traverse ou si on peut l'emprunter et dans quelle direction
-						//à définir
-
-						if(this.grille.getMirrorByXY(botX+1,botY).getColor() != move.getBot().getColor()){
-							dir = "droite";
-						}
-						botX += 1;
-						newMove.setDirection(dir);
-						player.setX(botX);
-						return deplacement(newMove,player);
-					case 'h': // (/)
-
-						if(this.grille.getMirrorByXY(botX+1,botY).getColor() != move.getBot().getColor()){
-							dir = "gauche";
-						}
-						botX += 1;
-						newMove.setDirection(dir);
-						player.setX(botX);
-						return deplacement(newMove,player);
-					case 'O':
-						botX += 1;
-						player.setX(botX);
-						congrats();
-
-						this.grille.setGrille(botX,botY,'B'); //On place le robot au dernier endroit calculé
-						return this.grille;
-					default: //Dans le cas où il n'y a que du vide
-						botX += 1;
-						player.setX(botX);
-						return deplacement(newMove,player);
-				}
-			default:
-				System.out.println("Erreur de direction.");
-				return this.grille;
-		}
 	}
 
 	public void congrats(){
 		System.out.println("Objectif atteint !");
 	}
-
-	public State play(Move move, Bot player){
-		Grille newGrille = new Grille(this.grille.getNL(),this.grille.getNC());
-		newGrille.setMirrors(this.grille.getMirrors());
-		State newState = new State(newGrille);
-		newState.setGrille(newState.deplacement(move,player));
-		return newState;
-	}
-
 
 }
