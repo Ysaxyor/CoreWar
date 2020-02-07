@@ -18,10 +18,12 @@ public class IA{
   }
 
   public double getDistance(Goal goal, Bot player, Boolean type){
+    Integer playerX=this.etat.getPosPionts().get(player).get(0);
+    Integer playerY=this.etat.getPosPionts().get(player).get(1);
     if (type){
-      return Math.sqrt(Math.pow((goal.getX()-player.getX()),2) + Math.pow((goal.getY()-player.getY()),2));
+      return Math.sqrt(Math.pow((goal.getX()-playerX),2) + Math.pow((goal.getY()-playerY),2));
     }
-    return Math.abs((goal.getX()-player.getX()))+Math.abs((goal.getY()-player.getY()));
+    return Math.abs((goal.getX()-playerX))+Math.abs((goal.getY()-playerY));
   }
   public double getDistance(Goal goal,Bot player){
     return this.getDistance(goal,player,false);

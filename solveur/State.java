@@ -9,10 +9,12 @@ public class State{
 	private Grille grille;
 	private HashMap<Piont,ArrayList<Integer>> posPionts; // On met en memoire la position
 		//des pionts à l'instant de la creation de l'etat;
+	public static int nb_state;
 
 	public State(Grille grille){ //Constructeur
 		this.grille = grille;
 		this.posPionts=this.saveState();
+		this.nb_state=this.nb_state+1;
 	}
 
 	//getters
@@ -21,6 +23,9 @@ public class State{
 	}
 	public HashMap<Piont,ArrayList<Integer>> getPosPionts(){
 		return this.posPionts;
+	}
+	public int getNb_state(){
+		return this.nb_state;
 	}
 	//setters
 	public void setGrille(Grille grille){
@@ -100,11 +105,9 @@ public class State{
 				if (coord[bot.getX()][bot.getY()].getSymbole()=='t'){
 					//dans le cas ou l'on arrive du bas sur --> \ le robot vas vers la gauche;
 					//on applique donc un nouveau deplacement vers la gauche;
-					bot.setY(bot.getY()-1);
 					this.deplacement(vers_gauche);
 				}else{
 					//  on arrive du bas sur --> /
-					bot.setY(bot.getY()+1);
 					this.deplacement(vers_droite);
 				}
 			}
@@ -117,11 +120,9 @@ public class State{
 				bot.setY(bot.getY()+1);
 				if (coord[bot.getX()][bot.getY()].getSymbole()=='t'){
 					// on arrive vers la droite sur \ <---
-					bot.setX(bot.getX()-1);
 					this.deplacement(vers_haut);
 				}else{
 					//  / <----l
-					bot.setX(bot.getX()+1);
 					this.deplacement(vers_bas);
 				}
 			}
@@ -134,11 +135,9 @@ public class State{
 				bot.setX(bot.getX()-1);
 				if (coord[bot.getX()][bot.getY()].getSymbole()=='t'){
 					// on arrive du haut sur --> \
-					bot.setY(bot.getY()+1);
 					this.deplacement(vers_droite);
 				}else{
 					// on arrive du haut sur --> /
-					bot.setY(bot.getY()-1);
 					this.deplacement(vers_gauche);
 				}
 			}
@@ -151,15 +150,17 @@ public class State{
 				bot.setY(bot.getY()-1);
 				if(coord[bot.getX()][bot.getY()].getSymbole()=='t'){
 					//  --> \
-					bot.setX(bot.getX()+1);
 					this.deplacement(vers_bas);
 				}else{
 					// --> /
-					bot.setX(bot.getX()-1);
 					this.deplacement(vers_haut);
 				}
 			}
 		}
+	}
+
+	public boolean isFinished(){
+		return false;
 	}
 
 	public void congrats(){

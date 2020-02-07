@@ -1,6 +1,7 @@
 package solveur;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.util.ArrayList;
 import solveur.pionts.*;
 public class Main {
 	public static void main(String[] args){
@@ -31,19 +32,23 @@ public class Main {
 			Move goBasBlue = new Move(botBlue,"bas");
 			Move goHautBlue = new Move(botBlue,"haut");
 			Move goGaucheBlue = new Move(botBlue,"gauche");
-
+/*
 			Move goBasRed = new Move(botRed,"bas");
-
+			Move goHautRed = new Move(botRed,"haut");
+*/
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
 			State etat2 = etat.play(goBasBlue);
 			State etat3 = etat2.play(goBasBlue);
-			State etat4 = etat3.play(goBasRed);
+			State etat4 = etat3.play(goBasBlue);
+			State etat5 = etat4.play(goDroiteBlue);
 			etat.affiche();
 			etat2.affiche();
 			etat3.affiche();
 			etat4.affiche();
+			etat5.affiche();
 
+			IA ia = new IA(etat2);
 /*
 	//test
 		etat2.getPosPionts().entrySet().forEach(entry->{
