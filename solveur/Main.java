@@ -12,11 +12,16 @@ public class Main {
 			Bot botBlue = new Bot(1,1,"Blue");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
+			Mirror greenMirror = new Mirror(10,24,"Green",'t');
+			Goal blueGoal = new Goal(16,24,"Blue");
+
 
 			//ajout des objets à la grille
 			grille.addPiont(botBlue);
 			grille.addPiont(redMirror);
 			grille.addPiont(blueMirror);
+			grille.addPiont(greenMirror);
+			grille.addPiont(blueGoal);
 
 			//CREATION DES MOVES POSSIBLES
 			Move goDroiteBlue = new Move(botBlue,"droite"); //On détermine le mouvement d'un bot, peut-être réutiliser pour un même robot avec une même direction

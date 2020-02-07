@@ -16,7 +16,7 @@ public class Goal extends Piont{
 		return this.color;
 	}
 
-
+/*
 @Override
 	public boolean collision(Piont p){
 		if (p.getColor()==this.color){
@@ -25,5 +25,5 @@ public class Goal extends Piont{
 	return false;
 	}
 
-
+*/
 }
