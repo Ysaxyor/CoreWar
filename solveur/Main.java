@@ -1,5 +1,6 @@
 package solveur;
 import java.util.HashSet;
+import java.util.HashMap;
 import solveur.pionts.*;
 public class Main {
 	public static void main(String[] args){
@@ -27,15 +28,22 @@ public class Main {
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
 			State etat2 = etat.play(goBasBlue);
+			State etat3 = etat2.play(goBasBlue);
 			etat.affiche();
 			etat2.affiche();
+			etat3.affiche();
 
-			//System.out.println(etat.getPosPionts());
 /*
-		etat.getPosPionts().entrySet().forEach(entry->{
+	//test
+			System.out.println(etat2.getPosPionts());
+		System.out.println();
+		etat2.getPosPionts().entrySet().forEach(entry->{
     System.out.println(entry.getKey() + " " + entry.getValue());
  		});
 
-	*/
+		System.out.println(botBlue.toString());
+
+		System.out.println(grille.getEnsemblePiont());
+*/
 	}
 }

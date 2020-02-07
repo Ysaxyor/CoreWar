@@ -23,6 +23,10 @@ public class Bot extends Piont{
 
 
 	//méthodes
+	@Override
+	public String toString(){
+		return "Bot en coordonnees ("+this.getX()+","+this.getY()+")";
+	}
 
 	@Override
 	public boolean collision(Piont p){

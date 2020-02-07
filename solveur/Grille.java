@@ -103,11 +103,10 @@ public class Grille{
 	}
 
 
-	public void afficher(){
-		for (Piont p: this.ensemble_piont){
+	public void afficher(HashSet<Piont> ensemble_piont1){
+		for (Piont p: ensemble_piont1){
 			this.setGrille(p.getX(),p.getY(),p);
 		}
-
 		System.out.println();
 		for(int i=0; i<nbLign; i++){	//2 boucle car tableau a 2 dimension
 			for(int j=0; j<nbCol;j++){
@@ -118,6 +117,10 @@ public class Grille{
 		}
 		System.out.println();
 	}
+	public void afficher(){
+		this.afficher(this.ensemble_piont);
+	}
+
 
 	public void addPiont(Piont p){
 		this.ensemble_piont.add(p);

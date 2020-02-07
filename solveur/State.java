@@ -1,6 +1,7 @@
 package solveur;
 import solveur.pionts.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ArrayList;
 public class State{
 
@@ -10,7 +11,7 @@ public class State{
 
 	public State(Grille grille){ //Constructeur
 		this.grille = grille;
-		//this.saveState();
+		this.posPionts=this.saveState();
 	}
 
 	//getters
@@ -26,28 +27,39 @@ public class State{
 		this.grille=grille;
 	}
 	//méthodes
-	public void saveState(){ //save la position des pionts;
+	public HashMap<Piont,ArrayList<Integer>> saveState(){ //save la position des pionts;
+		HashMap<Piont,ArrayList<Integer>> posP = new HashMap<>();
 		for (Piont p: this.grille.getEnsemblePiont()){
 			ArrayList<Integer> pos= new ArrayList<>();
 			pos.add(p.getX());
 			pos.add(p.getY());
-			this.posPionts.put(p,pos);
+			posP.put(p,pos);
 		}
+		return posP;
 	}
 
 
 	public void affiche(){
-		this.grille.afficher();
+		HashSet<Piont> setPos = new HashSet<>();
+
+		this.posPionts.entrySet().forEach(entry->{
+    Piont p = entry.getKey();
+		p.setX(entry.getValue().get(0));
+		p.setY(entry.getValue().get(1));
+		setPos.add(p);
+ 		});
+
+		this.grille.afficher(setPos);
 	}
 
 	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
 		//de l'état présent, et applique un deplacement suivant le move entré en parametre;
-		Grille new_grille = new Grille(this.grille.getNL(),this.grille.getNC());
-		State new_state=new State(new_grille);
-		for(Piont p: this.grille.getEnsemblePiont()){
+		//Grille new_grille = new Grille(this.grille.getNL(),this.grille.getNC());
+		State new_state=new State(this.grille);
+		/*for(Piont p: this.grille.getEnsemblePiont()){
 			Piont new_piont=p;
 			new_grille.addPiont(new_piont);
-		}
+		}*/
 		new_state.deplacement(move);
 		return new_state;
 	}
@@ -98,7 +110,7 @@ public class State{
 					// on arrive vers la droite sur \ <---
 					this.deplacement(vers_haut);
 				}else{
-					//  / <----
+					//  / <----l
 					this.deplacement(vers_bas);
 				}
 			}
@@ -133,7 +145,10 @@ public class State{
 				}
 			}
 		}
-
+	ArrayList<Integer> pos = new ArrayList<>();
+	pos.add(bot.getX());
+	pos.add(bot.getY());
+	this.posPionts.put(bot,pos);
 	}
 
 	public void congrats(){
