@@ -7,7 +7,8 @@ public class State{
 
 	//Attributs
 	private Grille grille;
-	private HashMap<Piont,ArrayList<Integer>> posPionts;
+	private HashMap<Piont,ArrayList<Integer>> posPionts; // On met en memoire la position
+		//des pionts à l'instant de la creation de l'etat;
 
 	public State(Grille grille){ //Constructeur
 		this.grille = grille;
@@ -22,7 +23,6 @@ public class State{
 		return this.posPionts;
 	}
 	//setters
-
 	public void setGrille(Grille grille){
 		this.grille=grille;
 	}
@@ -40,6 +40,8 @@ public class State{
 
 
 	public void affiche(){
+		// on affiche la grille en fonction des positions des pionts à l'instant
+		// de la creation de l'etat;
 		HashSet<Piont> setPos = new HashSet<>();
 
 		this.posPionts.entrySet().forEach(entry->{
@@ -153,6 +155,7 @@ public class State{
 				}
 			}
 		}
+	//on met à jour la nouvelle position du bot pour le prochain etat;
 	ArrayList<Integer> pos = new ArrayList<>();
 	pos.add(bot.getX());
 	pos.add(bot.getY());
