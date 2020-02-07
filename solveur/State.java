@@ -26,6 +26,9 @@ public class State{
 	public void setGrille(Grille grille){
 		this.grille=grille;
 	}
+	public void setPosPionts(HashMap<Piont,ArrayList<Integer>> posPionts){
+		this.posPionts=posPionts;
+	}
 	//méthodes
 	public HashMap<Piont,ArrayList<Integer>> saveState(){ //save la position des pionts;
 		HashMap<Piont,ArrayList<Integer>> posP = new HashMap<>();
@@ -63,6 +66,8 @@ public class State{
 			new_grille.addPiont(new_piont);
 		}
 		new_state.deplacement(move);
+		//On remet a jour les nouvelles positions des pionts;
+		new_state.setPosPionts(new_state.saveState());
 		return new_state;
 	}
 
@@ -155,11 +160,6 @@ public class State{
 				}
 			}
 		}
-	//on met à jour la nouvelle position du bot pour le prochain etat;
-	ArrayList<Integer> pos = new ArrayList<>();
-	pos.add(bot.getX());
-	pos.add(bot.getY());
-	this.posPionts.put(bot,pos);
 	}
 
 	public void congrats(){

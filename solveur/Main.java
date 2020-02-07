@@ -10,6 +10,7 @@ public class Main {
 
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
+			Bot botRed = new Bot (2,2,"Red");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
 			Mirror greenMirror = new Mirror(10,24,"Green",'t');
@@ -18,6 +19,7 @@ public class Main {
 
 			//ajout des objets à la grille
 			grille.addPiont(botBlue);
+			grille.addPiont(botRed);
 			grille.addPiont(redMirror);
 			grille.addPiont(blueMirror);
 			grille.addPiont(greenMirror);
@@ -30,25 +32,23 @@ public class Main {
 			Move goHautBlue = new Move(botBlue,"haut");
 			Move goGaucheBlue = new Move(botBlue,"gauche");
 
+			Move goBasRed = new Move(botRed,"bas");
+
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
 			State etat2 = etat.play(goBasBlue);
 			State etat3 = etat2.play(goBasBlue);
+			State etat4 = etat3.play(goBasRed);
 			etat.affiche();
 			etat2.affiche();
 			etat3.affiche();
+			etat4.affiche();
 
 /*
 	//test
-			System.out.println(etat2.getPosPionts());
-		System.out.println();
 		etat2.getPosPionts().entrySet().forEach(entry->{
-    System.out.println(entry.getKey() + " " + entry.getValue());
+    System.out.println(entry.getKey() + " | "+entry.getValue());
  		});
-
-		System.out.println(botBlue.toString());
-
-		System.out.println(grille.getEnsemblePiont());
 */
 	}
 }

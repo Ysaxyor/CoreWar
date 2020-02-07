@@ -22,6 +22,10 @@ public class Mirror extends Piont{
 		return this.sens;
 	}
 
+	@Override
+	public String toString(){
+		return "Mirror "+this.getColor()+" en coordonnees ("+this.getX()+","+this.getY()+")";
+	}
 
 @Override
 	public boolean collision(Piont p){

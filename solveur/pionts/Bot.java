@@ -25,7 +25,7 @@ public class Bot extends Piont{
 	//méthodes
 	@Override
 	public String toString(){
-		return "Bot en coordonnees ("+this.getX()+","+this.getY()+")";
+		return "Bot "+this.getColor()+" en coordonnees ("+this.getX()+","+this.getY()+")";
 	}
 
 	@Override
