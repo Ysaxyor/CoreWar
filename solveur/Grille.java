@@ -1,5 +1,6 @@
 package solveur;
 
+import java.io.*;
 import java.util.*;
 
 public class Grille{
@@ -15,16 +16,12 @@ public class Grille{
 
 		nbLign=l;// Simplifiable
 		nbCol=c;
-		grille= new char [nbLign][nbCol];
 
-
-		for(int i=0; i<nbLign; i++){	//2 boucle car tableau a 2 dimension
-			for(int j=0; j<nbCol ;j++){
-				grille[i][j]= '.';
-			}
-		}
-		setBordures();
-		setCentre();
+		Generation q1 = new Generation(10,10);
+		Generation q2 = new Generation(10,10);
+		Generation q3 = new Generation(10,10);
+		Generation q4 = new Generation(10,10);
+		assemblage(q1.getGrille(),q2.getGrille(),q3.getGrille(),q4.getGrille());
 	}
 
 	//Getters
@@ -56,11 +53,25 @@ public class Grille{
 	public void setGrille(Integer x, Integer y,Character c){ //Permet d'ajouter un caractère
 		this.grille[x][y]=c;
 	}
+
 	public void setMirrors(List<Mirror> mirrors){
 		this.mirrors=mirrors;
 	}
 
 	//Methodes
+
+	public void assemblage(char [][] q1,char [][] q2, char [][] q3, char [][] q4){
+		char nouveau [][] = new char[nbLign][nbCol];
+		for(int i = 0;i<nbLign/2;i++){
+			for(int j = 0;j<nbCol/2;j++){
+				nouveau[i][j] = q1[i][j];
+				nouveau[i][nbCol-j-1] = q3[i][j];
+				nouveau[nbLign-i-1][j] = q2[i][j];
+				nouveau[nbLign-i-1][nbCol-j-1] = q4[i][j];
+			}
+		}
+		grille = nouveau;
+	}
 
 	public void toState(char[][] nouvelleGrille){ //On écrase la grille actuelle par la nouvelle dans le cas où l'IA veut enfin avancer
 		this.grille = nouvelleGrille;
@@ -79,32 +90,4 @@ public class Grille{
 		}
 		System.out.println();
 	}
-
-	public char[][] setBordures(){ //Crée les frontières de la carte
-		//La première et le dernière ligne est remplit de x
-		for(int i=0; i<nbCol; i++){
-			grille[0][i]='x';
-			grille[nbLign-1][i]='x';
-		}
-		//On ajoute ensuite un x à chaque premier et dernier ligne de la grille
-		for(int i=1;i<nbLign-1;i++){
-			grille[i][0]='x';
-			grille[i][nbCol-1]='x';
-		}
-		return this.grille;
-	}
-
-	public char[][] setCentre(){ //Création du centre 2x2 de la grille
-		if(nbLign%2!=0 || nbCol%2!=0){ //Si
-			System.out.println("Impossible de créer un centre dans cette grille");
-			return this.grille;
-		} else{
-			grille[nbLign/2-1][nbCol/2-1]='x';
-			grille[nbLign/2][nbCol/2-1]='x';
-			grille[nbLign/2-1][nbCol/2]='x';
-			grille[nbLign/2][nbCol/2]='x';
-			return this.grille;
-		}
-	}
-
 }
