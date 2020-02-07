@@ -54,12 +54,12 @@ public class State{
 
 	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
 		//de l'état présent, et applique un deplacement suivant le move entré en parametre;
-		//Grille new_grille = new Grille(this.grille.getNL(),this.grille.getNC());
-		State new_state=new State(this.grille);
-		/*for(Piont p: this.grille.getEnsemblePiont()){
+		Grille new_grille = new Grille(this.grille.getNL(),this.grille.getNC());
+		State new_state=new State(new_grille);
+		for(Piont p: this.grille.getEnsemblePiont()){
 			Piont new_piont=p;
 			new_grille.addPiont(new_piont);
-		}*/
+		}
 		new_state.deplacement(move);
 		return new_state;
 	}
