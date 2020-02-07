@@ -35,17 +35,6 @@ public class State{
 		this.posPionts=posPionts;
 	}
 	//méthodes
-	public HashMap<Piont,ArrayList<Integer>> saveState(){ //save la position des pionts;
-		HashMap<Piont,ArrayList<Integer>> posP = new HashMap<>();
-		for (Piont p: this.grille.getEnsemblePiont()){
-			ArrayList<Integer> pos= new ArrayList<>();
-			pos.add(p.getX());
-			pos.add(p.getY());
-			posP.put(p,pos);
-		}
-		return posP;
-	}
-
 
 	public void affiche(){
 		// on affiche la grille en fonction des positions des pionts à l'instant
@@ -159,7 +148,35 @@ public class State{
 		}
 	}
 
+	public HashMap<Piont,ArrayList<Integer>> saveState(){ //save la position des pionts;
+		HashMap<Piont,ArrayList<Integer>> posP = new HashMap<>();
+		for (Piont p: this.grille.getEnsemblePiont()){
+			ArrayList<Integer> pos= new ArrayList<>();
+			pos.add(p.getX());
+			pos.add(p.getY());
+			posP.put(p,pos);
+		}
+		return posP;
+	}
+
 	public boolean isFinished(){
+		ArrayList<Piont> bots = new ArrayList<>();
+		Piont goal = null;
+		for(Piont p: this.grille.getEnsemblePiont()){
+			if (p instanceof Goal){
+				goal = p;
+			}
+			if (p instanceof Bot){
+				bots.add(p);
+			}
+		}
+		for (Piont b: bots){
+				if (b.getColor()==goal.getColor()){
+					if(this.posPionts.get(b).get(0)==goal.getX() && this.posPionts.get(b).get(1)==goal.getY()){
+						return true;
+					}
+				}
+		}
 		return false;
 	}
 
