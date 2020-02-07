@@ -26,8 +26,16 @@ public class Main {
 
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
-			etat.affiche();
 			State etat2 = etat.play(goBasBlue);
+			etat.affiche();
 			etat2.affiche();
+
+			//System.out.println(etat.getPosPionts());
+/*
+		etat.getPosPionts().entrySet().forEach(entry->{
+    System.out.println(entry.getKey() + " " + entry.getValue());
+ 		});
+
+	*/
 	}
 }

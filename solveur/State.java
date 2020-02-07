@@ -1,18 +1,24 @@
 package solveur;
 import solveur.pionts.*;
+import java.util.HashMap;
+import java.util.ArrayList;
 public class State{
 
 	//Attributs
 	private Grille grille;
+	private HashMap<Piont,ArrayList<Integer>> posPionts;
 
 	public State(Grille grille){ //Constructeur
 		this.grille = grille;
-
+		//this.saveState();
 	}
 
 	//getters
 	public Grille getGrille(){
 		return this.grille;
+	}
+	public HashMap<Piont,ArrayList<Integer>> getPosPionts(){
+		return this.posPionts;
 	}
 	//setters
 
@@ -20,6 +26,16 @@ public class State{
 		this.grille=grille;
 	}
 	//méthodes
+	public void saveState(){ //save la position des pionts;
+		for (Piont p: this.grille.getEnsemblePiont()){
+			ArrayList<Integer> pos= new ArrayList<>();
+			pos.add(p.getX());
+			pos.add(p.getY());
+			this.posPionts.put(p,pos);
+		}
+	}
+
+
 	public void affiche(){
 		this.grille.afficher();
 	}
