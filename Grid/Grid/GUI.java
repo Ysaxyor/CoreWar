@@ -4,13 +4,15 @@ package grid;
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
 
-public class GUI extends JFrame{
+public class GUI extends JFrame implements ActionListener{
 
 	int spacing = 5; // Constante qui decide l'ecart entre chaque case
 	GridLayout grid = new GridLayout(20,20,4,3);
+	JButton b2 = new JButton("Menu"); 
 
 	JFrame frame = new JFrame();
 	// La fenetre
@@ -25,9 +27,30 @@ public class GUI extends JFrame{
 		frame.setResizable(true); // Permet de resize la fenetre
 		frame.setLayout(new BorderLayout());
 
-		
+
+		/// Les Boutons
+
+		JButton b1 = new JButton("Solve game");
+        frame.add(b1);
+        b1.setBounds(50,50,200,100); 
+        //b1.setSize(100,100);
+        b1.setVisible(true);
+
+
+        
+        /// Bouton avec Action listener
+        JButton b2 = new JButton("Menu");
+        
+        b2.setBounds(300,50,200,100); 
+        //b2.setSize(100,100);
+        b2.addActionListener(this);
+        frame.add(b2);
+        b2.setVisible(true);
 
 		
+
+
+		///
 		 
 		JPanel panel = new JPanel();
 		frame.add(panel,BorderLayout.CENTER); // Panel de la grille centré
@@ -36,7 +59,7 @@ public class GUI extends JFrame{
 		/////
 		
 		
-		//box.add( label1 );
+        
 
 
 
@@ -45,13 +68,13 @@ public class GUI extends JFrame{
 		Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
 		Component rigidareaS = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au Sud
 		Component rigidareaE = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au EST
-		Component rigidareaW = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au OUEST
+		//Component rigidareaW = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au OUEST
 
 
 		frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
 		frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
 		frame.add(rigidareaE, BorderLayout.EAST); // Ajout des "Mur Invisible" EST
-		frame.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUEST
+		//frame.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUEST
 
 		
 
@@ -68,4 +91,15 @@ public class GUI extends JFrame{
 
 			}
 	}
+
+    /// Methode qui est censé faire "pousser" la grille vers la droite
+	public void actionPerformed(ActionEvent e){
+			if (e.getSource()== b2){
+				Component rigidareaW = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au OUEST
+				frame.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUEST
+
+
+			}
+
+		}
 }
