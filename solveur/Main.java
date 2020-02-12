@@ -39,11 +39,11 @@ public class Main {
 */
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
-			State etat2 = etat.play(goBasBlue);
-			State etat3 = etat2.play(goBasBlue);
-			State etat4 = etat3.play(goBasBlue);
-			State etat5 = etat4.play(goDroiteBlue);
-			etat.affiche();
+
+			Node n= new Node(etat);
+			GraphState g = new GraphState(n);
+			//System.out.println(n.getValeur());
+			//System.out.println(n.getFils());
 
 /*
 	//test
