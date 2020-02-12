@@ -57,8 +57,11 @@ public class State{
 		State new_state=new State(new_grille);
 		for(Piont p: this.grille.getEnsemblePiont()){
 			Piont new_piont=p;
+			p.setX(this.posPionts.get(p).get(0));
+			p.setY(this.posPionts.get(p).get(1));
 			new_grille.addPiont(new_piont);
 		}
+
 		new_state.deplacement(move);
 		//On remet a jour les nouvelles positions des pionts;
 		new_state.setPosPionts(new_state.saveState());
@@ -68,7 +71,6 @@ public class State{
 	public void deplacement(Move move){	// gère le deplacement d'un piont;
 		//on recupere le bot
 		Piont bot = move.getBot();
-
 		Piont vide = new Piont(bot.getX(),bot.getY());
 		this.grille.setGrille(bot.getX(),bot.getY(),vide); //on supprime l'emplacement initial du robot;
 		// on recup la direction du mouvement
@@ -183,7 +185,7 @@ public class State{
 	public void congrats(){
 		System.out.println("Objectif atteint !");
 	}
-/*
+
 	public HashSet<State> etatFuturs(){
 		//Return un ensemble des Etats futurs possibles; ne doit pas modifier l'etat actuel;
 		ArrayList<Piont> bots = new ArrayList<>();
@@ -196,20 +198,37 @@ public class State{
 		for (Piont b: bots){
 			moves.add(new Move(b,"bas"));
 			moves.add(new Move(b,"gauche"));
-			moves.add(new Move(b,"droit"));
+			moves.add(new Move(b,"droite"));
 			moves.add(new Move(b,"haut"));
 		}
 		HashSet<State> etat_futurs = new HashSet<>();
 		for (Move m: moves){
-			etat_futurs.add(new State(this.play(m)));
+			etat_futurs.add(this.play(m));
 		}
-		System.out.println(etat_futurs);
-		return null;
+		return etat_futurs;
 
 	}
 
-*/
-
+	public int getEval(){
+		//return la distance de Manhattan entre le joueur, et l'objectif
+		Piont player=null;
+		Piont goal=null;
+		for (Piont g: this.getGrille().getEnsemblePiont()){
+			if (g instanceof Goal){
+				goal=g;
+			}
+		}
+		for (Piont b: this.getGrille().getEnsemblePiont()){
+			if (b instanceof Bot){
+				if(b.getColor()==goal.getColor()){
+					player=b;
+				}
+			}
+		}
+		int playerX = this.getPosPionts().get(player).get(0);
+		int playerY = this.getPosPionts().get(player).get(1);
+		return Math.abs((goal.getX()-playerX))+Math.abs((goal.getY()-playerY));
+	}
 
 
 }
