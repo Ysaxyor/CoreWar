@@ -4,16 +4,16 @@ import solveur.pionts.*;
 public class Move{
 
 	//Attributs
-	private Bot bot;
+	private Piont bot;
 	private String direction; // gauche / droite / haut / bas
 
-	public Move(Bot bot, String direction){
+	public Move(Piont bot, String direction){
 		this.bot = bot;
 		this.direction = direction;
 	}
 
 	//getters
-	public Bot getBot(){
+	public Piont getBot(){
 		return this.bot;
 	}
 
@@ -26,4 +26,7 @@ public class Move{
 		this.direction=direction;
 	}
 	//méthodes
+	public String toString(){
+		return "bot: "+this.bot+" direction: "+this.direction;
+	}
 }

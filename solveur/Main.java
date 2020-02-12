@@ -43,12 +43,10 @@ public class Main {
 			State etat4 = etat3.play(goBasBlue);
 			State etat5 = etat4.play(goDroiteBlue);
 			etat.affiche();
-			etat2.affiche();
-			etat3.affiche();
-			etat4.affiche();
-			etat5.affiche();
-
-			IA ia = new IA(etat2);
+			//etat2.affiche();
+			//etat3.affiche();
+			//etat4.affiche();
+			//etat5.affiche();
 /*
 	//test
 		etat2.getPosPionts().entrySet().forEach(entry->{

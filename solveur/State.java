@@ -67,7 +67,7 @@ public class State{
 
 	public void deplacement(Move move){	// gère le deplacement d'un piont;
 		//on recupere le bot
-		Bot bot = move.getBot();
+		Piont bot = move.getBot();
 
 		Piont vide = new Piont(bot.getX(),bot.getY());
 		this.grille.setGrille(bot.getX(),bot.getY(),vide); //on supprime l'emplacement initial du robot;
@@ -183,5 +183,33 @@ public class State{
 	public void congrats(){
 		System.out.println("Objectif atteint !");
 	}
+/*
+	public HashSet<State> etatFuturs(){
+		//Return un ensemble des Etats futurs possibles; ne doit pas modifier l'etat actuel;
+		ArrayList<Piont> bots = new ArrayList<>();
+		for (Piont b: this.getGrille().getEnsemblePiont()){
+			if (b instanceof Bot){
+				bots.add(b);
+			}
+		}
+		ArrayList<Move> moves = new ArrayList<>();
+		for (Piont b: bots){
+			moves.add(new Move(b,"bas"));
+			moves.add(new Move(b,"gauche"));
+			moves.add(new Move(b,"droit"));
+			moves.add(new Move(b,"haut"));
+		}
+		HashSet<State> etat_futurs = new HashSet<>();
+		for (Move m: moves){
+			etat_futurs.add(new State(this.play(m)));
+		}
+		System.out.println(etat_futurs);
+		return null;
+
+	}
+
+*/
+
+
 
 }
