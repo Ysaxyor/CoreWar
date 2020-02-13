@@ -14,6 +14,14 @@ public class Compare2Node implements Comparator<Node>{
         return -1;
       }
     }
+    if(noeud1.getHeuristique()>noeud2.getHeuristique()){
+      return 1;
+    }else{
+      if (noeud1.getHeuristique()<noeud2.getHeuristique()){
+        return -1;
+      }
+    }
+
     return 0;
   }
 
