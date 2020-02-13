@@ -1,7 +1,5 @@
 package solveur;
-import java.util.HashSet;
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
 import solveur.pionts.*;
 import solveur.ia.*;
 public class Main {
@@ -39,10 +37,29 @@ public class Main {
 */
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
+			State etat2 = etat.play(goBasBlue);
+			State etat3 = etat2.play(goHautBlue);
 
 			Node n= new Node(etat);
+			Node n2= new Node(etat2);
+			Node n3= new Node(etat3);
 			GraphState g = new GraphState(n);
-			//System.out.println(n.getValeur());
+			System.out.println(n);
+			IA t = new IA(etat);
+			//System.out.println(t.algo(n));
+			PriorityQueue<Node> pq = new PriorityQueue<>(new Compare2Node());
+			pq.add(n);
+			pq.add(n2);
+			pq.add(n3);
+			System.out.println(pq);
+			System.out.println(pq.peek());
+
+
+/*
+			for(Node nn: t.algo(n)){
+				nn.getValeur().affiche();
+			};
+*/
 			//System.out.println(n.getFils());
 
 /*

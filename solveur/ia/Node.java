@@ -13,6 +13,7 @@ public class Node{
 
   public Node(State valeur){
     this.valeur=valeur;
+    this.cout=0;
     this.heuristique=valeur.getEval();
     this.freres=null;
     this.pere=null;
@@ -27,6 +28,9 @@ public class Node{
   }
   public int getHeuristique(){
     return this.heuristique;
+  }
+  public int getEval(){
+    return this.heuristique+this.cout;
   }
   public Node getPere(){
     return this.pere;

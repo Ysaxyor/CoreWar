@@ -22,6 +22,7 @@ public class GraphState{
     for (State f: current.getValeur().etatFuturs()){
       Node n = new Node(f);
       n.setPere(this.current);
+      n.setCout(this.current.getCout()+1);
       fils.add(n);
     }
     for (Node n1: fils){

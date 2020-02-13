@@ -32,36 +32,42 @@ public class IA{
     return this.getDistance(goal,player,false);
   }
 */
-  public HashSet<State> algo(State current){
-    HashSet<State> open = new HashSet<>();
-    HashSet<State> closed = new HashSet<>();
-    open.add(current);
-    while(! open.isEmpty()){
-      current.affiche();
-      for (State s: open){
-        if (current.getEval()>s.getEval()){
-          current=s;
-        }
-      }
-      if (open.contains(current)){
-        open.remove(current);
-      }
-      closed.add(current);
+  public HashSet<Node> algo(Node current){
 
-      for(State s: current.etatFuturs()){
-        if (closed.contains(s)){
+    PriorityQueue<Node> open = new PriorityQueue<>(new Compare2Node());
+    HashSet<Node> closed = new HashSet<>();
+    HashSet<Node> path = new HashSet<>();
+    path.add(current);
+
+    while(! open.isEmpty()){
+
+      for (Node noeud: current.getFils()){
+        open.add(noeud);
+      }
+      current=open.poll();
+      //genere le graph a partir du noeud current (lui attribut des fils);
+      GraphState newt = new GraphState(current);
+      closed.add(current);
+      if (current.getHeuristique()==0){
+        path.add(current);
+        return path;
+      }
+
+
+//A REVOIR
+      for(Node noeud: current.getFils()){
+        if (closed.contains(noeud)){
           continue;
         }
-        if (s.getEval()<current.getEval() || ! open.contains(s)){
-
-          if(! open.contains(s)){
-            open.add(s);
+        if (noeud.getEval()<current.getEval() || ! open.contains(noeud)){
+          noeud.setPere(current);
+          if(! open.contains(noeud)){
+            open.add(noeud);
           }
         }
       }
     }
-
-    return open;
+    return path;
   }
 
 
