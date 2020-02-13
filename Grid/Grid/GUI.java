@@ -80,14 +80,36 @@ public class GUI extends JFrame implements ActionListener{
 		Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
 		Component rigidareaS = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au Sud
 		Component rigidareaE = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au EST
-		//Component rigidareaW = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au OUEST
-
+		
+				
 
 		frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
 		frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
 		frame.add(rigidareaE, BorderLayout.EAST); // Ajout des "Mur Invisible" EST
-		//frame.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUEST
+		
 
+		///	MENU BOUTONS
+
+		//Component rigidareaW = Box.createRigidArea(new Dimension(100,100));// "Mur invisible" Situé au OUEST
+		//panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
+
+
+		JButton bgen = new JButton("Generation");
+        		panel_menu.add(bgen,FlowLayout.LEFT);
+        		bgen.setBounds(8,50,100,100);
+        		bgen.setVisible(false);   
+
+        JButton bclean = new JButton("Clean");
+        		panel_menu.add(bclean,FlowLayout.LEFT);
+        		bclean.setBounds(8,50,100,100);
+        		bclean.setVisible(false);  
+
+         JButton bclose = new JButton("Close");
+        		panel_menu.add(bclose,FlowLayout.LEFT);
+        		bclose.setBounds(8,50,100,100);
+        		bclose.setVisible(false);
+
+		///
 		
 
 		for (int i =0; i<400; i++){ // Boucle permettant de creer les cases
@@ -108,24 +130,24 @@ public class GUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 
 
-				Component rigidareaW = Box.createRigidArea(new Dimension(100,100));// "Mur invisible" Situé au OUEST
-				panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
+				//Component rigidareaW = Box.createRigidArea(new Dimension(100,100));// "Mur invisible" Situé au OUEST
+				//panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
 
                 
               
 				JButton bgen = new JButton("Generation");
         		panel_menu.add(bgen,FlowLayout.LEFT);
-        		bgen.setBounds(8,50,100,100);         		
+        		//bgen.setBounds(8,50,100,100);         		
         		bgen.setVisible(true);
 
         		JButton bclean = new JButton("Clean");
         		panel_menu.add(bclean,FlowLayout.LEFT);
-        		bclean.setBounds(8,50,100,100);        		
+        		//bclean.setBounds(8,50,100,100);        		
         		bclean.setVisible(true);
 
                 JButton bclose = new JButton("Close");
         		panel_menu.add(bclose,FlowLayout.LEFT);
-        		bclose.setBounds(8,50,100,100);
+        		//bclose.setBounds(8,50,100,100);
         		bclose.setVisible(true); 
 
         		panel_menu.setVisible(true);
@@ -137,6 +159,9 @@ public class GUI extends JFrame implements ActionListener{
         		public void actionPerformed(ActionEvent event)
         		{
         			panel_menu.setVisible(false);
+        			bgen.setVisible(false);
+        			bclean.setVisible(false);
+        			bclose.setVisible(false);
         		}
         	});
 
