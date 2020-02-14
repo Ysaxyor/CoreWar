@@ -10,117 +10,117 @@ import java.awt.event.*;
 
 public class GUI extends JFrame implements ActionListener{
 
-	
+	//Dimension de la grille (20x20,hgap,vgap) 
 	GridLayout grid = new GridLayout(20,20,3,4);
-	JButton b2 = new JButton("Menu");
 
+
+	//Creation de la fenetre (frame)
 	JFrame frame = new JFrame();
-     JPanel panel_menu = new JPanel();
+
+	//Creation du Panel
+    JPanel panel_menu = new JPanel();
     
-    //
-
-
+    //Compteur
+    private int compteur;
+    
 	// La fenetre
 	public GUI(){
+
+		
+
+
+
 		frame.setTitle("Solveur"); // Titre de la Fenetre
 		frame.setSize(1500,1000); // Taille de la fenetre (Longueur, Hauteur)
-		frame.setMinimumSize(new Dimension(1286,829));
-		//frame.setExtendedState(frame.MAXIMIZED_BOTH);
+		frame.setMinimumSize(new Dimension(1286,829)); // Taille Minimum de la fenetre
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Lorsque on clique sur fermer, notre application est EXTERMINER
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Lorsque on clique sur fermer, la fenetre se ferme
 		frame.setVisible(true); //permet que la fenetre soit visible
 		frame.setResizable(true); // Permet de resize la fenetre
-		frame.setLayout(new BorderLayout());
 
-         //Panel menu
-        panel_menu.setBackground(Color.blue);
-	    frame.add(panel_menu,BorderLayout.WEST); 
-     	panel_menu.setLayout(new FlowLayout());
+		frame.setLayout(new BorderLayout()); // Fonction qui permet de choisir la position elements N,W,E,S
 
-     	//
+        //Creation du Panel du Menu
+        panel_menu.setBackground(Color.blue); //Couleur 
+	    frame.add(panel_menu,BorderLayout.WEST);  // Placer le Panel a l'Ouest de la fenetre , 
+     	panel_menu.setLayout(new FlowLayout()); // ?????
+
+     	
 
 
 		/// Les Boutons
 
-		JButton b1 = new JButton("Solve game");
-        frame.add(b1,BorderLayout.NORTH);
-        b1.setBounds(500,50,200,100); 
-       // b1.setSize(105,100);
-        b1.setVisible(true);
+		JButton b1 = new JButton("Solve game"); // Creation du bouton et son titre
+        frame.add(b1,BorderLayout.NORTH); // placer le bouton au Nord de la fenetre
+        b1.setBounds(500,50,200,100); // Dimension du bouton 
+        b1.setVisible(true); // permet que le bouton soit visible
 
 
         
         /// Bouton avec Action listener
-        JButton b2 = new JButton("Menu");
+        JButton b2 = new JButton("Menu"); // Creation du bouton et son titre
         
-        b2.setBounds(1000,50,200,100); 
-       // b2.setSize(100,100);
-        b2.addActionListener(this);
-        frame.add(b2,BorderLayout.NORTH);
-        b2.setVisible(true);
-
-		
+        b2.setBounds(1000,50,200,100); //Dimension du bouton 
+        b2.addActionListener(this); //appel a la methode actionlistener
+        frame.add(b2,BorderLayout.NORTH); // placer le bouton au Nord de la fenetre
+        b2.setVisible(true); // permet que le bouton soit visible
 
 
-		///
-		 
+
+		// Les boutons du Menu
+
+		JButton bgen = new JButton("Generation"); //Creation du bouton et son titre
+        		panel_menu.add(bgen,FlowLayout.LEFT); // Ajout du bouton au panel du menu, positioner a gauche
+        		bgen.setBounds(8,50,100,100); // Dimension du bouton
+        		bgen.setVisible(false);  // Bouton qui n'est pas visible
+
+        JButton bclean = new JButton("Clean"); //Creation du bouton et son titre
+        		panel_menu.add(bclean,FlowLayout.LEFT);// Ajout du bouton au panel du menu, positioner a gauche
+        		bclean.setBounds(8,50,100,100);// Dimension du bouton
+        		bclean.setVisible(false);   // Bouton qui n'est pas visible
+
+
+         JButton bclose = new JButton("Close"); // Creation du bouton et son titre
+        		panel_menu.add(bclose,FlowLayout.LEFT); // Ajout du bouton au panel du menu, positioner a gauche
+        		bclose.setBounds(8,50,100,100); // Dimension du bouton
+        		bclose.setVisible(false);  // Bouton qui n'est pas visible
+
+
+  		// Creation du panel pour la Grille
+
 		JPanel panel = new JPanel();
 		frame.add(panel,BorderLayout.CENTER); // Panel de la grille centré
-     		panel.setLayout(grid);
-
-		/////
-		
-		
-        
+     		panel.setLayout(grid);  
 
 
-
-		//////
+     	// Creation des "Mur invisible"
 
 		Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
 		Component rigidareaS = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au Sud
 		Component rigidareaE = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au EST
-		
+		//Component rigidareaW = Box.createRigidArea(new Dimension(100,100));// "Mur invisible" Situé au OUEST
+		//panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
+
 				
 
+		//Ajout des "Mur Invisible" 
 		frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
 		frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
 		frame.add(rigidareaE, BorderLayout.EAST); // Ajout des "Mur Invisible" EST
 		
 
-		///	MENU BOUTONS
-
-		//Component rigidareaW = Box.createRigidArea(new Dimension(100,100));// "Mur invisible" Situé au OUEST
-		//panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
-
-
-		JButton bgen = new JButton("Generation");
-        		panel_menu.add(bgen,FlowLayout.LEFT);
-        		bgen.setBounds(8,50,100,100);
-        		bgen.setVisible(false);   
-
-        JButton bclean = new JButton("Clean");
-        		panel_menu.add(bclean,FlowLayout.LEFT);
-        		bclean.setBounds(8,50,100,100);
-        		bclean.setVisible(false);  
-
-         JButton bclose = new JButton("Close");
-        		panel_menu.add(bclose,FlowLayout.LEFT);
-        		bclose.setBounds(8,50,100,100);
-        		bclose.setVisible(false);
-
-		///
 		
-
-		for (int i =0; i<400; i++){ // Boucle permettant de creer les cases
+		
+		// Boucle permettant de creer les cases
+		for (int i =0; i<400; i++){ 
 				JLabel label1 = new JLabel( "mur" );  // Commentaire dans la box
-				label1.setMaximumSize(new Dimension(50, 50)); // 
+				label1.setMaximumSize(new Dimension(50, 50)); // Taille des cases
 				label1.setOpaque( true ); // Background du label
 				label1.setBackground( Color.GRAY ); // couleur du background du label
 				label1.setForeground( Color.BLACK ); // couleur du texte
 		
-				Box box = Box.createHorizontalBox(); 
-				box.add(label1);
+				Box box = Box.createHorizontalBox();  // Creation de la box
+				box.add(label1); // Ajout du texte sur la case
 				panel.add(box); // Ajout des case sur la grille
 
 			}
@@ -133,24 +133,38 @@ public class GUI extends JFrame implements ActionListener{
 				//Component rigidareaW = Box.createRigidArea(new Dimension(100,100));// "Mur invisible" Situé au OUEST
 				//panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
 
+			if(compteur==0){
                 
-              
+             	
+
 				JButton bgen = new JButton("Generation");
         		panel_menu.add(bgen,FlowLayout.LEFT);
         		//bgen.setBounds(8,50,100,100);         		
-        		bgen.setVisible(true);
+        		//bgen.setVisible(true);
 
         		JButton bclean = new JButton("Clean");
         		panel_menu.add(bclean,FlowLayout.LEFT);
         		//bclean.setBounds(8,50,100,100);        		
-        		bclean.setVisible(true);
+        		//bclean.setVisible(true);
 
                 JButton bclose = new JButton("Close");
         		panel_menu.add(bclose,FlowLayout.LEFT);
         		//bclose.setBounds(8,50,100,100);
-        		bclose.setVisible(true); 
+        		//bclose.setVisible(true); 
 
+        		//panel_menu.setVisible(true);
+        	
+        	
+        		bgen.setVisible(true);
+        		bclean.setVisible(true);
+        		bclose.setVisible(true);
         		panel_menu.setVisible(true);
+
+
+			        	
+
+        	
+        	
 
         		bclose.addActionListener(new ActionListener()
         		{     		
@@ -162,8 +176,15 @@ public class GUI extends JFrame implements ActionListener{
         			bgen.setVisible(false);
         			bclean.setVisible(false);
         			bclose.setVisible(false);
+
+        			compteur=0;
         		}
         	});
+
+        	
+     		compteur=1;
+        	}
+
 
         		
 
