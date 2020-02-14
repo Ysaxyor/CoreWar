@@ -63,8 +63,15 @@ public class State{
 		}
 
 		new_state.deplacement(move);
+
 		//On remet a jour les nouvelles positions des pionts;
 		new_state.setPosPionts(new_state.saveState());
+
+		if(move.getBot().getX()==this.getPosPionts().get(move.getBot()).get(0)){
+			if(move.getBot().getY()==this.getPosPionts().get(move.getBot()).get(1)){
+				return this;
+			}
+		}
 		return new_state;
 	}
 
@@ -202,10 +209,24 @@ public class State{
 			moves.add(new Move(b,"haut"));
 		}
 		HashSet<State> etat_futurs = new HashSet<>();
+		HashSet<State> tmp = new HashSet<>();
 		for (Move m: moves){
 			etat_futurs.add(this.play(m));
 		}
-		return etat_futurs;
+		for (State s: etat_futurs){
+			tmp.add(s);
+			for (State s2: etat_futurs){
+				if(s==s2){
+					continue;
+				}
+				if(s.getPosPionts().equals(s2.getPosPionts())){
+					if(tmp.contains(s)){
+						tmp.remove(s2);}
+				}
+			}
+		}
+
+		return tmp;
 
 	}
 

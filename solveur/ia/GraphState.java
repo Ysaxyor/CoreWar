@@ -16,7 +16,7 @@ public class GraphState{
 
 
 //methodes
-
+//si posPiont fils1 == posPiont fils2 -> fils1=fils2
   public void buildFreres(){
     HashSet<Node> fils = new HashSet<>();
     for (State f: current.getValeur().etatFuturs()){

@@ -36,16 +36,18 @@ public class Main {
 */
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
-			//State etat2 = etat.play(goBasBlue);
-			//State etat3 = etat.play(goDroiteBlue);
+			State etat2 = etat.play(goBasBlue);
 
 			etat.affiche();
+			etat2.affiche();
 
-			IA t = new IA(etat);
+
+
+
 		//	t.algo();
 
 			/*
-			PriorityQueue<Node> pq = new PriorityQueue<>(new Compare2Node());
+			PriorityQueue<Integer> pq = new PriorityQueue<>();
 			pq.add(n);
 			pq.add(n2);
 			pq.add(n3);
