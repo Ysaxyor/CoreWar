@@ -19,6 +19,7 @@ public class Main {
 
 			//ajout des objets à la grille
 			grille.addPiont(botBlue);
+			grille.addPiont(botRed);
 			grille.addPiont(redMirror);
 			grille.addPiont(blueMirror);
 			grille.addPiont(greenMirror);
@@ -39,8 +40,6 @@ public class Main {
 			State etat2 = etat.play(goBasBlue);
 
 			etat.affiche();
-			etat2.affiche();
-
 
 
 

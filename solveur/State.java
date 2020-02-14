@@ -3,7 +3,8 @@ import solveur.pionts.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
-public class State{
+
+public class State{	//Objet qui represente l'etat d'une grille de jeu;
 
 	//Attributs
 	private Grille grille;
@@ -120,7 +121,7 @@ public class State{
 					// on arrive vers la droite sur \ <---
 					this.deplacement(vers_haut);
 				}else{
-					//  / <----l
+					//  / <----
 					this.deplacement(vers_bas);
 				}
 			}
@@ -157,7 +158,8 @@ public class State{
 		}
 	}
 
-	public HashMap<Piont,ArrayList<Integer>> saveState(){ //save la position des pionts;
+	public HashMap<Piont,ArrayList<Integer>> saveState(){
+		//save la position des pionts;
 		HashMap<Piont,ArrayList<Integer>> posP = new HashMap<>();
 		for (Piont p: this.grille.getEnsemblePiont()){
 			ArrayList<Integer> pos= new ArrayList<>();
@@ -169,6 +171,8 @@ public class State{
 	}
 
 	public boolean isFinished(){
+		//On check si le bot de la couleur du goal est a la meme position
+		// que ce goal;
 		ArrayList<Piont> bots = new ArrayList<>();
 		Piont goal = null;
 		for(Piont p: this.grille.getEnsemblePiont()){
@@ -209,17 +213,23 @@ public class State{
 			moves.add(new Move(b,"haut"));
 		}
 		HashSet<State> etat_futurs = new HashSet<>();
-		HashSet<State> tmp = new HashSet<>();
 		for (Move m: moves){
 			etat_futurs.add(this.play(m));
 		}
-		for (State s: etat_futurs){
-			tmp.add(s);
-			for (State s2: etat_futurs){
+
+		//ici on supprime les occurences des etats futurs possible;
+		//ainsi si les positions des pionts de deux etats sont les mêmes
+		//alors il n'est pas necessaire de l'inclure une deuxieme fois
+		//dans les etats futurs;
+		HashSet<State> tmp = new HashSet<>();
+		for (State s: etat_futurs){//on parcours une premiere fois l'ensemble
+			tmp.add(etats);
+			for (State s2: etat_futurs){//en sachant S on parcours une deuxieme fois l'ensemble;
 				if(s==s2){
 					continue;
 				}
-				if(s.getPosPionts().equals(s2.getPosPionts())){
+				if(s.getPosPionts().equals(s2.getPosPionts())){ // on regarde si les positions
+					//des pionts de S sont les mêmes quand ceux de s2;
 					if(tmp.contains(s)){
 						tmp.remove(s2);}
 				}
