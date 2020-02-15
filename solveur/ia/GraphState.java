@@ -4,10 +4,16 @@ import solveur.*;
 
 public class GraphState{
   private Node current;
+  private int profondeur;
+
+  public GraphState(Node current,int profondeur){
+    this.current=current;
+    this.profondeur=profondeur;
+    this.buildGraph();
+  }
 
   public GraphState(Node current){
-    this.current=current;
-    this.buildFreres();
+    this(current,1);
   }
 
   public Node getCurrent(){
@@ -17,25 +23,16 @@ public class GraphState{
 
 //methodes
 //si posPiont fils1 == posPiont fils2 -> fils1=fils2
-  public void buildFreres(){
-    HashSet<Node> fils = new HashSet<>();
-    for (State f: current.getValeur().etatFuturs()){
-      Node n = new Node(f);
-      n.setPere(this.current);
-      n.setCout(this.current.getCout()+1);
-      fils.add(n);
-    }
-    for (Node n1: fils){
-      HashSet<Node> freres = new HashSet<>();
-      for (Node n2: fils){
-        if (n1 != n2){
-          freres.add(n2);
-        }
+  public void buildGraph(){
+    for (State etatf: this.current.getValeur().etatFuturs()){
+      if(this.current.getValeur()==etatf){
+        continue;
       }
-      n1.setFreres(freres);
+      Node new_fils = new Node(etatf);
+      new_fils.setPere(this.current);
+      new_fils.setCout(this.current.getCout()+1);
+      this.current.addFils(new_fils);
     }
-
-    this.current.setFils(fils);
   }
 
 }

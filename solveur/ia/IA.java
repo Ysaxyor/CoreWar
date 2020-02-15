@@ -37,28 +37,33 @@ public class IA{
     Node current = new Node(this.etat);
     PriorityQueue<Node> open = new PriorityQueue<>(new Compare2Node());
     HashSet<Node> closed = new HashSet<>();
+    HashSet<Node> path = new HashSet<>();
     open.add(current);
     while(! open.isEmpty()){
       current = open.poll();
-      System.out.println(current);
-      current.getValeur().affiche();
       new GraphState(current);
       closed.add(current);
-
-      for(Node noeud: current.getFils()){
-        if(closed.contains(noeud)){
+      if (current.getValeur().isFinished()){
+        path.add(current);
+        break;
+      }
+      for (Node fils: current.getFils()){
+        if (closed.contains(fils)){
           continue;
         }
-        if(current.getEval()>noeud.getEval() || ! open.contains(noeud)){
-          noeud.setCout(current.getCout()+1);
-          noeud.setPere(current);
-          if(! open.contains(noeud)){
-            open.add(noeud);
+        if(current.getEval()>fils.getEval() || ! open.contains(fils)){
+          fils.setPere(current);
+          if(!open.contains(fils)){
+            open.add(fils);
           }
         }
       }
     }
-    return closed;
+    while(current.getPere()!=null){
+      path.add(current.getPere());
+      current=current.getPere();
+    }
+    return path;
 }
 
 

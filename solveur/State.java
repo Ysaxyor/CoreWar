@@ -223,7 +223,7 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 		//dans les etats futurs;
 		HashSet<State> tmp = new HashSet<>();
 		for (State s: etat_futurs){//on parcours une premiere fois l'ensemble
-			tmp.add(etats);
+			tmp.add(s);
 			for (State s2: etat_futurs){//en sachant S on parcours une deuxieme fois l'ensemble;
 				if(s==s2){
 					continue;

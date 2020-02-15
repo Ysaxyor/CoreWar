@@ -11,6 +11,7 @@ public class Main {
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
 			Bot botRed = new Bot (2,2,"Red");
+			Bot botGreen = new Bot (5,5,"Green");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
 			Mirror greenMirror = new Mirror(10,24,"Green",'t');
@@ -19,7 +20,8 @@ public class Main {
 
 			//ajout des objets à la grille
 			grille.addPiont(botBlue);
-			grille.addPiont(botRed);
+			//grille.addPiont(botRed);
+			//grille.addPiont(botGreen);
 			grille.addPiont(redMirror);
 			grille.addPiont(blueMirror);
 			grille.addPiont(greenMirror);
@@ -42,8 +44,18 @@ public class Main {
 			etat.affiche();
 
 
+			Node noeud1=new Node(etat);
+			//System.out.println("Noeud Pere: "+noeud1);
+			GraphState g = new GraphState(noeud1);
+			//System.out.println(noeud1.getFils());
+			IA t = new IA(etat);
+			System.out.println(t.algo().size()-1);
+			/*
+			for(Node n: t.algo()){
+				n.getValeur().affiche();
+			}
+*/
 
-		//	t.algo();
 
 			/*
 			PriorityQueue<Integer> pq = new PriorityQueue<>();

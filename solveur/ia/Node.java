@@ -8,16 +8,14 @@ public class Node{
   private int heuristique;
 
   private Node pere;
-  private HashSet<Node> freres;
   private HashSet<Node> fils;
 
   public Node(State valeur){
     this.valeur=valeur;
     this.cout=0;
     this.heuristique=valeur.getEval();
-    this.freres=null;
     this.pere=null;
-    this.fils=null;
+    this.fils=new HashSet<>();
   }
   //getters
   public State getValeur(){
@@ -35,9 +33,7 @@ public class Node{
   public Node getPere(){
     return this.pere;
   }
-  public HashSet<Node> getFrere(){
-    return this.freres;
-  }
+
   public HashSet<Node> getFils(){
     return this.fils;
   }
@@ -54,10 +50,8 @@ public class Node{
   public void setPere(Node pere){
     this.pere=pere;
   }
-  public void setFreres(HashSet<Node> freres){
-    this.freres=freres;
+  public void addFils(Node fils){
+    this.fils.add(fils);
   }
-  public void setFils(HashSet<Node> fils){
-    this.fils=fils;
-  }
+  //methodes
 }
