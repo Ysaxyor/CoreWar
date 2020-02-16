@@ -4,4 +4,9 @@ execution :
   java -cp "build" solveur.Main
 
 ou:
+chmod u+x exe.sh
 ./exe.sh
+
+
+avec ant : https://ant.apache.org/
+ant run
