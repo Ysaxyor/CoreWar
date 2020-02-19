@@ -32,12 +32,12 @@ public class IA{
     return this.getDistance(goal,player,false);
   }
 */
-  public HashSet<Node> algo(){
+  public ArrayList<Node> algo(){
 
     Node current = new Node(this.etat);
     PriorityQueue<Node> open = new PriorityQueue<>(new Compare2Node());
     HashSet<Node> closed = new HashSet<>();
-    HashSet<Node> path = new HashSet<>();
+    ArrayList<Node> path = new ArrayList<>();
     open.add(current);
     while(! open.isEmpty()){
       current = open.poll();
@@ -63,6 +63,7 @@ public class IA{
       path.add(current.getPere());
       current=current.getPere();
     }
+    Collections.reverse(path);
     return path;
 }
 

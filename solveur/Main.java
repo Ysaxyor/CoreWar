@@ -13,6 +13,7 @@ public class Main {
 			Bot botRed = new Bot (2,2,"Red");
 			Bot botGreen = new Bot (5,5,"Green");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
+			Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
 			Mirror greenMirror = new Mirror(10,24,"Green",'t');
 			Goal blueGoal = new Goal(16,24,"Blue");
@@ -23,6 +24,7 @@ public class Main {
 			//grille.addPiont(botRed);
 			//grille.addPiont(botGreen);
 			grille.addPiont(redMirror);
+			grille.addPiont(yellowMirror);
 			grille.addPiont(blueMirror);
 			grille.addPiont(greenMirror);
 			grille.addPiont(blueGoal);
@@ -41,7 +43,6 @@ public class Main {
 			State etat = new State(grille);
 			State etat2 = etat.play(goBasBlue);
 
-			etat.affiche();
 
 
 			Node noeud1=new Node(etat);
@@ -49,35 +50,12 @@ public class Main {
 			GraphState g = new GraphState(noeud1);
 			//System.out.println(noeud1.getFils());
 			IA t = new IA(etat);
-			System.out.println(t.algo().size()-1);
-			/*
+
+
 			for(Node n: t.algo()){
 				n.getValeur().affiche();
 			}
-*/
 
 
-			/*
-			PriorityQueue<Integer> pq = new PriorityQueue<>();
-			pq.add(n);
-			pq.add(n2);
-			pq.add(n3);
-			System.out.println(pq);
-			System.out.println(pq.peek());
-*/
-
-/*
-			for(Node nn: t.algo(n)){
-				nn.getValeur().affiche();
-			};
-*/
-			//System.out.println(n.getFils());
-
-/*
-	//test
-		etat2.getPosPionts().entrySet().forEach(entry->{
-    System.out.println(entry.getKey() + " | "+entry.getValue());
- 		});
-*/
 	}
 }
