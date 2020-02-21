@@ -6,25 +6,18 @@ import solveur.pionts.*;
 public class Grille{
 
 	//Attribut
-	private int nbLign; // nombre de ligne
-	private int nbCol;	// nombre de colonne
+	private int nbLign = 20; // nombre de ligne
+	private int nbCol = 20;	// nombre de colonne
 
-	private int l;
-	private int c;
+	private int l = 10;
+	private int c = 10;
 
 	private Piont[][] grille; // une grille a 2Dimension rempli de Piont
 	private HashSet<Piont> ensemble_piont; // ensemble qui contient tout les pionts important
 
 
 	// Constructeur
-	public Grille(int nbLign,int nbCol){
-		this.nbLign=nbLign;
-		this.nbCol=nbCol;
-
-		//Q
-		this.l = nbLign/2;
-		this.c = nbCol/2;
-
+	public Grille(){;
 		this.grille = assemblage(construct(),construct(),construct(),construct());
 		this.ensemble_piont=new HashSet<Piont>();
 	}
@@ -60,42 +53,6 @@ public class Grille{
 
 
 //Methodes
-
-	//Crée les frontières de la carte; à l'aide du piont Mur
-	public Piont[][] setBordures(){
-		//La première et le dernière colonne est remplit de Mur
-		for(int i=0; i<nbCol; i++){
-			Mur new_mur1 = new Mur(0,i);
-			grille[0][i]=new_mur1;
-			Mur new_mur2 = new Mur(nbLign-1,i);
-			grille[nbLign-1][i]=new_mur2;
-		}
-		//On ajoute ensuite un mur à chaque premiere et derniere ligne de la grille
-		for(int i=1;i<nbLign-1;i++){
-			Mur new_mur3 = new Mur(i,0);
-			grille[i][0]=new_mur3;
-			Mur new_mur4 = new Mur(i,nbCol-1);
-			grille[i][nbCol-1]=new_mur4;
-		}
-		return this.grille;
-	}
-	//Création du centre 2x2 de la grille
-	public Piont[][] setCentre(){
-		if(nbLign%2!=0 || nbCol%2!=0){
-			//System.out.println("Impossible de créer un centre dans cette grille");
-			return this.grille;
-		} else{
-			Mur new_mur1=new Mur(nbLign/2-1,nbCol/2-1);
-			Mur new_mur2=new Mur(nbLign/2-1,nbCol/2-1);
-			Mur new_mur3=new Mur(nbLign/2-1,nbCol/2);
-			Mur new_mur4=new Mur(nbLign/2,nbCol/2);
-			grille[nbLign/2-1][nbCol/2-1]=new_mur1;
-			grille[nbLign/2][nbCol/2-1]=new_mur2;
-			grille[nbLign/2-1][nbCol/2]=new_mur3;
-			grille[nbLign/2][nbCol/2]=new_mur4;
-			return this.grille;
-		}
-	}
 
 	public void afficher(HashSet<Piont> ensemble_piont1){
 		for (Piont p: ensemble_piont1){
@@ -164,8 +121,8 @@ public class Grille{
 
 		//setMurs	
 		Random random = new Random();
-		Mur m1 = new Mur(1,2+random.nextInt(c-1-2));
-		Mur m2 = new Mur(2+random.nextInt(l-1-2),1);
+		Mur m1 = new Mur(1,2+random.nextInt(c-3));
+		Mur m2 = new Mur(2+random.nextInt(l-3),1);
 		grille[1][2+random.nextInt(c-1-2)] = m1;
 		grille[2+random.nextInt(l-1-2)][1] = m2;
 	
@@ -179,7 +136,7 @@ public class Grille{
 		Mur m1 = new Mur(a,b);
 		this.grille[a][b] = m1;
 		m1.setAngle(this.grille);
-	
+
 		a = 6+random.nextInt(3);
 		b = 3+random.nextInt(1);
 		Mur m2 = new Mur(a,b);
