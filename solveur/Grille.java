@@ -6,18 +6,25 @@ import solveur.pionts.*;
 public class Grille{
 
 	//Attribut
-	private int nbLign = 20; // nombre de ligne
-	private int nbCol = 20;	// nombre de colonne
+	private int nbLign; // nombre de ligne
+	private int nbCol;	// nombre de colonne
 
-	private int l = 10;
-	private int c = 10;
+	private int l;
+	private int c;
 
 	private Piont[][] grille; // une grille a 2Dimension rempli de Piont
 	private HashSet<Piont> ensemble_piont; // ensemble qui contient tout les pionts important
 
 
 	// Constructeur
-	public Grille(){;
+	public Grille(int nbLign, int nbCol){
+		this.nbLign=nbLign;
+		this.nbCol=nbCol;
+
+		//Q
+		this.l = nbLign/2;
+		this.c = nbCol/2;
+
 		this.grille = assemblage(construct(),construct(),construct(),construct());
 		this.ensemble_piont=new HashSet<Piont>();
 	}
