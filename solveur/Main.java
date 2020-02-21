@@ -7,9 +7,14 @@ public class Main {
 
 			//GENERATION
 			Grille grille=new Grille(20,20); //choix de taille de la grille
+			grille.afficher();
+			/*
+			Oups c'est le bordel maintenant (pour le moment la grille
+			ne peut se générérer qu'en 20*20, bientôt réglé
+			*/	
 
 			//CREATION DES objets
-			Bot botBlue = new Bot(1,1,"Blue");
+			/*Bot botBlue = new Bot(1,1,"Blue");
 			Bot botRed = new Bot (2,2,"Red");
 			Bot botGreen = new Bot (5,5,"Green");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
@@ -38,7 +43,7 @@ public class Main {
 /*
 			Move goBasRed = new Move(botRed,"bas");
 			Move goHautRed = new Move(botRed,"haut");
-*/
+
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
 			State etat2 = etat.play(goBasBlue);
@@ -54,7 +59,7 @@ public class Main {
 
 			for(Node n: t.algo()){
 				n.getValeur().affiche();
-			}
+			}*/
 
 
 	}
