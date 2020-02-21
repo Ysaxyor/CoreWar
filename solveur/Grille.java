@@ -17,9 +17,9 @@ public class Grille{
 
 
 	// Constructeur
-	public Grille(int nbLign, int nbCol){
-		this.nbLign=nbLign;
-		this.nbCol=nbCol;
+	public Grille(){
+		this.nbLign=20;
+		this.nbCol=20;
 
 		//Q
 		this.l = nbLign/2;
@@ -27,6 +27,11 @@ public class Grille{
 
 		this.grille = assemblage(construct(),construct(),construct(),construct());
 		this.ensemble_piont=new HashSet<Piont>();
+	}
+
+	public Grille(int nbLign, int nbCol){
+		this.nbLign = nbLign;
+		this.nbCol = nbCol;	
 	}
 
 	//Getters
