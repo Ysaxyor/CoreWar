@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args){
 
 			//GENERATION
-			Grille grille=new Grille(18,26); //choix de taille de la grille
+			Grille grille=new Grille(20,20); //choix de taille de la grille
 
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
