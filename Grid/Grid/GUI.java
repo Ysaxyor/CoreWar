@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.Object;
 
 
 
@@ -16,7 +17,11 @@ public class GUI extends JFrame implements ActionListener{
 	JFrame frame = new JFrame();
 
 	//Creation du Panel
-    JPanel panel_menu = new JPanel();
+    JPanel panel_menu = new JPanel(new GridLayout());
+    JPanel panel_supp = new JPanel();
+
+    JPanel panel_buttons= new JPanel(new GridLayout());
+    JPanel panel_buttons_supp= new JPanel();
     
     //Compteur
     private int compteur;
@@ -44,46 +49,76 @@ public class GUI extends JFrame implements ActionListener{
         //Creation du Panel du Menu
         panel_menu.setBackground(Color.blue); //Couleur 
 	    frame.add(panel_menu,BorderLayout.WEST);  // Placer le Panel a l'Ouest de la fenetre , 
-     	panel_menu.setLayout(new FlowLayout()); // ?????
+     	panel_menu.setLayout(new BoxLayout(panel_menu,BoxLayout.PAGE_AXIS)); // ?????
 
      	
+        //Panel supp
+        
+        Component rigidareaW = Box.createRigidArea(new Dimension(200,100));// "Mur invisible" Situé au OUEST
 
+        panel_supp.setBackground(Color.red); //Couleur 
+	    frame.add(panel_supp,BorderLayout.WEST);  // Placer le Panel a l'Ouest de la fenetre , 
+     	panel_supp.setLayout(new FlowLayout()); // ?????
+        panel_supp.add(rigidareaW,BorderLayout.WEST);
+        
+        
+
+
+
+
+        //Panel buttons
+        panel_buttons.setBackground(Color.pink); //Couleur
+
+        frame.add(panel_buttons,BorderLayout.NORTH);  // Placer le Panel a l'Ouest de la fenetre , 
+        panel_buttons.setLayout(new BoxLayout(panel_buttons,BoxLayout.LINE_AXIS)); // ?????
+
+         //Panel buttons supp
+        
+        Component rigidareaN = Box.createRigidArea(new Dimension(50,50));// "Mur invisible" Situé au OUEST
+
+        panel_buttons_supp.setBackground(Color.green); //Couleur 
+        frame.add(panel_buttons_supp,BorderLayout.NORTH);  // Placer le Panel a l'Ouest de la fenetre , 
+        panel_buttons_supp.setLayout(new FlowLayout()); // ?????
+        panel_buttons_supp.add(rigidareaN,BorderLayout.NORTH);
+        panel_buttons_supp.add(panel_buttons,FlowLayout.LEFT);
 
 		/// Les Boutons
 
 		JButton b1 = new JButton("Solve game"); // Creation du bouton et son titre
-        frame.add(b1,BorderLayout.NORTH); // placer le bouton au Nord de la fenetre
-        b1.setBounds(500,50,200,100); // Dimension du bouton 
+        panel_buttons.add(b1); // placer le bouton au Nord de la fenetre
+        panel_buttons.add(Box.createRigidArea(new Dimension(15,0)));
+        //b1.setBounds(500,50,200,100); // Dimension du bouton 
         b1.setVisible(true); // permet que le bouton soit visible
 
 
         
         /// Bouton avec Action listener
         JButton b2 = new JButton("Menu"); // Creation du bouton et son titre
-        b2.setBounds(1000,50,200,100); //Dimension du bouton 
+       // b2.setBounds(1000,50,200,100); //Dimension du bouton 
         b2.addActionListener(this); //appel a la methode actionlistener
-        frame.add(b2,BorderLayout.NORTH); // placer le bouton au Nord de la fenetre
+        panel_buttons.add(b2); // placer le bouton au Nord de la fenetre
         b2.setVisible(true); // permet que le bouton soit visible
 
 
 
 		// Les boutons du Menu
-
 		JButton bgen = new JButton("Generation"); //Creation du bouton et son titre
-        		panel_menu.add(bgen,FlowLayout.LEFT); // Ajout du bouton au panel du menu, positioner a gauche
-        		bgen.setBounds(8,50,100,100); // Dimension du bouton
-        		bgen.setVisible(false);  // Bouton qui n'est pas visible
-
         JButton bclean = new JButton("Clean"); //Creation du bouton et son titre
-        		panel_menu.add(bclean,FlowLayout.LEFT);// Ajout du bouton au panel du menu, positioner a gauche
-        		bclean.setBounds(8,50,100,100);// Dimension du bouton
-        		bclean.setVisible(false);   // Bouton qui n'est pas visible
+        JButton bclose = new JButton("Close"); // Creation du bouton et son titre
+        panel_menu.add(bgen); // Ajout du bouton au panel du menu, positioner a gauche
+
+        panel_menu.add(Box.createRigidArea(new Dimension(0,5)));
+
+        panel_menu.add(bclean);// Ajout du bouton au panel du menu, positioner a gauche
 
 
-         JButton bclose = new JButton("Close"); // Creation du bouton et son titre
-        		panel_menu.add(bclose,FlowLayout.LEFT); // Ajout du bouton au panel du menu, positioner a gauche
-        		bclose.setBounds(8,50,100,100); // Dimension du bouton
-        		bclose.setVisible(false);  // Bouton qui n'est pas visible
+		panel_menu.add(bclose); // Ajout du bouton au panel du menu, positioner a gauche  
+
+
+
+        bgen.setVisible(false);  // Bouton qui n'est pas visible        
+        bclean.setVisible(false);   // Bouton qui n'est pas visible
+        bclose.setVisible(false);  // Bouton qui n'est pas visible
 
 
   		// Creation du panel pour la Grille
@@ -95,17 +130,17 @@ public class GUI extends JFrame implements ActionListener{
 
      	// Creation des "Mur invisible"
 
-		Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
-		Component rigidareaS = Box.createRigidArea(new Dimension(30,30));// "Mur invisible" Situé au Sud
-		Component rigidareaE = Box.createRigidArea(new Dimension(400,30));// "Mur invisible" Situé au EST
-		Component rigidareaW = Box.createRigidArea(new Dimension(400,100));// "Mur invisible" Situé au OUEST
+	//	Component rigidareaN = Box.createRigidArea(new Dimension(200,200)); // "Mur invisible" Situé au Nord
+		//Component rigidareaS = Box.createRigidArea(new Dimension(10,10));// "Mur invisible" Situé au Sud
+		Component rigidareaE = Box.createRigidArea(new Dimension(300,30));// "Mur invisible" Situé au EST
+		//Component rigidareaW = Box.createRigidArea(new Dimension(400,100));// "Mur invisible" Situé au OUEST
         //rigidareaE.setForeground(Color.cyan); 
 
      
 
 		//Ajout des "Mur Invisible" 
 		frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
-		frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
+		//frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
 		frame.add(rigidareaE, BorderLayout.EAST); // Ajout des "Mur Invisible" EST
 		//frame.add(rigidareaW,BorderLayout.WEST);
 
@@ -137,7 +172,7 @@ public class GUI extends JFrame implements ActionListener{
                 
 
 
-				Component rigidareaW = Box.createRigidArea(new Dimension(400,100));// "Mur invisible" Situé au OUEST
+				Component rigidareaW = Box.createRigidArea(new Dimension(500,100));// "Mur invisible" Situé au OUEST
                 
 				//panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
 
@@ -146,18 +181,20 @@ public class GUI extends JFrame implements ActionListener{
              	  
 
 				JButton bgen = new JButton("Generation");
-        		panel_menu.add(bgen,BorderLayout.WEST);
+        		panel_menu.add(bgen);
+        		panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
         		//bgen.setBounds(8,50,100,100);         		
         		//bgen.setVisible(true);
 
         		JButton bclean = new JButton("Clean");
-        		panel_menu.add(bclean,BorderLayout.WEST);
-        		//bclean.setBounds(8,50,100,100);        		
+        		panel_menu.add(bclean);
+        		panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
+        		bclean.setBounds(8,100,100,100);        		
         		//bclean.setVisible(true);
 
                 JButton bclose = new JButton("Close");
-        		panel_menu.add(bclose,BorderLayout.WEST);
-        		//bclose.setBounds(8,50,100,100);
+        		panel_menu.add(bclose);
+        		bclose.setBounds(8,150,100,100);
         		//bclose.setVisible(true); 
     
 
@@ -165,8 +202,10 @@ public class GUI extends JFrame implements ActionListener{
 
         		
         		//panel_menu.setVisible(true);
+                
+                panel_supp.add(panel_menu,FlowLayout.LEFT);        	
         	
-        	
+
         		bgen.setVisible(true);
         		bclean.setVisible(true);
         		bclose.setVisible(true);
@@ -189,7 +228,7 @@ public class GUI extends JFrame implements ActionListener{
         			bclean.setVisible(false);
         			bclose.setVisible(false);
 
-                    frame.add(rigidareaW,BorderLayout.WEST);
+                 //   frame.add(rigidareaW,BorderLayout.WEST);
 
                    
                   
