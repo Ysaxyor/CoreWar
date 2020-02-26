@@ -105,7 +105,6 @@ public class GUI extends JFrame implements ActionListener{
         JButton bclose = new JButton("Close"); // Creation du bouton et son titre
         panel_menu.add(bgen); // Ajout du bouton au panel du menu, positioner a gauche
 
-        panel_menu.add(Box.createRigidArea(new Dimension(0,5)));
 
         panel_menu.add(bclean);// Ajout du bouton au panel du menu, positioner a gauche
 
@@ -170,7 +169,7 @@ public class GUI extends JFrame implements ActionListener{
                 
 
 
-                Component rigidareaW = Box.createRigidArea(new Dimension(500,100));// "Mur invisible" Situé au OUEST
+               // Component rigidareaW = Box.createRigidArea(new Dimension(500,100));// "Mur invisible" Situé au OUEST
                 
                 //panel_menu.add(rigidareaW, BorderLayout.WEST); // Ajout des "Mur Invisible" OUESt
 
@@ -180,19 +179,22 @@ public class GUI extends JFrame implements ActionListener{
 
                 JButton bgen = new JButton("Generation");
                 panel_menu.add(bgen);
-                panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
+                //bgen.setPreferredSize(new Dimension(100,50));
+                //panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
                 //bgen.setBounds(8,50,100,100);                 
                 //bgen.setVisible(true);
 
                 JButton bclean = new JButton("Clean");
                 panel_menu.add(bclean);
-                panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
-                bclean.setBounds(8,100,100,100);                
+                
+                //panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
+              //  bclean.setBounds(8,100,100,100);                
                 //bclean.setVisible(true);
 
                 JButton bclose = new JButton("Close");
                 panel_menu.add(bclose);
-                bclose.setBounds(8,150,100,100);
+
+                //bclose.setBounds(8,150,100,100);
                 //bclose.setVisible(true); 
     
 
