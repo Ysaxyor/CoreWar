@@ -25,7 +25,8 @@ public class GUI extends JFrame implements ActionListener{
     
     //Compteur
     private int compteur;
-    
+    private int compteur2;
+    private int compteur3;
     // La fenetre
     public GUI(){
 
@@ -136,10 +137,8 @@ public class GUI extends JFrame implements ActionListener{
      
 
         //Ajout des "Mur Invisible" 
-        //frame.add(rigidareaN, BorderLayout.NORTH);  // Ajout des "Mur Invisible" au Nord
-        //frame.add(rigidareaS, BorderLayout.SOUTH); // Ajout des "Mur Invisible" au Sud
         frame.add(rigidareaE, BorderLayout.EAST); // Ajout des "Mur Invisible" EST
-        //frame.add(rigidareaW,BorderLayout.WEST);
+        
 
         
         
@@ -179,16 +178,22 @@ public class GUI extends JFrame implements ActionListener{
 
                 JButton bgen = new JButton("Generation");
                 panel_menu.add(bgen);
-                //bgen.setPreferredSize(new Dimension(100,50));
+                if (compteur2==0){
+                    panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
+                    compteur2=1;
+                }
                 //panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
-                //bgen.setBounds(8,50,100,100);                 
                 //bgen.setVisible(true);
 
                 JButton bclean = new JButton("Clean");
                 panel_menu.add(bclean);
+                 if (compteur3==0){
+                    panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
+                    compteur3=1;
+                }
                 
                 //panel_menu.add(Box.createRigidArea(new Dimension(0,15)));
-              //  bclean.setBounds(8,100,100,100);                
+                //bclean.setBounds(8,100,100,100);                
                 //bclean.setVisible(true);
 
                 JButton bclose = new JButton("Close");
@@ -227,6 +232,17 @@ public class GUI extends JFrame implements ActionListener{
                     bgen.setVisible(false);
                     bclean.setVisible(false);
                     bclose.setVisible(false);
+
+                    if (compteur2==1){
+                    panel_menu.add(Box.createRigidArea(new Dimension(0,-15)));
+                    compteur2=0;
+                }
+
+                 if (compteur3==1){
+                    panel_menu.add(Box.createRigidArea(new Dimension(0,-15)));
+                    compteur3=0;
+                }
+                
 
                  //   frame.add(rigidareaW,BorderLayout.WEST);
 
