@@ -5,14 +5,14 @@
 
   <target name="compile">
     <mkdir dir="build/classes"/>
-    <javac srcdir="solveur" destdir="build/classes" includeantruntime="false"/>
+    <javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
   </target>
 
   <target name="jar" depends="compile">
     <mkdir dir="build/jar"/>
     <jar destfile="build/jar/Exe.jar" basedir="build/classes">
       <manifest>
-        <attribute name="Main-Class" value="solveur.Main"/>
+        <attribute name="Main-Class" value="src.Main"/>
       </manifest>
     </jar>
   </target>

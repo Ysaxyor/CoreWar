@@ -1,11 +1,17 @@
-compilation :
-  javac -d "build" solveur/*.java
-execution :
-  java -cp "build" solveur.Main
+Pour le modele:
+javac -d "build/classes" src.*;
+java -cp "build/classes" src.Main;
 
-ou:
-chmod u+x exe.sh
-./exe.sh
+Pour la Vue:
+javac -d "build/classes" src.*;
+java -cp "build/classes" src.vue.Main;
+
+
+
+
+
+
+
 
 
 avec ant : https://ant.apache.org/
