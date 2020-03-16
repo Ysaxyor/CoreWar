@@ -32,6 +32,9 @@ public class Grille{
 	public Grille(int nbLign, int nbCol){
 		this.nbLign = nbLign;
 		this.nbCol = nbCol;	
+
+		this.grille = new Piont[nbLign][nbCol];
+		this.ensemble_piont = new HashSet<Piont>();
 	}
 
 	//Getters

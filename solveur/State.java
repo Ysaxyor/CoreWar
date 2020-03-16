@@ -43,7 +43,7 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 		HashSet<Piont> setPos = new HashSet<>();
 
 		this.posPionts.entrySet().forEach(entry->{
-    Piont p = entry.getKey();
+    	Piont p = entry.getKey();
 		p.setX(entry.getValue().get(0));
 		p.setY(entry.getValue().get(1));
 		setPos.add(p);

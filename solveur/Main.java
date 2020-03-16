@@ -7,21 +7,16 @@ public class Main {
 
 			//GENERATION
 			Grille grille=new Grille(); //choix de taille de la grille
-			grille.afficher();
-			/*
-			Oups c'est le bordel maintenant (pour le moment la grille
-			ne peut se générérer qu'en 20*20, bientôt réglé
-			*/	
 
 			//CREATION DES objets
-			/*Bot botBlue = new Bot(1,1,"Blue");
+			Bot botBlue = new Bot(1,1,"Blue");
 			Bot botRed = new Bot (2,2,"Red");
 			Bot botGreen = new Bot (5,5,"Green");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
-			Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
+			//Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
-			Mirror greenMirror = new Mirror(10,24,"Green",'t');
-			Goal blueGoal = new Goal(16,24,"Blue");
+			//Mirror greenMirror = new Mirror(10,24,"Green",'t');
+			Goal blueGoal = new Goal(16,16,"Blue");
 
 
 			//ajout des objets à la grille
@@ -29,9 +24,9 @@ public class Main {
 			//grille.addPiont(botRed);
 			//grille.addPiont(botGreen);
 			grille.addPiont(redMirror);
-			grille.addPiont(yellowMirror);
+			//grille.addPiont(yellowMirror);
 			grille.addPiont(blueMirror);
-			grille.addPiont(greenMirror);
+			//grille.addPiont(greenMirror);
 			grille.addPiont(blueGoal);
 
 			//CREATION DES MOVES POSSIBLES
@@ -40,14 +35,16 @@ public class Main {
 			Move goBasBlue = new Move(botBlue,"bas");
 			Move goHautBlue = new Move(botBlue,"haut");
 			Move goGaucheBlue = new Move(botBlue,"gauche");
-/*
+
 			Move goBasRed = new Move(botRed,"bas");
 			Move goHautRed = new Move(botRed,"haut");
 
 			//GENERATION DES ETATS ET TEST
 			State etat = new State(grille);
+			etat.affiche();
+			
 			State etat2 = etat.play(goBasBlue);
-
+		
 
 
 			Node noeud1=new Node(etat);
@@ -59,7 +56,7 @@ public class Main {
 
 			for(Node n: t.algo()){
 				n.getValeur().affiche();
-			}*/
+			}
 
 
 	}
