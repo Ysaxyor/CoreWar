@@ -17,9 +17,15 @@ public class Grille{
 
 
 	// Constructeur
-	public Grille(){
-		this.nbLign=20;
-		this.nbCol=20;
+	public Grille(int nbLign){
+
+		if(nbLign%2==0){               //Si ligne est pair, on le garde, sinon on le décrémente de un pour qu'il le soit
+			this.nbLign = nbLign;
+			this.nbCol = nbLign;
+		}else{
+			this.nbLign = nbLign-1;
+			this.nbCol = nbLign-1;
+		}
 
 		//Q
 		this.l = nbLign/2;
@@ -146,26 +152,31 @@ public class Grille{
 
 	public Piont [][] setAngles(){
 		Random random = new Random(); //Instance de la calsse Random
-		int a = 3+random.nextInt(1);
-		int b = 3+random.nextInt(1);
+
+		int l2 = (int)l/2; //On divise ligne et colonne puis on le converti en int
+		int c2 = (int)c/2;
+
+		System.out.println(""+(l)+(l2+1)+(l2-2));//10 6 3
+		int a = (l2-2)+random.nextInt(1);
+		int b = (c2-2)+random.nextInt(1);
 		Mur m1 = new Mur(a,b);
 		this.grille[a][b] = m1;
 		m1.setAngle(this.grille);
 
-		a = 6+random.nextInt(3);
-		b = 3+random.nextInt(1);
+		a = (l2+1)+random.nextInt(3);
+		b = (c2-2)+random.nextInt(1);
 		Mur m2 = new Mur(a,b);
 		this.grille[a][b] = m2;
 		m2.setAngle(this.grille);
-
-		a = 3+random.nextInt(1);
-		b = 6+random.nextInt(3);
+		
+		a = (l2-2)+random.nextInt(1);
+		b = (c2+1)+random.nextInt(3);
 		Mur m3 = new Mur(a,b);
 		this.grille[a][b] = m3;
 		m3.setAngle(this.grille);
-
-		a = 6+random.nextInt(2);
-		b = 6+random.nextInt(2);
+	
+		a = (l2+1)+random.nextInt(3);
+		b = (c2+1)+random.nextInt(3);
 		Mur m4 = new Mur(a,b);
 		this.grille[a][b] = m4;
 		m4.setAngle(this.grille);
