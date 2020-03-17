@@ -100,6 +100,7 @@ public class Grille{
 			System.out.println("|");
 		}
 		System.out.println();
+		this.clear();
 	}
 	public void afficher(){
 		this.afficher(this.ensemble_piont);

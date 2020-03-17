@@ -55,7 +55,7 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
 		//de l'état présent, et applique un deplacement suivant le move entré en parametre;
 		Grille new_grille = new Grille(this.grille.getNL());
-		this.grille.clear();
+		new_grille.clear();
 		new_grille.setG(this.grille.getGrille());
 		State new_state=new State(new_grille);
 		for(Piont p: this.grille.getEnsemblePiont()){

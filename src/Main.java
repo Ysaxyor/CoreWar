@@ -26,7 +26,7 @@ public class Main {
 
 			//ajout des objets à la grille
 			grille.addPiont(botBlue);
-			//grille.addPiont(botRed);
+			grille.addPiont(botRed);
 			//grille.addPiont(botGreen);
 			grille.addPiont(redMirror);
 			//grille.addPiont(yellowMirror);
@@ -49,11 +49,7 @@ public class Main {
 
 			State etat = new State(grille);
 			etat.affiche();
-	/*
-			for (State s: etat.etatFuturs()){
-				s.affiche();
-			}
-			*/
+
 /*
 			Node noeud1=new Node(etat);
 			//System.out.println("Noeud Pere: "+noeud1);
@@ -65,7 +61,7 @@ public class Main {
 			for(Node n: t.algo()){
 				n.getValeur().affiche();
 			}
-
 */
+
 	}
 }
