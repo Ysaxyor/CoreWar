@@ -64,6 +64,9 @@ public class Grille{
 	public void setNC(int c){
 		this.nbCol=c;
 	}
+	public void setG (Piont[][] g){
+		this.grille=g;
+	}
 	public void setGrille(Integer x, Integer y,Piont p){ //Permet d'ajouter un caractère
 		this.grille[x][y]=p;
 	}
@@ -75,6 +78,15 @@ public class Grille{
 
 //Methodes
 
+	public void clear(){
+		for(int i=0;i<this.nbCol;i++){
+			for(int j=0;j<this.nbLign;j++){
+				if (! (this.grille[i][j] instanceof Mur)){
+					this.grille[i][j]=new Piont(i,j);
+				}
+			}
+		}
+	}
 	public void afficher(HashSet<Piont> ensemble_piont1){
 		for (Piont p: ensemble_piont1){
 			this.setGrille(p.getX(),p.getY(),p);
@@ -156,7 +168,7 @@ public class Grille{
 		int l2 = (int)l/2; //On divise ligne et colonne puis on le converti en int
 		int c2 = (int)c/2;
 
-		System.out.println(""+(l)+(l2+1)+(l2-2));//10 6 3
+		//System.out.println(""+(l)+(l2+1)+(l2-2));//10 6 3
 		int a = (l2-2)+random.nextInt(1);
 		int b = (c2-2)+random.nextInt(1);
 		Mur m1 = new Mur(a,b);

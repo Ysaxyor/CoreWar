@@ -54,7 +54,9 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 
 	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
 		//de l'état présent, et applique un deplacement suivant le move entré en parametre;
-		Grille new_grille = new Grille(this.grille.getNL(),this.grille.getNC());
+		Grille new_grille = new Grille(this.grille.getNL());
+		this.grille.clear();
+		new_grille.setG(this.grille.getGrille());
 		State new_state=new State(new_grille);
 		for(Piont p: this.grille.getEnsemblePiont()){
 			Piont new_piont=p;
@@ -93,7 +95,6 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 		Move vers_haut = new Move(bot,"haut");
 
 		if (dir == "bas"){
-			System.out.println(coord[bot.getX()+1][bot.getY()]);
 			while(! coord[bot.getX()+1][bot.getY()].collision(bot)){// tant que la collision avec le piont
 				// voisin est false, on deplace le robot à l'emplacement voisin;
 				bot.setX(bot.getX()+1);

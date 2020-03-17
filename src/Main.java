@@ -49,9 +49,11 @@ public class Main {
 
 			State etat = new State(grille);
 			etat.affiche();
-			State etat2 = etat.play(goBasBlue);
-			etat2.affiche();
-
+	/*
+			for (State s: etat.etatFuturs()){
+				s.affiche();
+			}
+			*/
 /*
 			Node noeud1=new Node(etat);
 			//System.out.println("Noeud Pere: "+noeud1);
