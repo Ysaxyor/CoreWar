@@ -11,8 +11,9 @@ public class Main {
 	public static void main(String[] args){
 
 			//GENERATION
-			Grille grille=new Grille(21); //choix de taille de la grille
-
+			Grille grille=new Grille(8,true); //choix de taille de la grille
+			grille.afficher();
+/*
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
 			Bot botRed = new Bot (2,2,"Red");
@@ -50,7 +51,7 @@ public class Main {
 			State etat = new State(grille);
 			etat.affiche();
 
-/*
+
 			Node noeud1=new Node(etat);
 			//System.out.println("Noeud Pere: "+noeud1);
 			GraphState g = new GraphState(noeud1);
