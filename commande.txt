@@ -1,9 +1,9 @@
 Pour le modele:
-javac -d "build/classes" src.*;
+javac -d "build/classes" src/*.java;
 java -cp "build/classes" src.Main;
 
 Pour la Vue:
-javac -d "build/classes" src.*;
+javac -d "build/classes" src/*.java;
 java -cp "build/classes" src.vue.Main;
 
 
