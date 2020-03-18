@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
 
-public class State{	//Objet qui represente l'etat d'une grille de jeu;
+public class State extends AbstractModeleEcoutable{	//Objet qui represente l'etat d'une grille de jeu;
 
 	//Attributs
 	private Grille grille;
@@ -13,6 +13,7 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 	public static int nb_state;
 
 	public State(Grille grille){ //Constructeur
+		super();
 		this.grille = grille;
 		this.posPionts=this.saveState();
 		this.nb_state=this.nb_state+1;
@@ -75,6 +76,7 @@ public class State{	//Objet qui represente l'etat d'une grille de jeu;
 				return this;
 			}
 		}
+		fireChangement();
 		return new_state;
 	}
 

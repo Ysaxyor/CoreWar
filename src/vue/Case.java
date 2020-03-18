@@ -22,8 +22,6 @@ public class Case extends JPanel{
 
 
 
-
-
 	}
 
 }
