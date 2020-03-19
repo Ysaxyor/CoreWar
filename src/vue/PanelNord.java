@@ -1,10 +1,8 @@
 package	src.vue;
 
 import javax.swing.*;
-import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.Object;
 
 
 public class PanelNord extends JPanel {

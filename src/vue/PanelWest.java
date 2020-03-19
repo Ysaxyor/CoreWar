@@ -2,10 +2,7 @@ package	src.vue;
 
 import javax.swing.*;
 import javax.swing.border.*;
-import java.util.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.lang.Object;
 
 
 
@@ -54,12 +51,6 @@ public class PanelWest extends JPanel{
 
 	public void setMenu(){
 
-		if (menuON){
-
-			menuON=false;
-		}
-		else{
-			menuON=true;
-		}
+		menuON= !menuON;
 	}
 }

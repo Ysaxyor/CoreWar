@@ -21,5 +21,19 @@
     <java jar="build/jar/Exe.jar" fork="true"/>
   </target>
 
+  <target name="jarVue" depends="compile">
+    <mkdir dir="build/jar"/>
+    <jar destfile="build/jar/Vue.jar" basedir="build/classes">
+      <manifest>
+        <attribute name="Main-Class" value="src.vue.Main"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="runVue" depends="jarVue">
+    <java jar="build/jar/Vue.jar" fork="true"/>
+  </target>
+
+
   <target name="main" depends="clean,run"/>
 </project>
