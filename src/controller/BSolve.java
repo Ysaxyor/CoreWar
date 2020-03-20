@@ -38,7 +38,7 @@ public class BSolve extends JButton implements ActionListener{
 			n.getValeur().refresh();
 			//getValeur() = getState()
 			//TODO
-			//timer à mettre pour montrer chaque état car là le dernier écrasera le dernier ca revient à faire na[-1].refresh()
+			//timer à mettre pour montrer chaque état car là le dernier écrasera le reste ca revient à faire na[-1].refresh()
 		}
 		
 		}
