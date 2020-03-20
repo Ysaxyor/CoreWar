@@ -17,7 +17,7 @@ public class Grille{
 
 
 	// Constructeur
-	public Grille(int nbLign, boolean cond){
+	public Grille(int nbLign){
 		if(nbLign<10){
 			System.out.println("La grille sera trop petite, elle a été fixé au minimum : 10x10");
 			nbLign = 10;
@@ -30,37 +30,20 @@ public class Grille{
 
 		Piont[][][] listeConstruct = new Piont[(this.nbLign/l)*(this.nbLign/l)][this.l][this.c];
 		for(int i = 0;i<(this.nbLign/l)*(this.nbLign/l);i++){
-			listeConstruct[i] = construct2();
+			listeConstruct[i] = construct();
 		}
-		this.grille = assemblage2(listeConstruct);
-		this.grille = setMurs2();
+		this.grille = assemblage(listeConstruct);
+		this.grille = setMurs();
 	}
 
-	public Grille(int nbLign){
-
-		if(nbLign%2==0){               //Si ligne est pair, on le garde, sinon on le décrémente de un pour qu'il le soit
-			this.nbLign = nbLign;
-			this.nbCol = nbLign;
-		}else{
-			this.nbLign = nbLign-1;
-			this.nbCol = nbLign-1;
-		}
-
-		//Q
-		this.l = nbLign/2;
-		this.c = nbCol/2;
-
-		this.grille = assemblage(construct(),construct(),construct(),construct());
-		this.ensemble_piont=new HashSet<Piont>();
-	}
-
-	public Grille(int nbLign, int nbCol){
+	/*
+	public Grille(int nbLign, int nbCol){ //Pas de génération
 		this.nbLign = nbLign;
 		this.nbCol = nbCol;
 
 		this.grille = new Piont[nbLign][nbCol];
 		this.ensemble_piont = new HashSet<Piont>();
-	}
+	}*/
 
 	//Getters
 	public int getNL(){
@@ -100,6 +83,7 @@ public class Grille{
 	public int decoupage(){
 		int i = (int)this.nbLign/10;
 		this.nbLign = (this.nbLign/i)*i; //On adapate la taille de la grille pour avoir des part egales		
+		this.nbCol = (this.nbCol/i)*i;
 		System.out.println("La grille a été ajustée en "+this.nbLign+"x"+this.nbLign);
 		return this.nbLign/i;
 	}
@@ -147,49 +131,18 @@ public class Grille{
 				this.grille[i][j]= new_piont;
 			}
 		}
-		grille=this.setMurs();
 		grille=this.setAngles();
 		return grille;
 	}
 
-	public Piont[][] construct2(){
-		grille	= new Piont[this.l][this.c];
-		for(int i=0; i<this.l; i++){	//2 boucle car tableau a 2 dimension
-			for(int j=0; j<this.c ;j++){
-				//on remplit le tableau d'objets de type Piont;
-				Piont new_piont = new Piont(i,j);
-				this.grille[i][j]= new_piont;
-			}
-		}
-		grille=this.setAngles();
-		return grille;
-	}
-
-	public Piont [][] assemblage(Piont [][] q1,Piont [][] q2, Piont [][] q3, Piont [][] q4){
+	public Piont[][] assemblage(Piont[][][] liste){
 		Piont nouveau [][] = new Piont[nbLign][nbCol];
-		for(int i = 0;i<nbLign/2;i++){
-			for(int j = 0;j<nbCol/2;j++){
-				nouveau[i][j] = q1[i][j];
-				nouveau[i][nbCol-j-1] = q3[i][j];
-				nouveau[nbLign-i-1][j] = q2[i][j];
-				nouveau[nbLign-i-1][nbCol-j-1] = q4[i][j];
-			}
-		}
-		return nouveau;
-	}
-
-	public Piont[][] assemblage2(Piont[][][] liste){
-		Piont nouveau [][] = new Piont[nbLign][nbCol];
-		//Debut temporaire
-
 		for(int i = 0;i<nbLign;i++){
 			for(int j = 0;j<nbCol;j++){
 				Piont new_piont = new Piont(i,j);
 				nouveau[i][j]= new_piont;
 			}
 		}
-					
-		//Fin temporaire
 
 		int bx = 0;
 		int by = 0;
@@ -212,22 +165,6 @@ public class Grille{
 	}
 
 	public Piont[][] setMurs(){
-		//La première et le dernière colonne est remplit de Mur
-		//setBordures
-		for(int i=0; i<c; i++){
-			Mur new_mur1 = new Mur(0,i);
-			grille[0][i]=new_mur1;
-			Mur new_mur2 = new Mur(l-1,i);
-			grille[i][0]=new_mur2;
-		}
-
-		//SetCentre
-
-		return this.grille;
-	}
-
-	public Piont[][] setMurs2(){
-		//La première et le dernière colonne est remplit de Mur
 		//setBordures
 		for(int i=0; i<nbLign; i++){
 			Mur new_mur1 = new Mur(0,i);
@@ -241,10 +178,25 @@ public class Grille{
 			grille[i][nbCol-1]=new_mur4;
 		}
 
-		//setCentre
-		Mur m=new Mur(l-1,c-1);
-		grille[l-1][c-1]=m;
+		//SetCentre
+		int cx = nbLign/10;//Centre x
+		int cy = nbCol/10;
 
+		if((nbLign/10)%2 != 0){ //Si le centre est impair
+			cx += 1;
+			cy += 1;
+		} //Si le nombre de lignes et de colonnes du centre est pair, il sera centré dans le tableau
+		Piont centre [][] = new Piont[cx][cy]; //On crée le centre de la taille nbLign/10 x nbLign/10
+		int bx = nbLign/2-cx/2; //biais abscisse
+		int by = nbCol/2-cy/2;
+		//Remplir le centre de murs et l'ajouter en même temps à la grille
+		for(int i=0; i<cx;i++){
+			for(int j=0; j<cy;j++){
+				Mur mur = new Mur(i,j);
+				centre[i][j] = mur;
+				grille[bx+i][by+j] = centre[i][j];
+			}
+		}
 		return this.grille;
 	}
 

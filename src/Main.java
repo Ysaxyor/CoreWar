@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args){
 
 			//GENERATION
-			Grille grille=new Grille(8,true); //choix de taille de la grille
+			Grille grille=new Grille(20); //choix de taille de la grille
 			grille.afficher();
 /*
 			//CREATION DES objets
