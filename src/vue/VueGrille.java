@@ -14,7 +14,7 @@ public class VueGrille extends JPanel implements EcouteurModele{
 	public VueGrille(State jeu){
         this.jeu=jeu;
         this.jeu.ajoutEcouteur(this);
-		this.setLayout(new GridLayout(20,20,3,4));
+		this.setLayout(new GridLayout(this.jeu.getGrille().getNL(),this.jeu.getGrille().getNC(),3,4));
 
 		this.setup();
 
@@ -28,10 +28,11 @@ public class VueGrille extends JPanel implements EcouteurModele{
 
         for (Component c: this.getComponents()){
             this.remove(c);
-            this.setup();
-            this.revalidate();
+           
 
         }
+         this.setup();
+            this.revalidate();
 
     }
 
