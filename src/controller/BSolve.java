@@ -35,10 +35,12 @@ public class BSolve extends JButton implements ActionListener{
 		ArrayList<Node> na = ia.algo();
 
 		for(Node n: na){
+			n.getValeur().wait(100);
 			n.getValeur().refresh();
 			//getValeur() = getState()
-			//TODO
-			//timer à mettre pour montrer chaque état car là le dernier écrasera le reste ca revient à faire na[-1].refresh()
+
+			//TODO timer entre chaque refresh
+			//TODO l'ia qui bug souvent avec les multiples générations (duplications de robots)
 		}
 		
 		}

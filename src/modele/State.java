@@ -3,6 +3,7 @@ import src.modele.pionts.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class State extends AbstractModeleEcoutable{	//Objet qui represente l'etat d'une grille de jeu;
 
@@ -287,6 +288,18 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 
 		this.grille.setEnsemblePiont(setPos);
 		fireChangement();
+
+	}
+
+	public static void wait(int ms){
+		try
+		{
+			Thread.sleep(ms);
+		}
+		catch(InterruptedException ex)
+		{
+			Thread.currentThread().interrupt();
+		}
 	}
 
 }
