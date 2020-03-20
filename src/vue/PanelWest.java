@@ -1,5 +1,9 @@
 package	src.vue;
 
+
+import src.modele.*;
+import src.controller.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
@@ -10,12 +14,12 @@ public class PanelWest extends JPanel{
 
 	private Boolean menuON = false;
 	private JButton gene= new JButton("Generation");
-	private JButton clean= new JButton("Clean");
+	private BClean clean;
 	private Component rigidareaW = Box.createRigidArea(new Dimension(95,30));
 
 
 
-	public PanelWest(){
+	public PanelWest(State jeu){
 
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
@@ -23,6 +27,9 @@ public class PanelWest extends JPanel{
 
 		this.add(gene);
 		this.add(Box.createRigidArea(new Dimension(0,100)));
+
+		this.clean= new BClean(jeu);
+
 		this.add(clean);
 		this.add(rigidareaW);
 

@@ -16,7 +16,7 @@ public class Vue extends JFrame  {
         this.jeu=jeu;
 
      	 Component rigidareaE = Box.createRigidArea(new Dimension(200,30));
-         PanelWest panelWest= new PanelWest();
+         PanelWest panelWest= new PanelWest(this.jeu);
 
          this.setTitle("Solveur"); // Titre de la Fenetre
          this.setSize(1500,1000); // Taille de la fenetre (Longueur, Hauteur)

@@ -267,5 +267,12 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		return Math.abs((goal.getX()-playerX))+Math.abs((goal.getY()-playerY));
 	}
 
+	public void clean(){
+		this.grille.clear();
+		this.grille.getEnsemblePiont().clear();
+		fireChangement();
+
+
+	}
 
 }
