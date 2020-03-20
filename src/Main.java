@@ -21,7 +21,7 @@ public class Main {
 			//Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
 			//Mirror greenMirror = new Mirror(10,24,"Green",'t');
-			Goal blueGoal = new Goal(16,16,"Blue");
+			Goal blueGoal = new Goal(1,10,"Blue");
 
 
 			//ajout des objets à la grille
@@ -48,20 +48,20 @@ public class Main {
 
 
 			State etat = new State(grille);
-			etat.affiche();
+			//etat.affiche();
 
-/*
+
 			Node noeud1=new Node(etat);
-			//System.out.println("Noeud Pere: "+noeud1);
 			GraphState g = new GraphState(noeud1);
-			//System.out.println(noeud1.getFils());
 			IA t = new IA(etat);
 
-
+			int cmpt=1;
 			for(Node n: t.algo()){
+				System.out.println("Etat "+cmpt+ " :");
 				n.getValeur().affiche();
+				cmpt+=1;
 			}
-*/
+
 
 	}
 }

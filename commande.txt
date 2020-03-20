@@ -1,9 +1,20 @@
+TPA 2019/2020; SOLVEUR DE RICOCHET ROBOT; groupe 2A
+HUET Bryan, ACUNA Mithian, BOURNONVILLE Aurelien, SAHIN Tolga
+
+
+--------------------------------------------------------------------------------------------
+
 Pour le modele:
+-- Problème avec l'ia depuis une nouvelle ecriture de la grille; Peut parfois necessiter
+de tuer le programme sois même (ctrl c);
+
 javac -d "build/classes" src/*.java;
 java -cp "build/classes" src.Main;
 
+
 Pour la Vue:
-javac -d "build/classes" src/*.java;
+
+javac -d "build/classes" src/vue/*.java;
 java -cp "build/classes" src.vue.Main;
 
 
@@ -15,4 +26,7 @@ java -cp "build/classes" src.vue.Main;
 
 
 avec ant : https://ant.apache.org/
-ant run
+Modele : ant run
+Vue : ant runVue
+
+Clean le projet : ant clean

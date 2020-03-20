@@ -17,6 +17,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		this.grille = grille;
 		this.posPionts=this.saveState();
 		this.nb_state=this.nb_state+1;
+		this.ecouteurs=new ArrayList<>();
 	}
 
 	//getters
