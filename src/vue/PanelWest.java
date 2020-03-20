@@ -20,7 +20,7 @@ public class PanelWest extends JPanel{
 
 
 	public PanelWest(State jeu){
-
+		
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 		this.setBorder(new EmptyBorder(new Insets(100,100,100,100))); // Top:left:bottom:right

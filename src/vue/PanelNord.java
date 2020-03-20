@@ -1,5 +1,8 @@
 package	src.vue;
 
+import src.modele.*;
+import src.controller.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -7,17 +10,17 @@ import java.awt.event.*;
 
 public class PanelNord extends JPanel {
 
-	private JButton solve;
+	private BSolve solve;
 	private JButton menu;
 	private PanelWest pw;
 
-	public PanelNord(PanelWest pw){
+	public PanelNord(PanelWest pw, State jeu){
 
 		this.pw=pw;
 
 		this.setLayout(new FlowLayout(FlowLayout.CENTER,100,50));
 
-		this.solve=new JButton("Solve Game");
+		this.solve=new BSolve(jeu);
 		this.menu= new JButton("Menu");
 
 		this.add(solve);
