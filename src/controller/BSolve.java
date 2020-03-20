@@ -9,6 +9,7 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.Object;
+import java.util.concurrent.TimeUnit;
 
 public class BSolve extends JButton implements ActionListener{
 
@@ -33,11 +34,11 @@ public class BSolve extends JButton implements ActionListener{
 
 		ArrayList<Node> na = ia.algo();
 
-		int cmpt=1;
 		for(Node n: na){
-			System.out.println("Etat "+cmpt+ " :");
-			n.getValeur().affiche();
-			cmpt+=1;
+			n.getValeur().refresh();
+			//getValeur() = getState()
+			//TODO
+			//timer à mettre pour montrer chaque état car là le dernier écrasera le dernier ca revient à faire na[-1].refresh()
 		}
 		
 		}

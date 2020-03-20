@@ -275,4 +275,18 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 
 	}
 
+	public void refresh(){
+
+		HashSet<Piont> setPos = new HashSet<>();
+		this.posPionts.entrySet().forEach(entry->{
+			Piont p = entry.getKey();
+			p.setX(entry.getValue().get(0));
+			p.setY(entry.getValue().get(1));
+			setPos.add(p);
+		});
+
+		this.grille.setEnsemblePiont(setPos);
+		fireChangement();
+	}
+
 }
