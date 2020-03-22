@@ -15,9 +15,9 @@ public class Main {
 	public static void main(String[] args) {
 
 		//GENERATION
-			Grille grille=new Grille(21); //choix de taille de la grille
+			Grille grille=new Grille(10); //choix de taille de la grille
 
-			//CREATION DES objets
+						//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
 			Bot botRed = new Bot (2,2,"Red");
 			Bot botGreen = new Bot (5,5,"Green");
@@ -25,7 +25,7 @@ public class Main {
 			//Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
 			//Mirror greenMirror = new Mirror(10,24,"Green",'t');
-			Goal blueGoal = new Goal(16,16,"Blue");
+			Goal blueGoal = new Goal(8,2,"Blue");
 
 
 			//ajout des objets à la grille

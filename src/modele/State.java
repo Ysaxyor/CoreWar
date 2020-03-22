@@ -3,7 +3,6 @@ import src.modele.pionts.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class State extends AbstractModeleEcoutable{	//Objet qui represente l'etat d'une grille de jeu;
 
@@ -44,7 +43,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		// on affiche la grille en fonction des positions des pionts à l'instant
 		// de la creation de l'etat;
 		HashSet<Piont> setPos = new HashSet<>();
-
+		this.grille.clear();
 		this.posPionts.entrySet().forEach(entry->{
     	Piont p = entry.getKey();
 		p.setX(entry.getValue().get(0));
@@ -57,16 +56,17 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 
 	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
 		//de l'état présent, et applique un deplacement suivant le move entré en parametre;
+
 		Grille new_grille = new Grille(this.grille.getNL());
-		new_grille.clear();
 		new_grille.setG(this.grille.getGrille());
+		new_grille.clear();
 		State new_state=new State(new_grille);
 		for(Piont p: this.grille.getEnsemblePiont()){
-			Piont new_piont=p;
 			p.setX(this.posPionts.get(p).get(0));
 			p.setY(this.posPionts.get(p).get(1));
-			new_grille.addPiont(new_piont);
+			new_grille.addPiont(p);
 		}
+
 
 		new_state.deplacement(move);
 
@@ -275,25 +275,28 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 
 
 	}
-
+	
 	public void refresh(){
 
 		HashSet<Piont> setPos = new HashSet<>();
+		this.grille.clear();
 		this.posPionts.entrySet().forEach(entry->{
 			Piont p = entry.getKey();
 			p.setX(entry.getValue().get(0));
 			p.setY(entry.getValue().get(1));
 			setPos.add(p);
 		});
-
+		
 		this.grille.setEnsemblePiont(setPos);
+		this.grille.afficher(setPos);
 		fireChangement();
 
 	}
 
-	public static void wait(int ms){
+	public void solveB(int ms){
 		try
 		{
+			refresh();
 			Thread.sleep(ms);
 		}
 		catch(InterruptedException ex)
