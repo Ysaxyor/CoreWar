@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args){
 
 			//GENERATION
-			Grille grille=new Grille(21); //choix de taille de la grille
+			Grille grille=new Grille(10); //choix de taille de la grille
 
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
@@ -21,7 +21,7 @@ public class Main {
 			//Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
 			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
 			//Mirror greenMirror = new Mirror(10,24,"Green",'t');
-			Goal blueGoal = new Goal(1,10,"Blue");
+			Goal blueGoal = new Goal(1,2,"Blue");
 
 
 			//ajout des objets à la grille
@@ -48,8 +48,12 @@ public class Main {
 
 
 			State etat = new State(grille);
-			//etat.affiche();
-
+			etat.affiche();
+		/*
+			for (State s: etat.etatFuturs()){
+				s.affiche();
+			}
+*/
 
 			Node noeud1=new Node(etat);
 			GraphState g = new GraphState(noeud1);
