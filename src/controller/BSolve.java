@@ -52,7 +52,12 @@ public class BSolve extends JButton implements ActionListener{
 			this.listeEtats.get(clc).getValeur().affiche();
 			}
 		
+		else{
+			System.out.println("Jeu résolu");
+		}
+		
 		this.clc += 1;
+		
 			
 		}
 }
