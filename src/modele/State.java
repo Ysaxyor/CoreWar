@@ -33,6 +33,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 	//setters
 	public void setGrille(Grille grille){
 		this.grille=grille;
+		fireChangement();
 	}
 	public void setPosPionts(HashMap<Piont,ArrayList<Integer>> posPionts){
 		this.posPionts=posPionts;

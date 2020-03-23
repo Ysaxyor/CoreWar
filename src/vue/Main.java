@@ -23,7 +23,7 @@ public class Main {
 			Bot botGreen = new Bot (5,5,"Green");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
 			//Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
-			Mirror blueMirror = new Mirror(5,5,"Blue",'t');
+			Mirror blueMirror = new Mirror(5,5,"Yellow",'t');
 			//Mirror greenMirror = new Mirror(10,24,"Green",'t');
 			Goal blueGoal = new Goal(16,16,"Blue");
 

@@ -18,7 +18,8 @@ public class Mirror extends Piont{
 	public String getColor(){
 		return this.color;
 	}
-	public char getSens(){
+	@Override
+	public Character getSens(){
 		return this.sens;
 	}
 

@@ -13,8 +13,8 @@ import java.awt.*;
 public class PanelWest extends JPanel{
 
 	private Boolean menuON = false;
-	private JButton gene= new JButton("Generation");
 	private BClean clean;
+	private BGeneration generation;
 	private Component rigidareaW = Box.createRigidArea(new Dimension(95,30));
 
 
@@ -22,14 +22,13 @@ public class PanelWest extends JPanel{
 	public PanelWest(State jeu){
 
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-
 		this.setBorder(new EmptyBorder(new Insets(100,100,100,100))); // Top:left:bottom:right
-
-		this.add(gene);
-		this.add(Box.createRigidArea(new Dimension(0,100)));
-
+		this.generation=new BGeneration(jeu);
 		this.clean= new BClean(jeu);
 
+
+		this.add(generation);
+		this.add(Box.createRigidArea(new Dimension(0,50)));
 		this.add(clean);
 		this.add(rigidareaW);
 
@@ -43,13 +42,13 @@ public class PanelWest extends JPanel{
 
 		if (menuON){
 			rigidareaW.setVisible(false);
-			gene.setVisible(true);
+			generation.setVisible(true);
 			clean.setVisible(true);
 				}
 		else{
 
 			rigidareaW.setVisible(true);
-			gene.setVisible(false);
+			generation.setVisible(false);
 			clean.setVisible(false);
 
 		}
