@@ -10,7 +10,7 @@ import java.awt.event.*;
 
 public class PanelNord extends JPanel {
 
-	private BSolve solve;
+	private JButton solve;
 	private JButton menu;
 	private PanelWest pw;
 

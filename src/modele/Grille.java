@@ -74,7 +74,11 @@ public class Grille{
 		this.grille[x][y]=p;
 	}
 	public void setEnsemblePiont(HashSet<Piont> ensemble_piont){
+		this.clear();
 		this.ensemble_piont=ensemble_piont;
+		for(Piont p: ensemble_piont){
+			this.setGrille(p.getX(),p.getY(),p);
+		}
 	}
 
 //Methodes

@@ -29,6 +29,9 @@ public class Piont{
   public String getColor(){
     return "None";
   }
+  public Character getSens(){
+    return null;
+  }
   //Setters
   public void setX(int x){
     this.x=x;

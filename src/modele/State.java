@@ -33,6 +33,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 	//setters
 	public void setGrille(Grille grille){
 		this.grille=grille;
+		fireChangement();
 	}
 	public void setPosPionts(HashMap<Piont,ArrayList<Integer>> posPionts){
 		this.posPionts=posPionts;
@@ -274,35 +275,6 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		fireChangement();
 
 
-	}
-	
-	public void refresh(){
-
-		HashSet<Piont> setPos = new HashSet<>();
-		this.grille.clear();
-		this.posPionts.entrySet().forEach(entry->{
-			Piont p = entry.getKey();
-			p.setX(entry.getValue().get(0));
-			p.setY(entry.getValue().get(1));
-			setPos.add(p);
-		});
-		
-		this.grille.setEnsemblePiont(setPos);
-		this.grille.afficher(setPos);
-		fireChangement();
-
-	}
-
-	public void solveB(int ms){
-		try
-		{
-			refresh();
-			Thread.sleep(ms);
-		}
-		catch(InterruptedException ex)
-		{
-			Thread.currentThread().interrupt();
-		}
 	}
 
 }
