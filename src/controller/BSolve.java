@@ -34,7 +34,7 @@ public class BSolve extends JButton implements ActionListener{
             Node noeud = new Node(jeu);
             GraphState g = new GraphState(noeud);
             IA ia = new IA(jeu);
-            ArrayList<Node> na = ia.algo();
+            ArrayList<Node> na = ia.aEtoile();
             this.listeEtats = na;
             firstClick=false;
         }

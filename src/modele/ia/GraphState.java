@@ -1,19 +1,12 @@
 package src.modele.ia;
-import java.util.*;
 import src.modele.*;
 
 public class GraphState{
   private Node current;
-  private int profondeur;
-
-  public GraphState(Node current,int profondeur){
-    this.current=current;
-    this.profondeur=profondeur;
-    this.buildGraph();
-  }
 
   public GraphState(Node current){
-    this(current,1);
+    this.current=current;
+    this.buildGraph();
   }
 
   public Node getCurrent(){
@@ -24,7 +17,7 @@ public class GraphState{
 //methodes
 //si posPiont fils1 == posPiont fils2 -> fils1=fils2
   public void buildGraph(){
-    for (State etatf: this.current.getValeur().etatFuturs()){
+    for (State etatf: this.current.getValeur().getFutureStates()){
       if(this.current.getValeur()==etatf){
         continue;
       }

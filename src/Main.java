@@ -1,17 +1,15 @@
 package src;
-import java.util.*;
 
 import src.modele.*;
 import src.modele.ia.*;
 import src.modele.pionts.*;
-import src.vue.*;
 
 
 public class Main {
 	public static void main(String[] args){
 
 			//GENERATION
-			Grille grille=new Grille(10); //choix de taille de la grille
+			Grille grille=new Grille(20); //choix de taille de la grille
 
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
@@ -60,7 +58,7 @@ public class Main {
 			IA t = new IA(etat);
 
 			int cmpt=1;
-			for(Node n: t.algo()){
+			for(Node n: t.aEtoile()){
 				System.out.println("Etat "+cmpt+ " :");
 				n.getValeur().affiche();
 				cmpt+=1;

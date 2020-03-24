@@ -50,8 +50,12 @@ public class Node{
   public void setPere(Node pere){
     this.pere=pere;
   }
+  //methodes
+
   public void addFils(Node fils){
     this.fils.add(fils);
   }
-  //methodes
+  public void removeFils(Node fils){
+    this.fils.remove(fils);
+  }
 }

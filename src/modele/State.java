@@ -10,13 +10,11 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 	private Grille grille;
 	private HashMap<Piont,ArrayList<Integer>> posPionts; // On met en memoire la position
 		//des pionts à l'instant de la creation de l'etat;
-	public static int nb_state;
 
 	public State(Grille grille){ //Constructeur
 		super();
 		this.grille = grille;
 		this.posPionts=this.saveState();
-		this.nb_state=this.nb_state+1;
 		this.ecouteurs=new ArrayList<>();
 	}
 
@@ -27,12 +25,10 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 	public HashMap<Piont,ArrayList<Integer>> getPosPionts(){
 		return this.posPionts;
 	}
-	public int getNb_state(){
-		return this.nb_state;
-	}
 	//setters
 	public void setGrille(Grille grille){
 		this.grille=grille;
+		this.posPionts=this.saveState();
 		fireChangement();
 	}
 	public void setPosPionts(HashMap<Piont,ArrayList<Integer>> posPionts){
@@ -45,12 +41,11 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		// de la creation de l'etat;
 		HashSet<Piont> setPos = new HashSet<>();
 		this.grille.clear();
-		this.posPionts.entrySet().forEach(entry->{
-    	Piont p = entry.getKey();
-		p.setX(entry.getValue().get(0));
-		p.setY(entry.getValue().get(1));
-		setPos.add(p);
- 		});
+		this.posPionts.forEach((p, value) -> {
+			p.setX(value.get(0));
+			p.setY(value.get(1));
+			setPos.add(p);
+		});
 
 		this.grille.afficher(setPos);
 	}
@@ -83,7 +78,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		return new_state;
 	}
 
-	public void deplacement(Move move){	// gère le deplacement d'un piont;
+	private void deplacement(Move move){	// gère le deplacement d'un piont;
 		//on recupere le bot
 		Piont bot = move.getBot();
 		Piont vide = new Piont(bot.getX(),bot.getY());
@@ -99,7 +94,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		Move vers_gauche = new Move(bot,"gauche");
 		Move vers_haut = new Move(bot,"haut");
 
-		if (dir == "bas"){
+		if (dir.equals("bas")){
 			while(! coord[bot.getX()+1][bot.getY()].collision(bot)){// tant que la collision avec le piont
 				// voisin est false, on deplace le robot à l'emplacement voisin;
 				bot.setX(bot.getX()+1);
@@ -118,7 +113,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 				}
 			}
 		}
-		if (dir == "droite"){
+		if (dir.equals("droite")){
 			while(! coord[bot.getX()][bot.getY()+1].collision(bot)){
 				bot.setY(bot.getY()+1);
 			}
@@ -133,7 +128,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 				}
 			}
 		}
-		if (dir == "haut"){
+		if (dir.equals("haut")){
 			while(! coord[bot.getX()-1][bot.getY()].collision(bot)){
 				bot.setX(bot.getX()-1);
 			}
@@ -148,7 +143,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 				}
 			}
 		}
-		if (dir == "gauche"){
+		if (dir.equals("gauche")){
 			while(! coord[bot.getX()][bot.getY()-1].collision(bot)){
 				bot.setY(bot.getY()-1);
 			}
@@ -192,7 +187,8 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 			}
 		}
 		for (Piont b: bots){
-				if (b.getColor()==goal.getColor()){
+			assert goal != null;
+			if (b.getColor().equals(goal.getColor())){
 					if(this.posPionts.get(b).get(0)==goal.getX() && this.posPionts.get(b).get(1)==goal.getY()){
 						return true;
 					}
@@ -201,11 +197,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		return false;
 	}
 
-	public void congrats(){
-		System.out.println("Objectif atteint !");
-	}
-
-	public HashSet<State> etatFuturs(){
+	public HashSet<State> getFutureStates(){
 		//Return un ensemble des Etats futurs possibles; ne doit pas modifier l'etat actuel;
 		ArrayList<Piont> bots = new ArrayList<>();
 		for (Piont b: this.getGrille().getEnsemblePiont()){
@@ -259,13 +251,15 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		}
 		for (Piont b: this.getGrille().getEnsemblePiont()){
 			if (b instanceof Bot){
-				if(b.getColor()==goal.getColor()){
+				assert goal != null;
+				if(b.getColor().equals(goal.getColor())){
 					player=b;
 				}
 			}
 		}
 		int playerX = this.getPosPionts().get(player).get(0);
 		int playerY = this.getPosPionts().get(player).get(1);
+		assert goal != null;
 		return Math.abs((goal.getX()-playerX))+Math.abs((goal.getY()-playerY));
 	}
 

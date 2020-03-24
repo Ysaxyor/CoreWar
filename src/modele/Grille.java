@@ -83,7 +83,7 @@ public class Grille{
 
 //Methodes
 
-	public int decoupage(){
+	private int decoupage(){
 		int i = (int)this.nbLign/10;
 		this.nbLign = (this.nbLign/i)*i; //On adapate la taille de la grille pour avoir des part egales		
 		this.nbCol = (this.nbCol/i)*i;
@@ -115,17 +115,17 @@ public class Grille{
 		}
 		System.out.println();
 	}
-	public void afficher(){
-		this.afficher(this.ensemble_piont);
-	}
-
 
 	public void addPiont(Piont p){
 		this.ensemble_piont.add(p);
 		this.setGrille(p.getX(),p.getY(),p);
 	}
+	public void removePiont(Piont p){
+		this.ensemble_piont.remove(p);
+		this.setGrille(p.getX(),p.getY(),new Piont(p.getX(),p.getY()));
+	}
 
-	public Piont[][] construct(){
+	private Piont[][] construct(){
 		grille	= new Piont[this.l][this.c];
 		for(int i=0; i<this.l; i++){	//2 boucle car tableau a 2 dimension
 			for(int j=0; j<this.c ;j++){
@@ -138,7 +138,7 @@ public class Grille{
 		return grille;
 	}
 
-	public Piont[][] assemblage(Piont[][][] liste){
+	private Piont[][] assemblage(Piont[][][] liste){
 		Piont nouveau [][] = new Piont[nbLign][nbCol];
 		for(int i = 0;i<nbLign;i++){
 			for(int j = 0;j<nbCol;j++){
@@ -167,7 +167,7 @@ public class Grille{
 		return nouveau;
 	}
 
-	public Piont[][] setMurs(){
+	private Piont[][] setMurs(){
 		//setBordures
 		for(int i=0; i<nbLign; i++){
 			Mur new_mur1 = new Mur(0,i);
@@ -203,7 +203,7 @@ public class Grille{
 		return this.grille;
 	}
 
-	public Piont [][] setAngles(){
+	private Piont [][] setAngles(){
 		Random random = new Random(); //Instance de la calsse Random
 
 		int l2 = (int)l/2; //On divise ligne et colonne puis on le converti en int

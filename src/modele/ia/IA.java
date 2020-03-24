@@ -32,7 +32,7 @@ public class IA{
     return this.getDistance(goal,player,false);
   }
 */
-  public ArrayList<Node> algo(){
+  public ArrayList<Node> aEtoile(){
 
     Node current = new Node(this.etat);
     PriorityQueue<Node> open = new PriorityQueue<>(new Compare2Node());

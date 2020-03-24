@@ -39,6 +39,14 @@ public class Case extends JPanel{
 				g.setColor(Color.RED);
 				g.fillOval(0,0,this.getWidth(),this.getHeight());
 			}
+			if(colorSubject.equals("Green")){
+				g.setColor(Color.GREEN);
+				g.fillOval(0,0,this.getWidth(),this.getHeight());
+			}
+			if(colorSubject.equals("Yellow")){
+				g.setColor(Color.YELLOW);
+				g.fillOval(0,0,this.getWidth(),this.getHeight());
+			}
 		}
 
 		if(this.subject instanceof Mirror){
@@ -66,6 +74,10 @@ public class Case extends JPanel{
 				g2D.setColor(Color.BLUE);
 				g2D.drawLine(x1,y1,x2,y2);
 			}
+			if(colorSubject.equals("Green")){
+				g2D.setColor(Color.GREEN);
+				g2D.drawLine(x1,y1,x2,y2);
+			}
 			if(colorSubject.equals("Yellow")){
 				g2D.setColor(Color.YELLOW);
 				g2D.drawLine(x1,y1,x2,y2);
@@ -79,6 +91,14 @@ public class Case extends JPanel{
 				}
 			if(colorSubject.equals("Blue")){
 				g.setColor(Color.BLUE);
+				g.fillRect(0,0,this.getWidth(),this.getHeight());
+			}
+			if(colorSubject.equals("Green")){
+				g.setColor(Color.GREEN);
+				g.fillRect(0,0,this.getWidth(),this.getHeight());
+			}
+			if(colorSubject.equals("Yellow")){
+				g.setColor(Color.YELLOW);
 				g.fillRect(0,0,this.getWidth(),this.getHeight());
 			}
 		}
