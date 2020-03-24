@@ -38,6 +38,11 @@ public class BSolve extends JButton implements ActionListener{
 		IA ia = new IA(jeu);
 		ArrayList<Node> na = ia.algo();
 		this.listeEtats = na;
+		
+		Grille new_grille = this.jeu.getGrille();
+		new_grille.setEnsemblePiont(this.listeEtats.get(clc).getValeur().getGrille().getEnsemblePiont());
+		this.jeu.setGrille(new_grille);
+		this.listeEtats.get(clc).getValeur().affiche();
 	}
 		
 		if (clc < listeEtats.size()){
@@ -53,7 +58,7 @@ public class BSolve extends JButton implements ActionListener{
 			}
 		
 		else{
-			System.out.println("Jeu résolu");
+			JOptionPane.showMessageDialog(null, "Jeu résolu !");
 		}
 		
 		this.clc += 1;
