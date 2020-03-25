@@ -2,6 +2,7 @@ package src.controller;
 
 import src.modele.*;
 import src.modele.pionts.*;
+import src.controller.*;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.util.Random;
 public class BGeneration extends JButton implements ActionListener{
 
     private State jeu;
+    private BSolve bsolve;
 
     public BGeneration(State jeu){
 
@@ -85,6 +87,7 @@ public class BGeneration extends JButton implements ActionListener{
         Grille new_grille = new Grille(this.jeu.getGrille().getNL());
         new_grille.setEnsemblePiont(this.ensembleAlea());
         this.jeu.setGrille(new_grille);
+        bsolve = new BSolve(jeu);
     }
 
 
