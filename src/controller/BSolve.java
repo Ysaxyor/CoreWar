@@ -20,7 +20,7 @@ public class BSolve extends JButton implements ActionListener{
 
 	public BSolve(State jeu){
 
-		super("Solve");
+		super("Solve / Change State");
 		this.jeu = jeu;
 		this.clc = 0;
 		this.addActionListener(this);
@@ -38,7 +38,6 @@ public class BSolve extends JButton implements ActionListener{
 			ArrayList<Node> na = ia.aEtoile();
 			this.listeEtats = na;
 			this.listeEtats.get(clc).getValeur().affiche();
-			this.setText("Change State");
 			
 		}
 		

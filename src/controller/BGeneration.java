@@ -87,7 +87,7 @@ public class BGeneration extends JButton implements ActionListener{
         Grille new_grille = new Grille(this.jeu.getGrille().getNL());
         new_grille.setEnsemblePiont(this.ensembleAlea());
         this.jeu.setGrille(new_grille);
-        bsolve = new BSolve(jeu);
+        bsolve = new BSolve(this.jeu);
     }
 
 
