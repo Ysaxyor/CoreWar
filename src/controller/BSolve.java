@@ -38,6 +38,7 @@ public class BSolve extends JButton implements ActionListener{
 			ArrayList<Node> na = ia.aEtoile();
 			this.listeEtats = na;
 			this.listeEtats.get(clc).getValeur().affiche();
+			this.setText("Change State");
 			
 		}
 		
@@ -52,7 +53,7 @@ public class BSolve extends JButton implements ActionListener{
 			
 		else{
 			this.clc = 0;
-			JOptionPane.showMessageDialog(null, "Jeu resolu !");
+			JOptionPane.showMessageDialog(null, "Le jeu va etre resolu au prochain etat!");
 		}
 		
 		this.clc += 1;
