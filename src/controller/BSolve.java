@@ -27,20 +27,20 @@ public class BSolve extends JButton implements ActionListener{
 
 	}
 
-
 	public void actionPerformed(ActionEvent e){
-
-
+		
 	// Premier clique on déclare tout et initialise l'IA du jeu.
 		if (clc == 0){
-		Node noeud = new Node(jeu);
-		GraphState g = new GraphState(noeud);
-		IA ia = new IA(jeu);
-		ArrayList<Node> na = ia.aEtoile();
-		this.listeEtats = na;
-		this.listeEtats.get(clc).getValeur().affiche();
-	}
-
+			
+			Node noeud = new Node(jeu);
+			GraphState g = new GraphState(noeud);
+			IA ia = new IA(jeu);
+			ArrayList<Node> na = ia.aEtoile();
+			this.listeEtats = na;
+			this.listeEtats.get(clc).getValeur().affiche();
+			
+		}
+		
 		if (clc < listeEtats.size()){
 			
 			Grille new_grille = this.jeu.getGrille();
