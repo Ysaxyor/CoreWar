@@ -23,7 +23,7 @@ public class PanelNord extends JPanel {
 		this.solve=new BSolve(this.jeu);
 		this.menu= new JButton("Menu");
 
-		this.add(solve);
+		this.add(new PSolve(solve));
 		this.add(menu);
 		this.menu.addActionListener(new ActionListener(){
 			@Override

@@ -46,8 +46,9 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 			p.setY(value.get(1));
 			setPos.add(p);
 		});
-
+		this.grille.setEnsemblePiont(setPos);
 		this.grille.afficher(setPos);
+		fireChangement();
 	}
 
 	public State play(Move move){ // Creer un nouvel etat qui copie tout les données
@@ -74,7 +75,6 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 				return this;
 			}
 		}
-		fireChangement();
 		return new_state;
 	}
 
