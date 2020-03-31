@@ -16,15 +16,10 @@ public class Move{
 	public Piont getBot(){
 		return this.bot;
 	}
-
 	public String getDirection(){
 		return this.direction;
 	}
 
-	//setters
-	public void setDirection(String direction){
-		this.direction=direction;
-	}
 	//méthodes
 	public String toString(){
 		return "bot: "+this.bot+" direction: "+this.direction;

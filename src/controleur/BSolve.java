@@ -1,4 +1,4 @@
-package src.controller;
+package src.controleur;
 
 import src.modele.*;
 import src.modele.ia.*;
@@ -7,7 +7,6 @@ import src.modele.ia.*;
 import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
-
 public class BSolve extends JButton implements ActionListener {
 
 
@@ -26,8 +25,14 @@ public class BSolve extends JButton implements ActionListener {
 		return jeu;
 	}
 
-	public ArrayList<Node> getListeEtats() {
-		return listeEtats;
+	public HashMap<Integer,State> getListeEtats() {
+		HashMap<Integer,State> ensemble = new HashMap<>();
+		int cmpt=1;
+		for (Node n: listeEtats){
+			ensemble.put(cmpt,n.getValeur());
+			cmpt+=1;
+		}
+		return ensemble;
 	}
 
 	public void setJeu(State jeu) {
@@ -38,12 +43,7 @@ public class BSolve extends JButton implements ActionListener {
 
 		// Premier clique on déclare tout et initialise l'IA du jeu.
 		Node noeud = new Node(jeu);
-		GraphState g = new GraphState(noeud);
 		IA ia = new IA(jeu);
 		this.listeEtats = ia.aEtoile();
-		for (int i=0; i<this.listeEtats.size();i++){
-			System.out.println(this.listeEtats.size());
-			this.listeEtats.get(i).getValeur().affiche();
 		}
 	}
-}

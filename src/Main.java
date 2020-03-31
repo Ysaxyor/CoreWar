@@ -13,7 +13,7 @@ public class Main {
 
 			//CREATION DES objets
 			Bot botBlue = new Bot(1,1,"Blue");
-			Bot botRed = new Bot (2,2,"Red");
+			Bot botRed = new Bot (1,3,"Red");
 			Bot botGreen = new Bot (5,5,"Green");
 			Mirror redMirror = new Mirror(5,1,"Red",'h');
 			//Mirror yellowMirror = new Mirror(1,24,"Yellow",'h');
@@ -46,7 +46,6 @@ public class Main {
 
 
 			State etat = new State(grille);
-			etat.affiche();
 		/*
 			for (State s: etat.etatFuturs()){
 				s.affiche();

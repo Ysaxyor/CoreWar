@@ -1,4 +1,4 @@
-package src.controller;
+package src.controleur;
 
 import src.modele.*;
 import javax.swing.*;

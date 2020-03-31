@@ -2,7 +2,7 @@ package	src.vue;
 
 
 import src.modele.*;
-import src.controller.*;
+import src.controleur.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -33,8 +33,6 @@ public class PanelWest extends JPanel{
 		this.add(rigidareaW);
 
 		isMenu();
-
-
 	}
 
 
@@ -56,7 +54,6 @@ public class PanelWest extends JPanel{
 	}
 
 	public void setMenu(){
-
 		menuON= !menuON;
 	}
 }

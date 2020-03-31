@@ -15,7 +15,6 @@ public class Grille{
 	private Piont[][] grille; // une grille a 2Dimension rempli de Piont
 	private HashSet<Piont> ensemble_piont; // ensemble qui contient tout les pionts important
 
-
 	// Constructeur
 	public Grille(int nbLign){
 		if(nbLign<10){
@@ -26,7 +25,7 @@ public class Grille{
 		this.nbCol = nbLign;
 		this.l = decoupage();
 		this.c = this.l;
-		this.ensemble_piont=new HashSet<Piont>();
+		this.ensemble_piont= new HashSet<>();
 
 		Piont[][][] listeConstruct = new Piont[(this.nbLign/l)*(this.nbLign/l)][this.l][this.c];
 		for(int i = 0;i<(this.nbLign/l)*(this.nbLign/l);i++){
@@ -58,14 +57,6 @@ public class Grille{
 		return this.ensemble_piont;
 	}
 
-	//Setters
-	public void setNL(int l){
-		this.nbLign=l;
-	}
-	public void setNC(int c){
-		this.nbCol=c;
-	}
-
 	public void setG (Piont[][] g){
 		this.grille=g;
 	}
@@ -84,10 +75,10 @@ public class Grille{
 //Methodes
 
 	private int decoupage(){
-		int i = (int)this.nbLign/10;
+		int i = this.nbLign /10;
 		this.nbLign = (this.nbLign/i)*i; //On adapate la taille de la grille pour avoir des part egales		
 		this.nbCol = (this.nbCol/i)*i;
-		System.out.println("La grille a été ajustée en "+this.nbLign+"x"+this.nbLign);
+		//System.out.println("La grille a été ajustée en "+this.nbLign+"x"+this.nbLign);
 		return this.nbLign/i;
 	}
 
@@ -101,10 +92,7 @@ public class Grille{
 		}
 	}
 
-	public void afficher(HashSet<Piont> ensemble_piont1){
-		for (Piont p: ensemble_piont1){
-			this.setGrille(p.getX(),p.getY(),p);
-		}
+	public void afficher(){
 		System.out.println();
 		for(int i=0; i<nbLign; i++){	//2 boucle car tableau a 2 dimension
 			for(int j=0; j<nbCol;j++){
@@ -139,7 +127,7 @@ public class Grille{
 	}
 
 	private Piont[][] assemblage(Piont[][][] liste){
-		Piont nouveau [][] = new Piont[nbLign][nbCol];
+		Piont[][] nouveau = new Piont[nbLign][nbCol];
 		for(int i = 0;i<nbLign;i++){
 			for(int j = 0;j<nbCol;j++){
 				Piont new_piont = new Piont(i,j);
@@ -154,9 +142,7 @@ public class Grille{
 			//CALCUL DU BIAIS	
 			//Permet de repartir chaque pièce dans une zone de la grille
 			for(int i=0;i<this.l;i++){
-				for(int j=0;j<this.c;j++){
-					nouveau[bx+i][by+j] = liste[biais][i][j];
-				}
+				if (this.c >= 0) System.arraycopy(liste[biais][i], 0, nouveau[bx + i], by, this.c);
 			}
 			bx = bx + l;
 			if(bx == nbLign){
@@ -189,7 +175,7 @@ public class Grille{
 			cx += 1;
 			cy += 1;
 		} //Si le nombre de lignes et de colonnes du centre est pair, il sera centré dans le tableau
-		Piont centre [][] = new Piont[cx][cy]; //On crée le centre de la taille nbLign/10 x nbLign/10
+		Piont[][] centre = new Piont[cx][cy]; //On crée le centre de la taille nbLign/10 x nbLign/10
 		int bx = nbLign/2-cx/2; //biais abscisse
 		int by = nbCol/2-cy/2;
 		//Remplir le centre de murs et l'ajouter en même temps à la grille
@@ -206,8 +192,8 @@ public class Grille{
 	private Piont [][] setAngles(){
 		Random random = new Random(); //Instance de la calsse Random
 
-		int l2 = (int)l/2; //On divise ligne et colonne puis on le converti en int
-		int c2 = (int)c/2;
+		int l2 = l /2; //On divise ligne et colonne puis on le converti en int
+		int c2 = c /2;
 
 		int a = (l2-2)+random.nextInt(1);
 		int b = (c2-2)+random.nextInt(1);

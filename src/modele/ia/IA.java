@@ -1,9 +1,7 @@
 package src.modele.ia;
 
-import java.lang.Math;
 import java.util.*;
 import src.modele.*;
-import src.modele.pionts.*;
 
 public class IA{
   private State etat;
@@ -19,33 +17,26 @@ public class IA{
   public void setEtat(State etat){
     this.etat=etat;
   }
-/*
-  public double getDistance(Goal goal, Bot player, Boolean type){
-    Integer playerX=this.etat.getPosPionts().get(player).get(0);
-    Integer playerY=this.etat.getPosPionts().get(player).get(1);
-    if (type){
-      return Math.sqrt(Math.pow((goal.getX()-playerX),2) + Math.pow((goal.getY()-playerY),2));
-    }
-    return Math.abs((goal.getX()-playerX))+Math.abs((goal.getY()-playerY));
-  }
-  public double getDistance(Goal goal,Bot player){
-    return this.getDistance(goal,player,false);
-  }
-*/
-  public ArrayList<Node> aEtoile(){
 
+  public ArrayList<Node> aEtoile(){
+    long tempsDebut = System.currentTimeMillis();
     Node current = new Node(this.etat);
     PriorityQueue<Node> open = new PriorityQueue<>(new Compare2Node());
     HashSet<Node> closed = new HashSet<>();
     ArrayList<Node> path = new ArrayList<>();
     open.add(current);
     while(! open.isEmpty()){
+      System.out.println((System.currentTimeMillis()-tempsDebut)/1000F);
       current = open.poll();
       new GraphState(current);
       closed.add(current);
+      assert current != null;
       if (current.getValeur().isFinished()){
         path.add(current);
         break;
+      }
+      if(((System.currentTimeMillis()-tempsDebut)/1000F) >= 5){
+        return null;
       }
       for (Node fils: current.getFils()){
         if (closed.contains(fils)){

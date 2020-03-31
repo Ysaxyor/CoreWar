@@ -1,4 +1,4 @@
-package	src.vue;
+/*package	src.vue;
 
 
 import javax.swing.*;
@@ -282,3 +282,4 @@ public class GUI extends JFrame implements ActionListener{
 //Modele = la grille, nb de robots, mur
 //Vue = les graphic (les details)
 //Controlleur = la gestion , rajouter des murs, robots... et lancer le jeu
+*/
