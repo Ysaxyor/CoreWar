@@ -1,6 +1,8 @@
 package src.controleur;
 
+import src.modele.pionts.Piont;
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PSolve extends JPanel {
@@ -8,6 +10,8 @@ public class PSolve extends JPanel {
     private BSolve bsolve;
     private int indexS;
     private int indexP;
+    private HashMap<Piont, ArrayList<Integer>> save;
+    public static boolean first=true;
 
     public PSolve(BSolve bsolve){
         super();
@@ -17,42 +21,61 @@ public class PSolve extends JPanel {
         //test
 
 
-
         //Bouton ETAT suivant
         JButton etatSuiv = new JButton("Etat suivant");
         this.indexS = 1;
 
-        etatSuiv.addActionListener(e -> {
-            if (PSolve.this.bsolve.getListeEtats() != null) {
-                if (PSolve.this.indexS >= PSolve.this.bsolve.getListeEtats().size()+1) {
-                    PSolve.this.indexS = 1;
-                }
-                System.out.println(PSolve.this.indexS);
-                PSolve.this.bsolve.getJeu().setPosPionts(PSolve.this.bsolve.getListeEtats().get(PSolve.this.indexS).getPosPionts());
-                PSolve.this.bsolve.getListeEtats().get(PSolve.this.indexS).affiche();
-                PSolve.this.indexS += 1;
-            }else{
-                JOptionPane.showMessageDialog(null, "Jeu insoluble ! Veuillez générer un nouveau jeu via le menu");
-            }
 
+        etatSuiv.addActionListener(e -> {
+            if (this.bsolve.getListeEtats() != null){
+                if (first){
+                    this.save=bsolve.getListeEtats().get(0).getValeur().getPosPionts();
+                    first=false;
+                }
+                if (this.indexS >= this.bsolve.getListeEtats().size()) {
+                    this.indexS = 0;
+                    first=true;
+                }
+
+                if(this.indexS==0){
+                    bsolve.getJeu().setPosPionts(this.save);
+                    }
+                else{
+                    bsolve.getJeu().setPosPionts(bsolve.getListeEtats().get(indexS).getValeur().getPosPionts());
+                }
+
+                this.indexP = this.indexS-1;
+                this.indexS += 1;
+                }
+            else{
+                JOptionPane.showMessageDialog(null, "Jeu insoluble (ou calcul trop long)! " +
+                        System.getProperty("line.separator")+" Veuillez générer un nouveau jeu via le menu.");
+            }
         });
         this.add(etatSuiv);
 
         //Bouton ETAT precedant
         JButton etatPrec = new JButton("Etat precedent");
 
-        this.indexP = 1;
+        this.indexP = 0;
         etatPrec.addActionListener(e -> {
-            if (PSolve.this.bsolve.getListeEtats() != null) {
-                if (PSolve.this.indexP == 0) {
-                    PSolve.this.indexP = PSolve.this.bsolve.getListeEtats().size();
+            if (this.bsolve.getListeEtats() != null) {
+                if (first){
+                    this.save=bsolve.getListeEtats().get(0).getValeur().getPosPionts();
+                    first=false;
                 }
-
-                PSolve.this.bsolve.getJeu().setPosPionts(PSolve.this.bsolve.getListeEtats().get(PSolve.this.indexP).getPosPionts());
-                PSolve.this.bsolve.getListeEtats().get(PSolve.this.indexP).affiche();
-                PSolve.this.indexP -= 1;
+                if (this.indexP <= 0) {
+                    bsolve.getJeu().setPosPionts(this.save);
+                    first=true;
+                    this.indexP = this.bsolve.getListeEtats().size();
+                }else{
+                    bsolve.getJeu().setPosPionts(bsolve.getListeEtats().get(indexP).getValeur().getPosPionts());
+                }
+                this.indexS = this.indexP+1;
+                this.indexP -= 1;
             }else{
-                JOptionPane.showMessageDialog(null, "Jeu insoluble ! Veuillez générer un nouveau jeu via le menu");
+                JOptionPane.showMessageDialog(null, "Jeu insoluble (ou calcul trop long)! " +
+                        System.getProperty("line.separator")+" Veuillez générer un nouveau jeu via le menu.");
             }
         });
 

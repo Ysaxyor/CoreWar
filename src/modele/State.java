@@ -34,6 +34,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 	}
 	public void setPosPionts(HashMap<Piont,ArrayList<Integer>> posPionts){
 		this.posPionts=posPionts;
+		if(posPionts != null){
 		HashSet<Piont> setPos = new HashSet<>();
 		this.grille.clear();
 		this.posPionts.forEach((p, value) -> {
@@ -43,6 +44,7 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		});
 		this.grille.setEnsemblePiont(setPos);
 		fireChangement();
+		}
 	}
 	//méthodes
 
@@ -168,7 +170,6 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 				}
 			}
 		}
-
 	}
 
 	public HashMap<Piont,ArrayList<Integer>> saveState(){

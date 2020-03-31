@@ -15,9 +15,10 @@ public class BSolve extends JButton implements ActionListener {
 
 	public BSolve(State jeu) {
 
-		super("Solve / Change State");
+		super("Solve");
 		this.jeu = jeu;
 		this.addActionListener(this);
+		this.listeEtats=null;
 
 	}
 
@@ -25,24 +26,21 @@ public class BSolve extends JButton implements ActionListener {
 		return jeu;
 	}
 
-	public HashMap<Integer,State> getListeEtats() {
-		HashMap<Integer,State> ensemble = new HashMap<>();
-		int cmpt=1;
-		for (Node n: listeEtats){
-			ensemble.put(cmpt,n.getValeur());
-			cmpt+=1;
-		}
-		return ensemble;
+	public ArrayList<Node> getListeEtats() {
+		return listeEtats;
 	}
-
 	public void setJeu(State jeu) {
-		this.jeu = jeu;
+		this.jeu=jeu;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 
-		// Premier clique on déclare tout et initialise l'IA du jeu.
-		Node noeud = new Node(jeu);
+		// Premier clique on déclare tout et initialise l'IA du jeu
+		if (listeEtats!=null){
+			listeEtats.clear();
+			PSolve.first=true;
+		}
+		Node noeud = new Node(new State(this.jeu.getGrille()));
 		IA ia = new IA(jeu);
 		this.listeEtats = ia.aEtoile();
 		}

@@ -29,26 +29,6 @@ public class Case extends JPanel{
 			g.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
 
-		if(this.subject instanceof Bot){
-
-			if(colorSubject.equals("Blue")){
-				g.setColor(Color.BLUE);
-				g.fillOval(0,0,this.getWidth(),this.getHeight());
-			}
-			if(colorSubject.equals("Red")){
-				g.setColor(Color.RED);
-				g.fillOval(0,0,this.getWidth(),this.getHeight());
-			}
-			if(colorSubject.equals("Green")){
-				g.setColor(Color.GREEN);
-				g.fillOval(0,0,this.getWidth(),this.getHeight());
-			}
-			if(colorSubject.equals("Yellow")){
-				g.setColor(Color.YELLOW);
-				g.fillOval(0,0,this.getWidth(),this.getHeight());
-			}
-		}
-
 		if(this.subject instanceof Mirror){
 			int x1; int x2; int y1; int y2;
 			int width = 8;
@@ -100,6 +80,25 @@ public class Case extends JPanel{
 			if(colorSubject.equals("Yellow")){
 				g.setColor(Color.YELLOW);
 				g.fillRect(0,0,this.getWidth(),this.getHeight());
+			}
+		}
+		if(this.subject instanceof Bot){
+
+			if(colorSubject.equals("Blue")){
+				g.setColor(Color.BLUE);
+				g.fillOval(0,0,this.getWidth(),this.getHeight());
+			}
+			if(colorSubject.equals("Red")){
+				g.setColor(Color.RED);
+				g.fillOval(0,0,this.getWidth(),this.getHeight());
+			}
+			if(colorSubject.equals("Green")){
+				g.setColor(Color.GREEN);
+				g.fillOval(0,0,this.getWidth(),this.getHeight());
+			}
+			if(colorSubject.equals("Yellow")){
+				g.setColor(Color.YELLOW);
+				g.fillOval(0,0,this.getWidth(),this.getHeight());
 			}
 		}
 

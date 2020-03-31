@@ -35,7 +35,7 @@ public class IA{
         path.add(current);
         break;
       }
-      if(((System.currentTimeMillis()-tempsDebut)/1000F) >= 5){
+      if(((System.currentTimeMillis()-tempsDebut)/1000F) >= 60){
         return null;
       }
       for (Node fils: current.getFils()){
