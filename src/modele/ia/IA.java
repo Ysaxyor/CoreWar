@@ -44,6 +44,7 @@ public class IA{
         }
         if(current.getEval()>fils.getEval() || ! open.contains(fils)){
           fils.setPere(current);
+          fils.setHeuristique(fils.getHeuristique()+fils.getCout());
           if(!open.contains(fils)){
             open.add(fils);
           }

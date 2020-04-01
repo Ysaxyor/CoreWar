@@ -31,6 +31,8 @@ public class PSolve extends JPanel {
                 if (first){
                     this.save=bsolve.getListeEtats().get(0).getValeur().getPosPionts();
                     first=false;
+                    this.indexS=1;
+                    this.indexP=1;
                 }
                 if (this.indexS >= this.bsolve.getListeEtats().size()) {
                     this.indexS = 0;
