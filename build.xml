@@ -9,8 +9,8 @@
   </target>
 
   <target name="jar" depends="compile">
-    <mkdir dir="build/jar"/>
-    <jar destfile="build/jar/Exe.jar" basedir="build/classes">
+    <mkdir dir="dist/jar"/>
+    <jar destfile="dist/jar/Exe.jar" basedir="build/classes">
       <manifest>
         <attribute name="Main-Class" value="src.Main"/>
       </manifest>
@@ -18,12 +18,12 @@
   </target>
 
   <target name="run" depends="jar">
-    <java jar="build/jar/Exe.jar" fork="true"/>
+    <java jar="dist/jar/Exe.jar" fork="true"/>
   </target>
 
   <target name="jarVue" depends="compile">
-    <mkdir dir="build/jar"/>
-    <jar destfile="build/jar/Vue.jar" basedir="build/classes">
+    <mkdir dir="dist/jar"/>
+    <jar destfile="dist/jar/Vue.jar" basedir="build/classes">
       <manifest>
         <attribute name="Main-Class" value="src.vue.Main"/>
       </manifest>
@@ -31,9 +31,16 @@
   </target>
 
   <target name="runVue" depends="jarVue">
-    <java jar="build/jar/Vue.jar" fork="true"/>
+    <java jar="dist/jar/Vue.jar" fork="true"/>
   </target>
 
+  <target name="javadoc">
+    <javadoc sourcepath="src/model" destdir="doc">
+      <fileset dir="src" defaultexcludes="yes">
+        <include name="**"/>
+      </fileset>
+    </javadoc>
+  </target>
 
   <target name="main" depends="clean,run"/>
 </project>

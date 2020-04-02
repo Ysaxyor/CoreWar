@@ -18,12 +18,17 @@ public class IA{
     this.etat=etat;
   }
 
+  /***
+   * Implementation d'A*
+   * @return La liste des noeuds de la solution.
+   */
   public ArrayList<Node> aEtoile(){
-    long tempsDebut = System.currentTimeMillis();
+    long tempsDebut = System.currentTimeMillis(); //Permet de mettre une horloge;
     Node current = new Node(this.etat);
     PriorityQueue<Node> open = new PriorityQueue<>(new Compare2Node());
     HashSet<Node> closed = new HashSet<>();
     ArrayList<Node> path = new ArrayList<>();
+
     open.add(current);
     while(! open.isEmpty()){
       System.out.println((System.currentTimeMillis()-tempsDebut)/1000F);
@@ -35,7 +40,7 @@ public class IA{
         path.add(current);
         break;
       }
-      if(((System.currentTimeMillis()-tempsDebut)/1000F) >= 60){
+      if(((System.currentTimeMillis()-tempsDebut)/1000F) >= 60){ //Si on depasse 60s d'attente, on stop le programme et on renvoit null;
         return null;
       }
       for (Node fils: current.getFils()){

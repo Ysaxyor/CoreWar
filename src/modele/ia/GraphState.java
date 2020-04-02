@@ -15,7 +15,10 @@ public class GraphState{
 
 
 //methodes
-//si posPiont fils1 == posPiont fils2 -> fils1=fils2
+
+  /***
+   * Assigne des fils au noeud courant
+   */
   public void buildGraph(){
     for (State etatf: this.current.getValeur().getFutureStates()){
       if(this.current.getValeur()==etatf){

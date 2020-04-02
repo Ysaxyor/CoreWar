@@ -15,6 +15,9 @@ public class BClean extends JButton implements ActionListener{
 
 	}
 
+	/***
+	 * Lorsque l'action est effectuée, on appelle la methode clean() du jeu en attribut.
+	 */
 	public void actionPerformed(ActionEvent e){
 		this.jeu.clean();
 		}

@@ -251,6 +251,10 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 
 	}
 
+	/***
+	 * On evalue la distance de Manhattan entre le bot courant (c-a-d de meme couleur) et l'objectif
+	 * @return un entier
+	 */
 	public int getEval(){
 		//return la distance de Manhattan entre le joueur, et l'objectif
 		Piont player=null;
@@ -278,10 +282,11 @@ public class State extends AbstractModeleEcoutable{	//Objet qui represente l'eta
 		this.grille.clear();
 		this.grille.getEnsemblePiont().clear();
 		fireChangement();
-
-
 	}
 
+	/***
+	 * On genere un ensemble de piont aleatoire que l'on dispose sur la grille.
+	 */
 	public void ensembleAlea(){
 		HashSet<Piont> ensemble_alea = new  HashSet<>();
 		Random random = new Random();

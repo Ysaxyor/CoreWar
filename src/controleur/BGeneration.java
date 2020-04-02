@@ -16,7 +16,9 @@ public class BGeneration extends JButton implements ActionListener{
         this.addActionListener(this);
 
     }
-
+    /***
+     * Lorsque l'action est effectuée, on appelle la methode ensembleAlea() du jeu en attribut.
+     */
     public void actionPerformed(ActionEvent e){
         this.jeu.ensembleAlea();
     }
