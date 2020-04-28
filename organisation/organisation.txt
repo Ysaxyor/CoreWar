@@ -1,0 +1,18 @@
+
+Bryan HUET:
+
+- Principalement les packages modele et IA, et la classe State;
+- a supervisé l'ensemble du projet.
+- Rapport : 2.2.1 MODELE, 3.2 GESTION DES ETATS, 3.3 IA
+
+Tolga SAHIN:
+- Principalement IA et les classes controleur.BSolve et controleur.PSolve
+- Rapport : 1.1 SOLVEUR DE RICOCHET ROBOT, 1.2 NOTRE VERSION DU JEU, 2.2.2 CONTRÔLEUR
+
+Aurélien BOURNONVILLE:
+- Principalement le package modele, et la classe Grille;
+- Rapport : 2.1 RÉPARATION DES TACHES, 3.1 GÉNÉRATION DE LA CARTE
+
+Mithian ACUNA:
+- Principalement le package vue. 
+- Rapport : 2.2.3 VUE, 4.1,OBJECTIF Remplis, 4.2 AMÉLIORATION POSSIBLE
